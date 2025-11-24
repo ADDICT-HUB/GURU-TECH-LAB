@@ -7,29 +7,93 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="brand"><div class="logo">GURU TECH LAB</div><div class="subtitle">Website Development</div></div>
-  <nav class="top-nav"><a href="index.html" class="nav-btn">Home</a></nav>
-</header>
+  <!-- floating glass blob -->
+  <svg class="bg-shape" style="right:-6%;top:4%;width:480px;height:420px;fill:url(#w1);">
+    <defs>
+      <linearGradient id="w1" x1="0" x2="1"><stop offset="0" stop-color="#6ec1ff"/><stop offset="1" stop-color="#4aa8ff"/></linearGradient>
+    </defs>
+    <filter id="blurw"><feGaussianBlur stdDeviation="40"/></filter>
+    <circle cx="240" cy="200" r="160" filter="url(#blurw)"></circle>
+  </svg>
 
-<main style="padding:28px;min-height:calc(100vh - 110px);">
-  <div style="max-width:900px;margin:auto;">
-    <h1 style="color:var(--accent)">Website Development Services</h1>
-    <p>We build modern, responsive websites and e-commerce stores. Examples of packages (edit prices later):</p>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">GURU TECH LAB</div>
+      <div class="subtitle">Website Development</div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="boosting.html" class="nav-btn">Boosting</a>
+      <a href="bots.html" class="nav-btn">Bots</a>
+      <a href="branding.html" class="nav-btn">Branding</a>
+    </nav>
+  </header>
 
-    <ul>
-      <li><strong>Landing Page</strong> — Fast one-page site</li>
-      <li><strong>Business Website</strong> — 5–8 pages, contact form</li>
-      <li><strong>E-commerce Store</strong> — Product pages, checkout</li>
-      <li><strong>Portfolio</strong> — Designer/Creator showcase</li>
-      <li><strong>Custom Web App</strong> — Business systems & dashboards</li>
-    </ul>
+  <main style="min-height:calc(100vh - 110px);padding:28px;position:relative;z-index:3;">
+    <div style="max-width:1100px;margin:auto; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:28px; border-radius:16px; border:1px solid rgba(255,255,255,0.03); backdrop-filter:blur(6px); box-shadow:0 20px 50px rgba(2,6,23,0.6)">
 
-    <p><strong>Contact to order or get a quote:</strong> <a href="https://wa.me/254763986398">WhatsApp</a></p>
-  </div>
-</main>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
+        <div style="width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,#6ec1ff,#4aa8ff);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.45);">
+          <!-- laptop 3D-like SVG -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="5" width="20" height="12" rx="1.5" fill="#fff" opacity="0.08"></rect>
+            <rect x="4" y="7" width="16" height="8" rx="1" fill="#fff" opacity="0.06"></rect>
+            <rect x="6" y="16" width="12" height="1.5" rx="0.8" fill="#000" opacity="0.06"></rect>
+          </svg>
+        </div>
 
-<footer class="site-footer">© <span id="year3"></span> GURU TECH LAB</footer>
-<script>document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year3'); if(y) y.textContent=new Date().getFullYear();});</script>
+        <div>
+          <h1 style="color:var(--accent);margin:0">Website Development</h1>
+          <div style="color:var(--muted);font-size:13px;margin-top:4px">Modern, responsive websites & e-commerce</div>
+        </div>
+      </div>
+
+      <p style="color:var(--muted);margin-bottom:16px">Ready-made packages — balanced prices shown. Contact via WhatsApp to order or request a custom quote.</p>
+
+      <!-- Services list -->
+      <section style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Website Packages</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Landing Page Website</strong> — 1200 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Business Website (2–3 pages)</strong> — 1500 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Portfolio Website</strong> — 1400 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>E-commerce Starter</strong> — 1500 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Personal Bio Website</strong> — 900 KSH</li>
+            <li style="padding:8px 0"><strong>Mini Shop Link Website</strong> — 700 KSH</li>
+          </ul>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Add-ons & Tech</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Custom Contact Form</strong> — 300 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Chat Widget Setup</strong> — 250 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Mobile Optimization</strong> — 350 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>SEO Boost (Basic)</strong> — 500 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Speed Optimization</strong> — 300 KSH</li>
+            <li style="padding:8px 0"><strong>Domain Linking</strong> — 300 KSH</li>
+            <li style="padding:8px 0"><strong>Hosting Setup</strong> — 400 KSH</li>
+            <li style="padding:8px 0"><strong>Full Redesign</strong> — 1000 KSH</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style="margin-top:18px;background:rgba(0,0,0,0.14);padding:14px;border-radius:10px">
+        <h3 style="color:var(--accent);margin-bottom:8px">How to order</h3>
+        <p style="color:var(--muted)">Send us a WhatsApp message with the package name and your requirements. We’ll confirm delivery time and start work after payment.</p>
+        <a class="contact-btn whatsapp" href="https://wa.me/254763986398" target="_blank" rel="noopener" style="margin-top:10px;display:inline-block">🟢 WhatsApp to order</a>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">© <span id="year3"></span> GURU TECH LAB</footer>
+
+  <!-- audio -->
+  <audio id="bg-audio" loop preload="auto"><source src="assets/ambient.mp3" type="audio/mp3"/></audio>
+
+  <script src="script.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year3'); if(y) y.textContent=new Date().getFullYear();});</script>
 </body>
 </html>
