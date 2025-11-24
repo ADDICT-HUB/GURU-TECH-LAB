@@ -1,0 +1,1 @@
+console.log('Full Guru Tech Marketing Website Loaded');
