@@ -1,55 +1,73 @@
 /* ================================
-   Simple & Clean - site stylesheet
+   Simple & Clean + Glassmorphism
+   3D-ish floating shapes (no external images required)
    ================================ */
 
 :root{
-  --bg: #0f0f0f;
-  --card: #161616;
+  --bg:#0f0f14;
+  --panel: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.06);
   --accent: #ff3c00;
   --muted: #cfcfcf;
+  --glass-border: rgba(255,255,255,0.06);
   --contact-whatsapp: #25D366;
   --contact-email: #1e90ff;
-  --contact-instagram-gradient: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  --instagram-grad: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  --soft-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  --glass-blur: 8px;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family: Arial, Helvetica, sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,Helvetica,sans-serif}
+html,body{height:100%;background:linear-gradient(180deg,#071018 0%, #0f0f14 60%);color:#fff}
 
-html,body{height:100%;background:var(--bg);color:#fff;}
+/* floating glass background shapes */
+.bg-shape {
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  filter: blur(36px) saturate(120%);
+  opacity:0.65;
+}
 
 /* Header */
 .site-header{
+  position:relative;
+  z-index:5;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 18px;
-  border-bottom:2px solid rgba(255,60,0,0.08);
-  background: #0b0b0b;
+  padding:10px 18px;
+  backdrop-filter: blur(var(--glass-blur));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom: 1px solid var(--glass-border);
 }
 
-.brand {display:flex;flex-direction:column}
-.logo{color:var(--accent);font-weight:700;font-size:20px;letter-spacing:1px}
-.subtitle{color:var(--muted);font-size:13px;margin-top:3px}
+.brand{display:flex;flex-direction:column}
+.logo{color:var(--accent);font-weight:800;font-size:20px;letter-spacing:1px}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
 
-/* Top nav */
+/* NAV */
 .top-nav{display:flex;gap:10px}
 .nav-btn{
   padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;
-  background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);
-  transition:all .18s ease;
+  background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.03);
+  transition:all .16s ease;
 }
-.nav-btn:hover{transform:translateY(-3px);color:#fff;border-color:rgba(255,60,0,0.35)}
+.nav-btn:hover{transform:translateY(-3px);color:#fff;border-color:rgba(255,60,0,0.25)}
 
-/* Main area - aim to show everything above the fold */
+/* Main layout (compact for above-fold view) */
 .main{
   min-height: calc(100vh - 110px);
   display:flex;
   align-items:center;
   justify-content:space-around;
   gap:20px;
-  padding:20px;
+  padding:28px;
+  position:relative;
+  z-index:3;
 }
 
-/* Cards grid compact so fits without scrolling on most screens */
+/* Cards - glass panels with subtle 3D look */
 .cards{
   display:grid;
   grid-template-columns: repeat(2, minmax(180px, 1fr));
@@ -58,82 +76,72 @@ html,body{height:100%;background:var(--bg);color:#fff;}
 }
 
 .card{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:var(--card);
-  border-radius:12px;
-  text-decoration:none;color:#fff;font-weight:700;font-size:16px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-  border:1px solid rgba(255,255,255,0.02);
-  transition:transform .18s ease, box-shadow .18s ease;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;border-radius:14px;
+  color:#fff;font-weight:800;font-size:15px;text-decoration:none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: var(--soft-shadow);
+  transform: translateZ(0);
+  transition: transform .24s cubic-bezier(.2,.9,.3,1), box-shadow .22s;
+  position:relative;
+  overflow:hidden;
 }
-.card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.7)}
 
-/* Contacts column */
+/* inset glossy highlight */
+.card::before{
+  content:"";
+  position:absolute;left:-10%;top:-30%;width:160%;height:80%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00));
+  transform: rotate(-18deg);
+  pointer-events:none;
+}
+
+.card:hover{
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(2,6,23,0.75);
+  cursor:pointer;
+}
+
+/* small decorative 3D-like orb per card (SVG used inline in pages) */
+.card .orb {
+  position:absolute;right:-10px;bottom:-10px;opacity:0.9;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  transform: translateZ(50px);
+}
+
+/* Contacts */
 .contacts{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  width:35%;
+  display:flex;flex-direction:column;align-items:center;gap:12px;width:35%;
 }
 
-/* Contact buttons large & visible */
 .contact-btn{
-  display:inline-block;
-  width:220px;
-  text-align:center;
-  padding:12px 18px;
-  border-radius:12px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:800;
-  font-size:16px;
-  box-shadow:0 10px 24px rgba(0,0,0,0.5);
-  transition:transform .15s ease, box-shadow .15s ease, opacity .15s;
+  display:inline-block;width:240px;text-align:center;padding:12px 18px;border-radius:12px;
+  text-decoration:none;color:#fff;font-weight:800;font-size:16px;
+  transition:transform .14s ease, box-shadow .14s ease;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.6);
 }
-.contact-btn:hover{transform:translateY(-5px)}
+.contact-btn:hover{transform:translateY(-6px)}
 .whatsapp{background:var(--contact-whatsapp)}
 .email{background:var(--contact-email)}
-.instagram{
-  background:var(--contact-instagram-gradient);
-  background-size:200% 200%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+.instagram{background: var(--instagram-grad)}
 
-/* For instagram we style differently: create gradient button */
-.instagram{
-  color:#fff;
-  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
-}
-
-/* Music controls */
+/* music controls */
 .music-controls{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:6px}
-.music-btn{
-  padding:8px 12px;border-radius:10px;border:0;background:#222;color:#fff;font-weight:700;cursor:pointer;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
-}
-.music-note{font-size:12px;color:var(--muted);margin-top:4px;text-align:center}
+.music-btn{padding:8px 12px;border-radius:10px;border:0;background:rgba(255,255,255,0.04);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,0.5)}
 
-/* Footer */
-.site-footer{
-  padding:10px 18px;text-align:center;border-top:1px solid rgba(255,60,0,0.05);color:var(--muted);
-  font-size:13px;
-}
+/* footer */
+.site-footer{padding:10px 18px;text-align:center;color:var(--muted);font-size:13px;position:relative;z-index:3}
 
-/* Responsive adjustments for small screens - stack vertically */
+/* Responsive */
 @media (max-width:900px){
-  .main{flex-direction:column;min-height:calc(100vh - 140px)}
-  .cards{width:90%;grid-template-columns: repeat(2, 1fr)}
-  .contacts{width:90%}
+  .main{flex-direction:column;min-height:calc(100vh - 120px)}
+  .cards{width:92%;grid-template-columns:repeat(2,1fr)}
+  .contacts{width:92%}
   .contact-btn{width:100%}
 }
 
 @media (max-width:520px){
-  .cards{grid-template-columns: 1fr; gap:12px}
+  .cards{grid-template-columns: 1fr}
   .top-nav{display:none}
-  .brand{align-items:flex-start}
 }
