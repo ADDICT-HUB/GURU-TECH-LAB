@@ -5,6 +5,81 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Social Media Boosting — Guru Tech Lab</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Modal + card-specific small overrides (keeps main look) */
+    .cards-grid {
+      display:grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .service-card {
+      position:relative;
+      padding:18px;
+      border-radius:14px;
+      min-height:140px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.5);
+      transition: transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+    }
+    .service-card:hover{ transform: translateY(-8px); box-shadow:0 30px 60px rgba(2,6,23,0.6) }
+
+    .service-head {
+      display:flex;align-items:center;gap:12px;
+    }
+    .service-title { font-weight:800; font-size:16px; color:#fff; }
+    .service-sub { font-size:12px; color:var(--muted) }
+
+    .icon-3d {
+      width:64px; height:64px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 6px 18px rgba(255,255,255,0.02);
+    }
+
+    .view-btn {
+      margin-top:12px;
+      padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:800;
+      cursor:pointer; box-shadow:0 10px 24px rgba(0,0,0,0.45);
+    }
+    .view-btn:hover{ transform:translateY(-3px) }
+
+    /* Modal base */
+    .modal-backdrop {
+      position:fixed;inset:0;background:rgba(2,6,23,0.65);
+      display:none;align-items:center;justify-content:center;z-index:9999;padding:24px;
+    }
+    .modal-backdrop.open{ display:flex }
+
+    .modal {
+      width:100%; max-width:980px; max-height:90vh; overflow:auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015));
+      border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 30px 80px rgba(2,6,23,0.7);
+    }
+    .modal h2{ color:var(--accent); margin-bottom:6px }
+    .modal .close {
+      position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;
+    }
+
+    /* lists inside modal */
+    .price-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    .price-block { background: rgba(0,0,0,0.25); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02) }
+    .price-block ul{ list-style:none;padding-left:0; margin:6px 0 0 0 }
+    .price-block li{ padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.03); font-weight:700 }
+    .price-block li:last-child{ border-bottom:0 }
+
+    @media (max-width:900px){
+      .cards-grid{ grid-template-columns: 1fr; }
+      .price-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <!-- subtle floating glass shapes -->
@@ -30,156 +105,338 @@
   </header>
 
   <main style="min-height:calc(100vh - 110px);padding:28px;position:relative;z-index:3;">
-    <div style="max-width:1100px;margin:auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);box-shadow:0 20px 50px rgba(2,6,23,0.6)">
+    <div style="max-width:1100px;margin:auto;">
 
       <h1 style="color:var(--accent);margin-bottom:8px">OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
+      <p style="color:var(--muted);margin-bottom:18px">Tap a service card and press <strong>View Prices</strong> to see full packages. Contact via WhatsApp to order.</p>
 
-      <p style="color:var(--muted);margin-bottom:18px">All packages below — editable. Contact via WhatsApp to order.</p>
+      <!-- Service cards -->
+      <div class="cards-grid" role="list">
 
-      <!-- IG Followers -->
-      <section style="margin-bottom:18px">
-        <h2>IG FOLLOWERS</h2>
-        <ul>
-          <li>1K Followers – 200</li>
-          <li>2K Followers – 300</li>
-          <li>5K Followers – 500</li>
-          <li>7K Followers – 700</li>
-          <li>10K Followers – 1000</li>
-          <li>15K Followers – 1250</li>
-          <li>20K Followers – 1500</li>
-          <li>30K Followers – 1800</li>
-          <li>45K Followers – 2400</li>
-          <li>50K Followers – 2900</li>
-          <li>100K Followers – 5000</li>
-          <li>200K Followers – 9800</li>
-        </ul>
-        <p><strong>Buy 7K+ Followers and get 10K FREE likes</strong></p>
-      </section>
+        <!-- IG Followers Card -->
+        <div class="service-card" role="listitem" aria-labelledby="igf-title">
+          <div class="service-head">
+            <div class="icon-3d" aria-hidden="true">
+              <!-- simple 3D-like SVG -->
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="18" rx="4" fill="url(#iggrad)"></rect>
+                <defs>
+                  <linearGradient id="iggrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="#ff8a4b"/>
+                    <stop offset="1" stop-color="#ff3c00"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div>
+              <div id="igf-title" class="service-title">IG Followers</div>
+              <div class="service-sub">Quick follower boosts</div>
+            </div>
+          </div>
 
-      <!-- IG Likes -->
-      <section style="margin-bottom:18px">
-        <h2>IG LIKES</h2>
-        <h3>1K Likes Packages</h3>
-        <ul>
-          <li>1 pic each 1K likes – 150</li>
-          <li>2 pics each 1K likes – 200</li>
-          <li>3 pics each 1K likes – 300</li>
-          <li>4 pics each 1K likes – 350</li>
-          <li>5 pics each 1K likes – 450</li>
-          <li>10 pics each 1K likes – 650</li>
-        </ul>
+          <div>
+            <button class="view-btn" data-modal="modal-ig-followers">View Prices</button>
+          </div>
+        </div>
 
-        <h3>2K Likes Packages</h3>
-        <ul>
-          <li>1 pic each 2K likes – 200</li>
-          <li>2 pics each 2K likes – 350</li>
-          <li>3 pics each 2K likes – 550</li>
-          <li>4 pics each 2K likes – 600</li>
-          <li>5 pics each 2K likes – 650</li>
-          <li>10 pics each 2K likes – 900</li>
-        </ul>
-      </section>
+        <!-- IG Likes Card -->
+        <div class="service-card" role="listitem" aria-labelledby="igl-title">
+          <div class="service-head">
+            <div class="icon-3d" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <g>
+                  <circle cx="12" cy="10" r="6" fill="url(#likegrad)"></circle>
+                </g>
+                <defs>
+                  <linearGradient id="likegrad" x1="0" x2="1"><stop offset="0" stop-color="#ffd86b"/><stop offset="1" stop-color="#ff7a2d"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div>
+              <div id="igl-title" class="service-title">IG Likes</div>
+              <div class="service-sub">Per-post likes packages</div>
+            </div>
+          </div>
 
-      <!-- TikTok Followers Offer -->
-      <section style="margin-bottom:18px">
-        <h2>TIKTOK FOLLOWERS — OFFER</h2>
-        <ul>
-          <li>500 Followers – 300</li>
-          <li>1K Followers – 500</li>
-          <li>2K Followers – 1000</li>
-          <li>5K Followers – 1650</li>
-          <li>7K Followers – 2000</li>
-          <li>10K Followers – 3500</li>
-          <li>20K Followers – 6550</li>
-        </ul>
-      </section>
+          <div>
+            <button class="view-btn" data-modal="modal-ig-likes">View Prices</button>
+          </div>
+        </div>
 
-      <!-- TikTok Likes -->
-      <section style="margin-bottom:18px">
-        <h2>TIKTOK LIKES (COMES WITH FREE VIEWS)</h2>
-        <ul>
-          <li>500 likes + 2K views – 300</li>
-          <li>1K likes + 5K views – 550</li>
-          <li>2.5K likes + 10K views – 700</li>
-          <li>3K likes + 20K views – 880</li>
-          <li>5K likes + 50K views – 1300</li>
-          <li>7K likes + 80K views – 1500</li>
-          <li>10K likes + 150K views – 2250</li>
-          <li>17K likes + 400K views – 3200</li>
-        </ul>
+        <!-- TikTok Card -->
+        <div class="service-card" role="listitem" aria-labelledby="tt-title">
+          <div class="service-head">
+            <div class="icon-3d" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24">
+                <path d="M6 3v12a4 4 0 1 0 4-4V3H6z" fill="url(#ttgrad)"></path>
+                <defs><linearGradient id="ttgrad" x1="0" x2="1"><stop offset="0" stop-color="#3bd0ff"/><stop offset="1" stop-color="#2b9cff"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div>
+              <div id="tt-title" class="service-title">TikTok Followers & Likes</div>
+              <div class="service-sub">Followers and likes with views</div>
+            </div>
+          </div>
 
-        <p><strong>Extra options:</strong><br>1K likes – 50 bob • 1K views – 40 bob</p>
-      </section>
+          <div>
+            <button class="view-btn" data-modal="modal-tiktok">View Prices</button>
+          </div>
+        </div>
 
-      <!-- YouTube Subs -->
-      <section style="margin-bottom:18px">
-        <h2>YOUTUBE SUBSCRIBERS</h2>
-        <ul>
-          <li>100 subs – 200</li>
-          <li>200 subs – 350</li>
-          <li>300 subs – 500</li>
-          <li>400 subs – 600</li>
-          <li>500 subs – 700</li>
-          <li>700 subs – 850</li>
-          <li>800 subs – 950</li>
-          <li>900 subs – 1000</li>
-          <li>1K subs – 1100</li>
-          <li>1.5K subs – 1500</li>
-          <li>2K subs – 2200</li>
-          <li>3K subs – 3200</li>
-          <li>5K subs – 5100</li>
-        </ul>
-        <p><strong>Free 2K views for purchases above 1K subs</strong></p>
-      </section>
+        <!-- YouTube / Facebook Card -->
+        <div class="service-card" role="listitem" aria-labelledby="yt-title">
+          <div class="service-head">
+            <div class="icon-3d" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="3" fill="url(#ytgrad)"></rect>
+                <defs><linearGradient id="ytgrad" x1="0" x2="1"><stop offset="0" stop-color="#ff5d5d"/><stop offset="1" stop-color="#ff3c00"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div>
+              <div id="yt-title" class="service-title">YouTube & Facebook</div>
+              <div class="service-sub">Subscribers, watch hours & followers</div>
+            </div>
+          </div>
 
-      <!-- Facebook -->
-      <section style="margin-bottom:18px">
-        <h2>FACEBOOK FOLLOWERS</h2>
-        <ul>
-          <li>1K Followers – 350</li>
-          <li>2K Followers – 700</li>
-          <li>5K Followers – 1100</li>
-          <li>10K Followers – 1500</li>
-          <li>20K Followers – 2350</li>
-        </ul>
-        <p><strong>Instant Delivery • Non-drop • No Password Required</strong></p>
-      </section>
+          <div>
+            <button class="view-btn" data-modal="modal-yt-fb">View Prices</button>
+          </div>
+        </div>
 
-      <!-- YouTube Watch Hours -->
-      <section style="margin-bottom:18px">
-        <h2>YOUTUBE WATCH HOURS (Comes with free views)</h2>
-        <ul>
-          <li>1K hours – 1250</li>
-          <li>2K hours – 2300</li>
-          <li>3K hours – 3200</li>
-          <li>4K hours – 4500</li>
-        </ul>
-      </section>
-
-      <section style="margin-top:18px">
-        <h3>Contact</h3>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/254763986398">+254 763 986 398</a></p>
-        <p><strong>Note:</strong> I'm the only LEGIT plug in 254 ☝🤘</p>
-      </section>
+      </div>
 
     </div>
   </main>
 
-  <footer class="site-footer">© <span id="year2"></span> GURU TECH LAB</footer>
+  <!-- Modals -->
+  <!-- IG Followers Modal -->
+  <div class="modal-backdrop" id="modal-ig-followers-back">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-ig-followers-title">
+      <button class="close" data-close>&times;</button>
+      <h2 id="modal-ig-followers-title">IG Followers — Packages</h2>
+      <p style="color:var(--muted)">Contact via WhatsApp to order. Prices are editable in the page source.</p>
 
-  <!-- Optional audio element — if you later upload assets/ambient.mp3 it will be used.
-       If you don't upload it, script.js will generate audio via WebAudio. -->
+      <div class="price-grid" style="margin-top:12px">
+        <div class="price-block">
+          <h4>Standard Followers</h4>
+          <ul>
+            <li>1K Followers – 200</li>
+            <li>2K Followers – 300</li>
+            <li>5K Followers – 500</li>
+            <li>7K Followers – 700</li>
+            <li>10K Followers – 1000</li>
+            <li>15K Followers – 1250</li>
+            <li>20K Followers – 1500</li>
+          </ul>
+        </div>
+
+        <div class="price-block">
+          <h4>Large Orders</h4>
+          <ul>
+            <li>30K Followers – 1800</li>
+            <li>45K Followers – 2400</li>
+            <li>50K Followers – 2900</li>
+            <li>100K Followers – 5000</li>
+            <li>200K Followers – 9800</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:12px"><strong>Offer:</strong> Buy 7K+ followers and get 10K FREE likes</p>
+    </div>
+  </div>
+
+  <!-- IG Likes Modal -->
+  <div class="modal-backdrop" id="modal-ig-likes-back">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-ig-likes-title">
+      <button class="close" data-close>&times;</button>
+      <h2 id="modal-ig-likes-title">IG Likes — Packages</h2>
+      <p style="color:var(--muted)">Per-picture likes. Pick 1 or multiple pictures.</p>
+
+      <div class="price-grid" style="margin-top:12px">
+        <div class="price-block">
+          <h4>1K Likes Packages</h4>
+          <ul>
+            <li>1 pic each 1K likes – 150</li>
+            <li>2 pics each 1K likes – 200</li>
+            <li>3 pics each 1K likes – 300</li>
+            <li>4 pics each 1K likes – 350</li>
+            <li>5 pics each 1K likes – 450</li>
+            <li>10 pics each 1K likes – 650</li>
+          </ul>
+        </div>
+
+        <div class="price-block">
+          <h4>2K Likes Packages</h4>
+          <ul>
+            <li>1 pic each 2K likes – 200</li>
+            <li>2 pics each 2K likes – 350</li>
+            <li>3 pics each 2K likes – 550</li>
+            <li>4 pics each 2K likes – 600</li>
+            <li>5 pics each 2K likes – 650</li>
+            <li>10 pics each 2K likes – 900</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TikTok Modal -->
+  <div class="modal-backdrop" id="modal-tiktok-back">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-tiktok-title">
+      <button class="close" data-close>&times;</button>
+      <h2 id="modal-tiktok-title">TikTok Followers & Likes — Packages</h2>
+      <p style="color:var(--muted)">Followers packages & likes (likes come with free views).</p>
+
+      <div class="price-grid" style="margin-top:12px">
+        <div class="price-block">
+          <h4>Followers Offer</h4>
+          <ul>
+            <li>500 Followers – 300</li>
+            <li>1K Followers – 500</li>
+            <li>2K Followers – 1000</li>
+            <li>5K Followers – 1650</li>
+            <li>7K Followers – 2000</li>
+            <li>10K Followers – 3500</li>
+            <li>20K Followers – 6550</li>
+          </ul>
+        </div>
+
+        <div class="price-block">
+          <h4>Likes (includes views)</h4>
+          <ul>
+            <li>500 likes + 2K views – 300</li>
+            <li>1K likes + 5K views – 550</li>
+            <li>2.5K likes + 10K views – 700</li>
+            <li>3K likes + 20K views – 880</li>
+            <li>5K likes + 50K views – 1300</li>
+            <li>7K likes + 80K views – 1500</li>
+            <li>10K likes + 150K views – 2250</li>
+            <li>17K likes + 400K views – 3200</li>
+          </ul>
+          <p style="margin-top:8px"><strong>Extras:</strong> 1K likes – 50 bob • 1K views – 40 bob</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube & Facebook Modal -->
+  <div class="modal-backdrop" id="modal-yt-fb-back">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-yt-fb-title">
+      <button class="close" data-close>&times;</button>
+      <h2 id="modal-yt-fb-title">YouTube Subscribers, Watch Hours & Facebook Followers</h2>
+      <p style="color:var(--muted)">YouTube subscribers and watch hours; Facebook followers packages below.</p>
+
+      <div class="price-grid" style="margin-top:12px">
+        <div class="price-block">
+          <h4>YouTube Subscribers</h4>
+          <ul>
+            <li>100 subs – 200</li>
+            <li>200 subs – 350</li>
+            <li>300 subs – 500</li>
+            <li>400 subs – 600</li>
+            <li>500 subs – 700</li>
+            <li>700 subs – 850</li>
+            <li>800 subs – 950</li>
+            <li>900 subs – 1000</li>
+            <li>1K subs – 1100</li>
+            <li>1.5K subs – 1500</li>
+            <li>2K subs – 2200</li>
+            <li>3K subs – 3200</li>
+            <li>5K subs – 5100</li>
+          </ul>
+          <p style="margin-top:8px"><strong>Free 2K views</strong> for purchases above 1K subs</p>
+        </div>
+
+        <div class="price-block">
+          <h4>Facebook & Watch Hours</h4>
+          <ul>
+            <li>Facebook: 1K Followers – 350</li>
+            <li>Facebook: 2K Followers – 700</li>
+            <li>Facebook: 5K Followers – 1100</li>
+            <li>Facebook: 10K Followers – 1500</li>
+            <li>Facebook: 20K Followers – 2350</li>
+          </ul>
+
+          <h4 style="margin-top:8px">YouTube Watch Hours (comes with free views)</h4>
+          <ul>
+            <li>1K hours – 1250</li>
+            <li>2K hours – 2300</li>
+            <li>3K hours – 3200</li>
+            <li>4K hours – 4500</li>
+          </ul>
+
+          <p style="margin-top:8px"><strong>Instant Delivery • Non-drop • No Password Required</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact / footer -->
+  <footer class="site-footer" style="margin-top:18px">
+    <div style="display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap">
+      <a class="contact-btn whatsapp" href="https://wa.me/254763986398" target="_blank" rel="noopener">🟢 WhatsApp</a>
+      <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
+      <a class="contact-btn instagram" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
+    </div>
+    <div style="margin-top:10px;color:var(--muted);text-align:center">© <span id="year2">2025</span> GURU TECH LAB</div>
+  </footer>
+
+  <!-- Optional audio element — script.js will use or fallback to WebAudio -->
   <audio id="bg-audio" loop preload="auto">
-    <source src="assets/ambient.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+    <source src="assets/ambient.mp3" type="audio/mp3" />
   </audio>
 
-  <script src="script.js"></script>
   <script>
-    // year patch for this page (already in script.js but keep safe)
-    document.addEventListener('DOMContentLoaded', () => {
-      const y = document.getElementById('year2'); if (y) y.textContent = new Date().getFullYear();
-    });
+    // Modal open/close logic (keyboard accessible)
+    (function(){
+      function openModal(modalBack) {
+        modalBack.classList.add('open');
+        // trap focus: put focus on first close button
+        const closeBtn = modalBack.querySelector('[data-close]');
+        if (closeBtn) closeBtn.focus();
+        // prevent background scroll
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(modalBack) {
+        modalBack.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // attach view buttons
+      document.addEventListener('DOMContentLoaded', function(){
+        // set year
+        const y = document.getElementById('year2'); if(y) y.textContent = new Date().getFullYear();
+
+        document.querySelectorAll('.view-btn').forEach(btn=>{
+          btn.addEventListener('click', function(){
+            const id = btn.getAttribute('data-modal');
+            const back = document.getElementById(id + '-back');
+            if (back) openModal(back);
+          });
+        });
+
+        // close buttons and clicking backdrop
+        document.querySelectorAll('.modal-backdrop').forEach(back => {
+          back.addEventListener('click', function(e){
+            // close if clicked outside modal container
+            if (e.target === back) closeModal(back);
+          });
+          const close = back.querySelector('[data-close]');
+          if (close) close.addEventListener('click', function(){ closeModal(back); });
+        });
+
+        // Esc to close
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-backdrop.open').forEach(back => closeModal(back));
+          }
+        });
+      });
+    })();
   </script>
+
+  <!-- load main site script (music + helpers). Keep this last -->
+  <script src="script.js"></script>
 </body>
-            </html>
+</html>
