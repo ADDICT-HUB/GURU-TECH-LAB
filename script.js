@@ -1,15 +1,15 @@
-// --- Theme Toggle ---
+// Theme Toggle
 function toggleTheme() {
   document.body.classList.toggle('light-mode');
 }
 
-// --- Remove Loading Screen ---
+// Remove loading screen and create DNA rays
 window.onload = () => {
   document.getElementById('loading-screen').style.display = 'none';
   createDNABackground();
 }
 
-// --- DNA Background Animation ---
+// Create DNA-ray animation
 function createDNABackground(){
   const bg = document.getElementById('dna-bg');
   for(let i=0; i<60; i++){
