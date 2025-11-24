@@ -4,110 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Guru Tech Marketing — Home</title>
-
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Force desktop layout */
-    html,body{ min-width:1200px;background:#071018;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif; }
-    body{margin:0; padding:0;}
-
-    /* Page container */
-    .wrap{ max-width:1400px; margin:18px auto; padding:12px; }
-
-    /* Header */
-    .site-header{ display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:12px 18px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.04); box-shadow:0 12px 40px rgba(2,6,23,0.6);
-    }
-    .brand { display:flex; gap:12px; align-items:center; }
-    .brand img.logo { width:84px; height:84px; object-fit:contain; border-radius:10px; }
-    .brand .title { font-weight:800; color:var(--accent); font-size:18px; }
-    .top-nav { display:flex; gap:10px; }
-    .nav-btn { padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--muted); border:1px solid rgba(255,255,255,0.03); font-weight:700; }
-    .nav-btn:hover{ color:#fff; transform:translateY(-3px); }
-
-    /* Hero */
-    .hero { margin-top:18px; display:flex; gap:20px; align-items:center; justify-content:space-between;
-      padding:20px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.03); box-shadow:0 20px 60px rgba(0,0,0,0.6); backdrop-filter: blur(6px);
-    }
-    .intro { max-width:58%; }
-    .intro h1 { margin:0; color:var(--accent); font-size:28px; }
-    .intro p { margin:8px 0 0; color:var(--muted); }
-
-    /* Controls */
-    .price-controls { margin-top:12px; display:flex; gap:12px; align-items:center; }
-    .country-select { padding:8px 12px; border-radius:10px; border:0; background:rgba(255,255,255,0.03); color:#fff; font-weight:700; }
-
-    /* Cards grid */
-    .cards-compact { display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; width:40%; }
-    .card-compact {
-      padding:16px; border-radius:14px; display:flex; flex-direction:column; gap:12px; justify-content:space-between;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.04); box-shadow: 0 18px 40px rgba(2,6,23,0.6);
-      transition: transform .18s ease, box-shadow .18s ease; text-decoration:none; color:inherit;
-    }
-    .card-compact:hover{ transform: translateY(-10px); box-shadow:0 30px 60px rgba(2,6,23,0.75) }
-    .card-compact .meta { display:flex; gap:12px; align-items:center; }
-    .card-compact .icon-wrap { width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: inset 0 6px 18px rgba(255,255,255,0.02); }
-    .card-compact .title { font-weight:800; font-size:15px; }
-    .card-compact .sub { color:var(--muted); font-size:13px; margin-top:6px; }
-    .card-compact .price { font-weight:900; color:var(--accent); font-size:16px; margin-top:8px; }
-
-    /* Contact row */
-    .contact-row { margin-top:18px; display:flex; gap:12px; justify-content:center; align-items:center; }
-    .contact-btn { display:inline-block; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:800; color:#fff; }
-    .whatsapp { background:#25D366; }
-    .email { background:#1E90FF; }
-    .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
-
-    /* Footer */
-    .site-footer { text-align:center; color:var(--muted); margin-top:22px; }
-
-    /* utilities */
-    .muted { color:var(--muted); }
-    :root{
-      --accent:#ff3c00;
-      --muted:#cfcfcf;
-    }
-
-    /* embed subtle floating blob (behind everything) */
-    .bg-shape{ position:fixed; left:-120px; top:40px; width:520px; height:420px; filter: blur(36px) saturate(120%); opacity:0.65; pointer-events:none; z-index:0; }
-
-    /* ensure desktop look even if small viewport */
-    @media (max-width:1200px){
-      /* purposely keep desktop feel — allow horizontal scroll */
-    }
-  </style>
 </head>
 <body>
 
-  <div class="bg-shape" aria-hidden="true">
-    <!-- decorative circle -->
-    <svg viewBox="0 0 520 420" width="520" height="420" aria-hidden="true">
-      <defs>
-        <linearGradient id="g1" x1="0" x2="1">
-          <stop offset="0" stop-color="#ff6a2d"/><stop offset="1" stop-color="#ff3c00"/>
-        </linearGradient>
-        <filter id="blur1"><feGaussianBlur stdDeviation="36"/></filter>
-      </defs>
-      <circle cx="260" cy="200" r="160" fill="url(#g1)" filter="url(#blur1)"></circle>
-    </svg>
-  </div>
+  <!-- floating blurred background shape -->
+  <svg class="bg-shape" aria-hidden="true" viewBox="0 0 520 420">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff6a2d"/><stop offset="1" stop-color="#ff3c00"/></linearGradient>
+      <filter id="blur1"><feGaussianBlur stdDeviation="36"/></filter>
+    </defs>
+    <circle cx="260" cy="200" r="160" fill="url(#g1)" filter="url(#blur1)"></circle>
+  </svg>
 
-  <div class="wrap" style="position:relative;z-index:3">
-    <header class="site-header" role="banner">
+  <div class="page-wrap">
+    <header class="site-header">
       <div class="brand">
-        <!-- Your uploaded logo file -->
-        <img src="guru-logo.png" alt="Guru Tech Lab" class="logo" />
-        <div>
-          <div class="title">GURU TECH LAB</div>
-          <div class="muted" style="font-size:12px;margin-top:6px">Digital Marketing & Tech Services</div>
-        </div>
+        <div class="logo-text">GURU TECH LAB</div>
+        <div class="tagline">Digital Services</div>
       </div>
 
-      <nav class="top-nav" role="navigation" aria-label="Main navigation">
+      <nav class="top-nav" role="navigation" aria-label="Main">
         <a class="nav-btn" href="index.html">Home</a>
         <a class="nav-btn" href="services.html">Services</a>
         <a class="nav-btn" href="boosting.html">Boosting</a>
@@ -116,149 +33,120 @@
       </nav>
     </header>
 
-    <main>
-      <section class="hero" role="region" aria-label="Intro and quick services">
-        <div class="intro">
-          <h1>Guru Tech Lab — Fast digital services</h1>
-          <p class="muted">Glassy service cards, balanced prices and country-aware currency conversion. Click a card to open the full page.</p>
-
-          <div class="price-controls" role="region" aria-label="Currency selector">
-            <label for="country-select" class="muted" style="font-weight:800">Prices shown for</label>
-            <select id="country-select" class="country-select" aria-label="Choose country">
-              <option value="AUTO">Auto-detect (recommended)</option>
-              <option value="KE">Kenya (KES)</option>
-              <option value="NG">Nigeria (NGN)</option>
-              <option value="US">United States (USD)</option>
-              <option value="GB">United Kingdom (GBP)</option>
-              <option value="ZA">South Africa (ZAR)</option>
-              <option value="IN">India (INR)</option>
-            </select>
-            <div id="price-status" class="price-notice" aria-live="polite">Detecting country & rates…</div>
+    <!-- Central glass card hero (A4) -->
+    <main class="hero-wrap" role="main">
+      <div class="hero-card" role="region" aria-label="Hero">
+        <div class="hero-top">
+          <div class="hero-logo">
+            <div class="hero-logo-text">GURU TECH LAB</div>
+            <div class="hero-sub">Digital Services</div>
+          </div>
+          <div class="hero-cta">
+            <button id="get-started" class="primary-btn">Get Started</button>
+            <button id="music-toggle" class="secondary-btn">🔊 Play Music</button>
           </div>
         </div>
 
-        <!-- Service cards (4 across) -->
-        <div class="cards-compact" role="list" aria-label="Quick services">
-          <!-- Social Media Boosting -->
-          <a href="boosting.html" class="card-compact" role="listitem" aria-label="Social Media Boosting">
-            <div>
-              <div class="meta">
-                <div class="icon-wrap" aria-hidden="true">
-                  <!-- Instagram/TikTok composite SVG (representing social boosting) -->
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z" fill="#ff7a2d" opacity="0.95"/>
-                    <circle cx="12" cy="11" r="3" fill="#fff" opacity="0.06"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="title">Social Media Boosting</div>
-                  <div class="sub muted">Followers, likes & views</div>
-                </div>
-              </div>
-              <div class="price" data-price-ksh="700">—</div>
-            </div>
-            <div style="text-align:right"><small class="muted">View</small></div>
-          </a>
+        <div class="hero-body">
+          <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding. Prices adapt to your country.</p>
 
-          <!-- Website -->
-          <a href="website.html" class="card-compact" role="listitem" aria-label="Website Development">
-            <div>
-              <div class="meta">
-                <div class="icon-wrap" aria-hidden="true">
-                  <!-- laptop icon -->
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="12" rx="1.5" fill="#6ec1ff" />
-                    <rect x="6" y="8" width="12" height="6" rx="1" fill="#fff" opacity="0.06" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="title">Website Development</div>
-                  <div class="sub muted">Landing pages & e-commerce</div>
-                </div>
-              </div>
-              <div class="price" data-price-ksh="1200">—</div>
-            </div>
-            <div style="text-align:right"><small class="muted">View</small></div>
-          </a>
+          <div class="controls-row">
+            <label for="country-select" class="muted">Prices shown for</label>
+            <select id="country-select" class="country-select" aria-label="Select country">
+              <option value="AUTO">Auto-detect</option>
+              <option value="KE">Kenya (KES)</option>
+              <option value="NG">Nigeria (NGN)</option>
+              <option value="US">USA (USD)</option>
+              <option value="GB">UK (GBP)</option>
+              <option value="ZA">South Africa (ZAR)</option>
+              <option value="IN">India (INR)</option>
+            </select>
+            <div id="price-status" class="price-status muted" aria-live="polite">Detecting country & rates…</div>
+          </div>
 
-          <!-- Bots -->
-          <a href="bots.html" class="card-compact" role="listitem" aria-label="Automation and Bots">
-            <div>
-              <div class="meta">
-                <div class="icon-wrap" aria-hidden="true">
-                  <!-- bot icon -->
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="4" y="6" width="16" height="12" rx="2" fill="#7cffb2" />
-                    <circle cx="9" cy="11" r="1.6" fill="#000" opacity="0.12" />
-                    <circle cx="15" cy="11" r="1.6" fill="#000" opacity="0.12" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="title">Automation & Bots</div>
-                  <div class="sub muted">WhatsApp bots & tools</div>
-                </div>
+          <!-- service cards inside the hero card -->
+          <div class="services-grid" role="list">
+            <!-- Social Boosting -->
+            <a class="svc-card" href="boosting.html" role="listitem" aria-label="Social Media Boosting">
+              <div class="svc-icon">
+                <!-- Instagram colored SVG (example composite) -->
+                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                  <defs><linearGradient id="igG" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="1" stop-color="#dd2a7b"/></linearGradient></defs>
+                  <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igG)"></rect>
+                  <circle cx="12" cy="12" r="4" fill="#fff" opacity="0.12"></circle>
+                </svg>
               </div>
-              <div class="price" data-price-ksh="500">—</div>
-            </div>
-            <div style="text-align:right"><small class="muted">View</small></div>
-          </a>
+              <div class="svc-title">Social Media Boosting</div>
+              <div class="svc-sub muted">Followers, likes & views</div>
+              <div class="svc-price" data-price-ksh="700">—</div>
+            </a>
 
-          <!-- Branding -->
-          <a href="branding.html" class="card-compact" role="listitem" aria-label="Branding and Digital Setup">
-            <div>
-              <div class="meta">
-                <div class="icon-wrap" aria-hidden="true">
-                  <!-- palette icon -->
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 3C8 3 5 6 5 10c0 3 2 5 5 5h1c3 0 5-2 5-5 0-1.66-1.34-3-3-3h-4" fill="#ffb86b" opacity="0.95"></path>
-                  </svg>
-                </div>
-                <div>
-                  <div class="title">Branding & Digital Setup</div>
-                  <div class="sub muted">Logos, social kits & assets</div>
-                </div>
+            <!-- Website -->
+            <a class="svc-card" href="website.html" role="listitem" aria-label="Website Development">
+              <div class="svc-icon">
+                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="12" rx="1.5" fill="#6ec1ff"></rect>
+                  <rect x="6" y="8" width="12" height="6" rx="1" fill="#fff" opacity="0.06"></rect>
+                </svg>
               </div>
-              <div class="price" data-price-ksh="300">—</div>
-            </div>
-            <div style="text-align:right"><small class="muted">View</small></div>
-          </a>
+              <div class="svc-title">Website Development</div>
+              <div class="svc-sub muted">Landing pages & e-commerce</div>
+              <div class="svc-price" data-price-ksh="1200">—</div>
+            </a>
+
+            <!-- Bots -->
+            <a class="svc-card" href="bots.html" role="listitem" aria-label="Automation & Bots">
+              <div class="svc-icon">
+                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                  <rect x="4" y="6" width="16" height="12" rx="2" fill="#7cffb2"></rect>
+                  <circle cx="9" cy="11" r="1.6" fill="#000" opacity="0.12" />
+                  <circle cx="15" cy="11" r="1.6" fill="#000" opacity="0.12" />
+                </svg>
+              </div>
+              <div class="svc-title">Automation & Bots</div>
+              <div class="svc-sub muted">WhatsApp bots & tools</div>
+              <div class="svc-price" data-price-ksh="500">—</div>
+            </a>
+
+            <!-- Branding -->
+            <a class="svc-card" href="branding.html" role="listitem" aria-label="Branding & Digital Setup">
+              <div class="svc-icon">
+                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                  <path d="M12 3C8 3 5 6 5 10c0 3 2 5 5 5h1c3 0 5-2 5-5 0-1.66-1.34-3-3-3h-4" fill="#ffb86b"></path>
+                </svg>
+              </div>
+              <div class="svc-title">Branding & Digital Setup</div>
+              <div class="svc-sub muted">Logos, social kits</div>
+              <div class="svc-price" data-price-ksh="300">—</div>
+            </a>
+          </div>
         </div>
-      </section>
-
-      <!-- Contact & social icons -->
-      <div class="contact-row" role="contentinfo" aria-label="Contact">
-        <a class="contact-btn whatsapp" href="https://wa.me/254763986398" target="_blank" rel="noopener">🟢 WhatsApp</a>
-        <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
-        <a class="contact-btn instagram" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
-
-        <!-- music toggle -->
-        <button id="music-toggle-hero" class="contact-btn" style="background:rgba(255,255,255,0.04);color:#fff;border:0">🔊 Play Music</button>
       </div>
     </main>
 
-    <footer class="site-footer">© <span id="year">2025</span> GURU TECH LAB</footer>
+    <div class="contact-row">
+      <a class="contact-btn whatsapp" href="https://wa.me/254763986398">🟢 WhatsApp</a>
+      <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
+      <a class="contact-btn instagram" href="https://instagram.com">📸 Instagram</a>
+    </div>
+
+    <footer class="site-footer">© <span id="year"></span> GURU TECH LAB — Digital Services</footer>
   </div>
 
-  <!-- Audio element (prefers this file if present; script.js provides WebAudio fallback) -->
+  <!-- hidden audio element: script.js will try to use it first, otherwise WebAudio fallback -->
   <audio id="bg-audio" loop preload="auto">
     <source src="assets/ambient.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
   </audio>
 
-  <!-- Inline icons for official brands (links below provide visual cues in modals/pages if needed) -->
-  <!-- We use inline SVGs above for service cards; if you want the real full-color logos elsewhere I can add them as images. -->
-
-  <!-- Price conversion + country detection -->
+  <!-- country price conversion (uses exchangerate.host + ipapi.co) -->
   <script>
     (function(){
       const currencySymbols = { KES: 'KSH', NGN: '₦', USD: '$', GBP: '£', ZAR: 'R', INR: '₹' };
       const countryToCurrency = { KE: 'KES', NG: 'NGN', US: 'USD', GB: 'GBP', ZA: 'ZAR', IN: 'INR' };
-
       const select = document.getElementById('country-select');
       const status = document.getElementById('price-status');
-      const priceEls = Array.from(document.querySelectorAll('.price'));
+      const priceEls = Array.from(document.querySelectorAll('.svc-price'));
       let rates = null;
-      let targetCurrency = 'KES';
 
       function numberWithCommas(x){
         if (typeof x === 'number') x = x.toString();
@@ -267,21 +155,17 @@
         return parts.join('.');
       }
 
-      function setPriceDisplays(baseCurrency='KES'){
-        priceEls.forEach(el => {
-          const baseKsh = parseFloat(el.getAttribute('data-price-ksh') || '0');
-          if (!rates || baseCurrency === 'KES') {
-            el.textContent = `${baseKsh} ${currencySymbols.KES || 'KSH'}`;
+      function setPriceDisplays(cur='KES'){
+        priceEls.forEach(el=>{
+          const base = parseFloat(el.dataset.priceKsh || el.getAttribute('data-price-ksh') || '0');
+          if (!rates || cur==='KES') {
+            el.textContent = `${base} ${currencySymbols.KES}`;
             return;
           }
-          const rate = rates[baseCurrency];
-          if (!rate || isNaN(rate)) {
-            el.textContent = `${baseKsh} ${currencySymbols.KES || 'KSH'}`;
-            return;
-          }
-          const converted = Math.round((baseKsh * rate) * 100) / 100;
-          const sym = currencySymbols[baseCurrency] || baseCurrency + ' ';
-          el.textContent = `${sym} ${numberWithCommas(converted)}`;
+          const rate = rates[cur];
+          if (!rate) { el.textContent = `${base} ${currencySymbols.KES}`; return; }
+          const converted = Math.round((base * rate) * 100) / 100;
+          el.textContent = `${currencySymbols[cur] || cur} ${numberWithCommas(converted)}`;
         });
       }
 
@@ -290,87 +174,63 @@
         try {
           const res = await fetch('https://api.exchangerate.host/latest?base=KES&symbols=USD,NGN,GBP,ZAR,INR,KES');
           if (!res.ok) throw new Error('Rates fetch failed');
-          const data = await res.json();
-          rates = data.rates || null;
-          status.textContent = 'Prices converted to local currency';
+          const d = await res.json();
+          rates = d.rates;
+          status.textContent = 'Prices converted';
           return true;
-        } catch (err) {
-          console.warn('Rates error', err);
-          status.textContent = 'Currency conversion unavailable — showing KSH';
-          rates = null;
-          return false;
-        }
+        } catch(e){ console.warn(e); rates=null; status.textContent='Conversion unavailable — showing KSH'; return false; }
       }
 
       async function detectCountry(){
         status.textContent = 'Detecting country…';
         try {
           const r = await fetch('https://ipapi.co/json/');
-          if (!r.ok) throw new Error('Geo lookup failed');
+          if (!r.ok) throw new Error('geo failed');
           const data = await r.json();
-          return (data && data.country) || null;
-        } catch (err) {
-          console.warn('Geo detect error', err);
-          return null;
-        }
+          return data && data.country;
+        } catch(e){ console.warn(e); return null; }
       }
 
-      async function updatePricingFlow(selected) {
-        if (selected === 'AUTO') {
+      async function updateFlow(sel){
+        if (sel==='AUTO') {
           const country = await detectCountry();
-          if (country && countryToCurrency[country]) {
-            targetCurrency = countryToCurrency[country];
-            status.textContent = `Detected ${country} — showing prices in ${targetCurrency}`;
-          } else {
-            targetCurrency = 'KES';
-            status.textContent = 'Country not detected or unsupported — showing KSH';
-          }
-        } else {
-          targetCurrency = countryToCurrency[selected] || 'KES';
-          status.textContent = `Showing prices in ${targetCurrency}`;
-        }
-
-        if (targetCurrency !== 'KES') {
-          const ok = await fetchRates();
-          if (ok && rates) setPriceDisplays(targetCurrency);
+          const cur = country && countryToCurrency[country] ? countryToCurrency[country] : 'KES';
+          status.textContent = cur==='KES' ? 'Showing KSH' : `Showing ${cur}`;
+          if (cur!=='KES') { const ok = await fetchRates(); if(ok) setPriceDisplays(cur); else setPriceDisplays('KES'); }
           else setPriceDisplays('KES');
         } else {
-          setPriceDisplays('KES');
+          const cur = countryToCurrency[sel] || 'KES';
+          status.textContent = cur==='KES' ? 'Showing KSH' : `Showing ${cur}`;
+          if (cur!=='KES') { const ok = await fetchRates(); if(ok) setPriceDisplays(cur); else setPriceDisplays('KES'); }
+          else setPriceDisplays('KES');
         }
       }
 
       (async function init(){
-        select.value = 'AUTO';
+        select.value='AUTO';
         setPriceDisplays('KES');
-        await updatePricingFlow('AUTO');
+        await updateFlow('AUTO');
       })();
 
-      select.addEventListener('change', function(){ updatePricingFlow(select.value); });
-      window._guruPricing = { set: updatePricingFlow, rates };
+      select.addEventListener('change', ()=> updateFlow(select.value));
+      window._gtPricing = { updateFlow };
     })();
   </script>
 
-  <!-- Autoplay-on-touch + music toggle (uses script.js WebAudio fallback if available) -->
+  <!-- autoplay-on-touch & music toggle hooking into script.js (which provides WebAudio fallback) -->
   <script>
     (function(){
-      const audioEl = document.getElementById('bg-audio');
-      const musicBtn = document.getElementById('music-toggle-hero');
-
-      // Start audio after first user interaction. Prefer window._guruAudio.start() if provided by script.js
-      function startAudioOnce(){
-        // small timeout to allow script.js to set window._guruAudio
-        setTimeout(()=>{
+      const musicBtn = document.getElementById('music-toggle');
+      function startAudioOnce() {
+        setTimeout(()=> {
           if (window._guruAudio && typeof window._guruAudio.start === 'function') {
             window._guruAudio.start();
-            if (musicBtn) musicBtn.textContent = '🔊 Music On';
+            musicBtn && (musicBtn.textContent = '🔊 Music On');
             return;
           }
-          if (audioEl) {
-            audioEl.volume = 0.25;
-            audioEl.play().then(()=> { if (musicBtn) musicBtn.textContent = '🔊 Music On'; }).catch(()=>{ if (musicBtn) musicBtn.textContent = '🔊 Play Music'; });
-          }
-        }, 40);
-
+          const el = document.getElementById('bg-audio');
+          if (el) { el.volume = 0.25; el.play().then(()=>musicBtn && (musicBtn.textContent='🔊 Music On')).catch(()=>musicBtn && (musicBtn.textContent='🔊 Play Music')); }
+        },30);
         window.removeEventListener('pointerdown', startAudioOnce);
         window.removeEventListener('touchstart', startAudioOnce);
         window.removeEventListener('keydown', startAudioOnce);
@@ -379,38 +239,19 @@
       window.addEventListener('touchstart', startAudioOnce, {passive:true});
       window.addEventListener('keydown', startAudioOnce);
 
-      // Toggle audio function
-      function toggleAudio(){
-        if (window._guruAudio && typeof window._guruAudio.status === 'function') {
-          const st = window._guruAudio.status();
-          if (st && st.started) {
-            if (window._guruAudio.stop) window._guruAudio.stop();
-            musicBtn.textContent = '🔈 Paused';
-            return;
-          }
-          if (window._guruAudio.start) window._guruAudio.start();
-          musicBtn.textContent = '🔊 Music On';
-          return;
-        }
-        if (!audioEl) return;
-        if (audioEl.paused) {
-          audioEl.volume = 0.25;
-          audioEl.play().then(()=> musicBtn.textContent = '🔊 Music On').catch(()=> musicBtn.textContent='🔊 Play Music');
-        } else {
-          audioEl.pause();
-          musicBtn.textContent = '🔈 Paused';
-        }
-      }
-      if (musicBtn) musicBtn.addEventListener('click', toggleAudio);
-
-      // set year
-      document.addEventListener('DOMContentLoaded', ()=> {
-        const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+      if (musicBtn) musicBtn.addEventListener('click', function(){
+        if (window._guruAudio && window._guruAudio.status && window._guruAudio.status().started) { window._guruAudio.stop(); musicBtn.textContent='🔈 Paused'; return; }
+        if (window._guruAudio && window._guruAudio.start) { window._guruAudio.start(); musicBtn.textContent='🔊 Music On'; return; }
+        const el = document.getElementById('bg-audio'); if (!el) return;
+        if (el.paused) { el.play().then(()=>musicBtn.textContent='🔊 Music On').catch(()=>musicBtn.textContent='🔊 Play Music'); } else { el.pause(); musicBtn.textContent='🔈 Paused'; }
       });
+
+      // year
+      document.addEventListener('DOMContentLoaded', ()=>{ const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear(); });
     })();
   </script>
 
-  <!-- Keep your script.js (has robust WebAudio fallback) -->
+  <!-- load robust audio script (below) -->
   <script src="script.js"></script>
 </body>
 </html>
