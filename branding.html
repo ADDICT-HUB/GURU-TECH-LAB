@@ -7,27 +7,103 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="brand"><div class="logo">GURU TECH LAB</div><div class="subtitle">Branding & Digital Setup</div></div>
-  <nav class="top-nav"><a href="index.html" class="nav-btn">Home</a></nav>
-</header>
+  <!-- floating glass blob -->
+  <svg class="bg-shape" style="left:6%;top:10%;width:420px;height:420px;fill:url(#br1);">
+    <defs>
+      <linearGradient id="br1" x1="0" x2="1"><stop offset="0" stop-color="#ffb86b"/><stop offset="1" stop-color="#ff7a2d"/></linearGradient>
+    </defs>
+    <filter id="blurbr"><feGaussianBlur stdDeviation="36"/></filter>
+    <circle cx="210" cy="200" r="150" filter="url(#blurbr)"></circle>
+  </svg>
 
-<main style="padding:28px;min-height:calc(100vh - 110px);">
-  <div style="max-width:900px;margin:auto;">
-    <h1 style="color:var(--accent)">Branding & Digital Setup</h1>
-    <p>Design services to make your brand shine:</p>
-    <ul>
-      <li>Logo design & brand identity</li>
-      <li>Social media profile setup & graphics</li>
-      <li>Business cards, banners, posters</li>
-      <li>Starter digital kit for businesses</li>
-    </ul>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">GURU TECH LAB</div>
+      <div class="subtitle">Branding & Digital Setup</div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="boosting.html" class="nav-btn">Boosting</a>
+      <a href="website.html" class="nav-btn">Website</a>
+      <a href="bots.html" class="nav-btn">Bots</a>
+    </nav>
+  </header>
 
-    <p><strong>Contact:</strong> <a href="https://wa.me/254763986398">WhatsApp</a></p>
-  </div>
-</main>
+  <main style="min-height:calc(100vh - 110px);padding:28px;position:relative;z-index:3;">
+    <div style="max-width:1100px;margin:auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);box-shadow:0 20px 50px rgba(2,6,23,0.6)">
 
-<footer class="site-footer">© <span id="year5"></span> GURU TECH LAB</footer>
-<script>document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year5'); if(y) y.textContent=new Date().getFullYear();});</script>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
+        <div style="width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,#ffb86b,#ff7a2d);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.45);">
+          <!-- paint palette icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3C7.03 3 3 7.03 3 12c0 4 3 7 7 7h1c2.76 0 5-2.24 5-5 0-1.66-1.34-3-3-3h-4" fill="#fff" opacity="0.06"></path>
+            <circle cx="9" cy="10" r="1.6" fill="#000" opacity="0.12"></circle>
+          </svg>
+        </div>
+
+        <div>
+          <h1 style="color:var(--accent);margin:0">Branding & Digital Setup</h1>
+          <div style="color:var(--muted);font-size:13px;margin-top:4px">Logos, social kits, visuals & quick digital setup</div>
+        </div>
+      </div>
+
+      <p style="color:var(--muted);margin-bottom:16px">Brand packages and quick-turn graphic work. Prices are balanced for small businesses.</p>
+
+      <section style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Logo & Identity</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Simple Logo</strong> — 300 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Professional Logo</strong> — 600 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>3D Logo</strong> — 1200 KSH</li>
+            <li style="padding:8px 0"><strong>Brand Identity Colors & Font Guide</strong> — 300 KSH</li>
+          </ul>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Graphic Design</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Poster / Flyer</strong> — 200 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Business Card Design</strong> — 150 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Highlight Covers (6 pcs)</strong> — 200 KSH</li>
+            <li style="padding:8px 0"><strong>Social Media Templates (5 pcs)</strong> — 400 KSH</li>
+          </ul>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Digital Setup</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Facebook Page Setup</strong> — 300 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Instagram Pro Setup</strong> — 250 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>TikTok Business Setup</strong> — 300 KSH</li>
+            <li style="padding:8px 0"><strong>YouTube Channel Setup</strong> — 350 KSH</li>
+          </ul>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.20);padding:14px;border-radius:10px">
+          <h3 style="margin-top:4px;color:var(--accent)">Video & Motion</h3>
+          <ul style="list-style:none;padding-left:0;margin-top:8px;color:#fff">
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Short Promo Video (5–10s)</strong> — 500 KSH</li>
+            <li style="padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)"><strong>Animated Logo Intro (3–5s)</strong> — 900 KSH</li>
+            <li style="padding:8px 0"><strong>Reels / TikTok Editing</strong> — 300–600 KSH</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style="margin-top:18px;background:rgba(0,0,0,0.14);padding:14px;border-radius:10px">
+        <h3 style="color:var(--accent);margin-bottom:8px">How to order</h3>
+        <p style="color:var(--muted)">Send a WhatsApp message with required package and details. We'll reply with an ETA and payment instructions.</p>
+        <a class="contact-btn whatsapp" href="https://wa.me/254763986398" target="_blank" rel="noopener" style="margin-top:10px;display:inline-block">🟢 WhatsApp to order</a>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">© <span id="year5"></span> GURU TECH LAB</footer>
+
+  <audio id="bg-audio" loop preload="auto"><source src="assets/ambient.mp3" type="audio/mp3"/></audio>
+
+  <script src="script.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year5'); if(y) y.textContent=new Date().getFullYear();});</script>
 </body>
 </html>
