@@ -1,147 +1,77 @@
-/* ================================
-   Simple & Clean + Glassmorphism
-   3D-ish floating shapes (no external images required)
-   ================================ */
+/* style.css - Glassmorphism theme used across pages */
 
 :root{
-  --bg:#0f0f14;
-  --panel: rgba(255,255,255,0.04);
-  --glass: rgba(255,255,255,0.06);
-  --accent: #ff3c00;
-  --muted: #cfcfcf;
-  --glass-border: rgba(255,255,255,0.06);
-  --contact-whatsapp: #25D366;
-  --contact-email: #1e90ff;
-  --instagram-grad: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
-  --soft-shadow: 0 8px 30px rgba(2,6,23,0.6);
-  --glass-blur: 8px;
+  --bg0:#071018;
+  --panel: rgba(255,255,255,0.03);
+  --accent:#ff3c00;
+  --muted:#cfcfcf;
+  --glass-border: rgba(255,255,255,0.04);
+  --soft-shadow: 0 18px 50px rgba(2,6,23,0.6);
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,Helvetica,sans-serif}
-html,body{height:100%;background:linear-gradient(180deg,#071018 0%, #0f0f14 60%);color:#fff}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;background:linear-gradient(180deg,#071018 0%, #0f0f14 60%);color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;min-width:1200px}
+a{text-decoration:none;color:inherit}
 
-/* floating glass background shapes */
-.bg-shape {
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  filter: blur(36px) saturate(120%);
-  opacity:0.65;
-}
+/* background blur blob (positioned via inline SVG) */
+.bg-shape{position:fixed;left:-120px;top:40px;filter:blur(36px) saturate(120%);opacity:0.65;pointer-events:none;z-index:0}
 
-/* Header */
-.site-header{
-  position:relative;
-  z-index:5;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 18px;
-  backdrop-filter: blur(var(--glass-blur));
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-bottom: 1px solid var(--glass-border);
-}
+/* page wrap */
+.page-wrap{position:relative;z-index:3;max-width:1400px;margin:18px auto;padding:8px}
 
-.brand{display:flex;flex-direction:column}
-.logo{color:var(--accent);font-weight:800;font-size:20px;letter-spacing:1px}
-.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+/* header */
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);box-shadow:var(--soft-shadow)}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-text{font-weight:900;color:var(--accent);font-size:20px;letter-spacing:1px}
+.tagline{font-size:12px;color:var(--muted)}
 
-/* NAV */
+/* nav */
 .top-nav{display:flex;gap:10px}
-.nav-btn{
-  padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;
-  background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.03);
-  transition:all .16s ease;
-}
-.nav-btn:hover{transform:translateY(-3px);color:#fff;border-color:rgba(255,60,0,0.25)}
+.nav-btn{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-weight:700}
+.nav-btn:hover{transform:translateY(-3px);color:#fff}
 
-/* Main layout (compact for above-fold view) */
-.main{
-  min-height: calc(100vh - 110px);
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  gap:20px;
-  padding:28px;
-  position:relative;
-  z-index:3;
-}
+/* hero card centered */
+.hero-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 200px)}
+.hero-card{width:1100px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:16px;border:1px solid var(--glass-border);box-shadow:0 30px 80px rgba(2,6,23,0.7);backdrop-filter:blur(10px)}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hero-logo{display:flex;flex-direction:column;gap:6px}
+.hero-logo-text{font-weight:900;font-size:28px;color:var(--accent)}
+.hero-sub{font-size:13px;color:var(--muted)}
+.hero-cta{display:flex;gap:10px}
 
-/* Cards - glass panels with subtle 3D look */
-.cards{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap:14px;
-  width:60%;
-}
+/* buttons */
+.primary-btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:12px;border:0;font-weight:900;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.5)}
+.secondary-btn{background:rgba(255,255,255,0.04);color:#fff;padding:10px 12px;border-radius:12px;border:0;cursor:pointer}
 
-.card{
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;border-radius:14px;
-  color:#fff;font-weight:800;font-size:15px;text-decoration:none;
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.04);
-  backdrop-filter: blur(6px) saturate(120%);
-  box-shadow: var(--soft-shadow);
-  transform: translateZ(0);
-  transition: transform .24s cubic-bezier(.2,.9,.3,1), box-shadow .22s;
-  position:relative;
-  overflow:hidden;
-}
+/* hero body */
+.hero-body{margin-top:16px}
+.hero-lead{color:var(--muted);margin:0 0 12px}
 
-/* inset glossy highlight */
-.card::before{
-  content:"";
-  position:absolute;left:-10%;top:-30%;width:160%;height:80%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00));
-  transform: rotate(-18deg);
-  pointer-events:none;
-}
+/* controls row */
+.controls-row{display:flex;align-items:center;gap:12px}
 
-.card:hover{
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(2,6,23,0.75);
-  cursor:pointer;
-}
+/* services grid */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+.svc-card{display:block;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 28px rgba(0,0,0,0.45);transition:transform .16s ease}
+.svc-card:hover{transform:translateY(-10px)}
+.svc-icon{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);box-shadow:inset 0 6px 18px rgba(255,255,255,0.02)}
+.svc-title{font-weight:800;margin-top:8px}
+.svc-sub{font-size:13px}
 
-/* small decorative 3D-like orb per card (SVG used inline in pages) */
-.card .orb {
-  position:absolute;right:-10px;bottom:-10px;opacity:0.9;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
-  transform: translateZ(50px);
-}
+/* price */
+.svc-price{font-weight:900;color:var(--accent);margin-top:10px}
 
-/* Contacts */
-.contacts{
-  display:flex;flex-direction:column;align-items:center;gap:12px;width:35%;
-}
-
-.contact-btn{
-  display:inline-block;width:240px;text-align:center;padding:12px 18px;border-radius:12px;
-  text-decoration:none;color:#fff;font-weight:800;font-size:16px;
-  transition:transform .14s ease, box-shadow .14s ease;
-  box-shadow: 0 12px 30px rgba(2,6,23,0.6);
-}
-.contact-btn:hover{transform:translateY(-6px)}
-.whatsapp{background:var(--contact-whatsapp)}
-.email{background:var(--contact-email)}
-.instagram{background: var(--instagram-grad)}
-
-/* music controls */
-.music-controls{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:6px}
-.music-btn{padding:8px 12px;border-radius:10px;border:0;background:rgba(255,255,255,0.04);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,0.5)}
+/* contact row */
+.contact-row{display:flex;gap:12px;justify-content:center;margin-top:18px}
+.contact-btn{padding:10px 14px;border-radius:12px;font-weight:800;color:#fff}
+.whatsapp{background:#25D366}
+.email{background:#1E90FF}
+.instagram{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}
 
 /* footer */
-.site-footer{padding:10px 18px;text-align:center;color:var(--muted);font-size:13px;position:relative;z-index:3}
+.site-footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
 
-/* Responsive */
-@media (max-width:900px){
-  .main{flex-direction:column;min-height:calc(100vh - 120px)}
-  .cards{width:92%;grid-template-columns:repeat(2,1fr)}
-  .contacts{width:92%}
-  .contact-btn{width:100%}
-}
-
-@media (max-width:520px){
-  .cards{grid-template-columns: 1fr}
-  .top-nav{display:none}
+/* small screens allowed but horizontal scrollbar will show to preserve desktop layout */
+@media (max-width:1200px){
+  html,body{min-width:1200px}
 }
