@@ -1,9 +1,11 @@
+/* --- Global Styles --- */
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #0d0d0d;
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .light-mode {
@@ -11,68 +13,76 @@ body {
   color: #000 !important;
 }
 
+/* --- DNA Background Animation --- */
+#dna-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  background: black;
+  overflow: hidden;
+}
+
+.dna-ray {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, #800000, #00c0ff);
+  opacity: 0.2;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-50px);}
+  100% {transform: translateY(0);}
+}
+
+/* --- Header --- */
 header {
-  padding: 25px 10px;
+  padding: 30px 10px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #00c0ff;
 }
 
 .title {
-  font-size: 33px;
+  font-size: 36px;
   font-weight: bold;
+  margin: 10px 0;
+  color: #800000;
+  text-shadow: 1px 1px 5px #00c0ff;
 }
 
+/* --- Navigation --- */
+nav {
+  margin: 20px 0;
+}
 nav a {
   margin: 5px;
-}
-
-.btn {
-  background: #007bff;
-  padding: 12px 22px;
-  border-radius: 10px;
+  text-decoration: none;
   display: inline-block;
-  color: white;
-  text-decoration: none;
-}
-
-.card {
-  background: rgba(255,255,255,0.1);
-  padding: 20px;
-  width: 85%;
+  padding: 12px 25px;
   border-radius: 12px;
-  margin: 12px auto;
-}
-
-/* Footer icons */
-footer {
-  padding: 20px;
-  margin-top: 30px;
-}
-footer a {
-  margin: 0 10px;
-  color: inherit;
-  text-decoration: none;
-  font-size: 22px;
-}
-
-/* Loading Screen */
-#loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
+  background: #800000;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-  z-index: 9999;
+  font-weight: bold;
+  transition: 0.3s;
+}
+nav a:hover {
+  background: #00c0ff;
+  color: black;
 }
 
-/* Logo */
-.logo {
+/* --- Cards --- */
+.card {
+  background: rgba(128,0,0,0.2);
+  margin: 20px auto;
+  padding: 25px;
+  width: 85%;
+  border-radius: 15px;
   font-size: 20px;
-  font-weight: bold;
-  color: #00aaff;
-  margin-bottom: 5px;
-}
+  box-shadow: 0 0 15px #
