@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Website Development — Guru Tech Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><div class="logo">GURU TECH LAB</div><div class="subtitle">Website Development</div></div>
+  <nav class="top-nav"><a href="index.html" class="nav-btn">Home</a></nav>
+</header>
+
+<main style="padding:28px;min-height:calc(100vh - 110px);">
+  <div style="max-width:900px;margin:auto;">
+    <h1 style="color:var(--accent)">Website Development Services</h1>
+    <p>We build modern, responsive websites and e-commerce stores. Examples of packages (edit prices later):</p>
+
+    <ul>
+      <li><strong>Landing Page</strong> — Fast one-page site</li>
+      <li><strong>Business Website</strong> — 5–8 pages, contact form</li>
+      <li><strong>E-commerce Store</strong> — Product pages, checkout</li>
+      <li><strong>Portfolio</strong> — Designer/Creator showcase</li>
+      <li><strong>Custom Web App</strong> — Business systems & dashboards</li>
+    </ul>
+
+    <p><strong>Contact to order or get a quote:</strong> <a href="https://wa.me/254763986398">WhatsApp</a></p>
+  </div>
+</main>
+
+<footer class="site-footer">© <span id="year3"></span> GURU TECH LAB</footer>
+<script>document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year3'); if(y) y.textContent=new Date().getFullYear();});</script>
+</body>
+</html>
