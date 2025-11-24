@@ -1,48 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Guru Tech Marketing</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="loading-screen">Loading...</div>
-<div id="dna-bg"></div>
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">GURU TECH LAB</div>
+    <div class="subtitle">Guru Tech Marketing</div>
+  </div>
 
-<header>
-  <div class="logo">GURU TECH LAB</div>
-  <h1 class="title">Guru Tech Marketing</h1>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="services.html" class="nav-btn">Services</a>
+    <a href="pricing.html" class="nav-btn">Pricing</a>
+    <a href="order.html" class="nav-btn">Order</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+  </nav>
 </header>
 
-<!-- Horizontal Buttons -->
-<nav>
-  <a href="index.html" class="btn">Home</a>
-  <a href="services.html" class="btn">Services</a>
-  <a href="pricing.html" class="btn">Pricing</a>
-  <a href="order.html" class="btn">Order</a>
-  <a href="contact.html" class="btn">Contact</a>
-  <a href="projects.html" class="btn">Projects</a>
-  <a href="vcf.html" class="btn">VCF Tools</a>
-  <a href="payments.html" class="btn">Payments</a>
-</nav>
+<main class="main">
+  <section class="cards">
+    <a href="boosting.html" class="card">🚀 Social Media Boosting</a>
+    <a href="website.html" class="card">💻 Website Development</a>
+    <a href="bots.html" class="card">🤖 Automation &amp; Bots</a>
+    <a href="branding.html" class="card">🎨 Branding &amp; Digital Setup</a>
+  </section>
 
-<section>
-  <!-- Social Media Boosting now clickable -->
-  <a href="boosting.html" class="card">🚀 Social Media Boosting</a>
+  <section class="contacts">
+    <a class="contact-btn whatsapp" href="https://wa.me/254763986398" target="_blank" rel="noopener">🟢 WhatsApp</a>
+    <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
+    <a class="contact-btn instagram" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
 
-  <div class="card">💻 Website Development</div>
-  <div class="card">🤖 Automation & Bots</div>
-  <div class="card">🎨 Branding & Digital Setup</div>
-</section>
+    <div class="music-controls">
+      <button id="music-toggle" class="music-btn">🔊 Play Music</button>
+      <small class="music-note">Music starts after you touch the site (required by browsers)</small>
+    </div>
+  </section>
+</main>
 
-<button onclick="toggleTheme()" class="btn">Toggle Theme</button>
-
-<footer>
-  <a href="https://wa.me/254116284050">WhatsApp</a>
-  <a href="mailto:akidarajab462@gmail.com">Email</a>
-  <a href="https://instagram.com">Instagram</a>
+<footer class="site-footer">
+  <div>© <span id="year"></span> GURU TECH LAB — All Rights Reserved</div>
 </footer>
 
+<!-- Hidden audio element (auto-play occurs after user interaction; file: assets/ambient.mp3) -->
+<audio id="bg-audio" loop preload="auto">
+  <source src="assets/ambient.mp3" type="audio/mp3" />
+  <!-- Fallback: user can download the audio -->
+  Your browser does not support the audio element.
+</audio>
+
+<script src="script.js"></script>
 </body>
 </html>
