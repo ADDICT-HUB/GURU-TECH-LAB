@@ -7,73 +7,179 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="brand"><div class="logo">GURU TECH LAB</div><div class="subtitle">Social Media Boosting</div></div>
-  <nav class="top-nav"><a href="index.html" class="nav-btn">Home</a></nav>
-</header>
+  <!-- subtle floating glass shapes -->
+  <svg class="bg-shape" style="left:-8%;top:6%;width:480px;height:420px;fill:url(#g1);">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff6a2d"/><stop offset="1" stop-color="#ff3c00"/></linearGradient>
+    </defs>
+    <filter id="blur1"><feGaussianBlur stdDeviation="40"/></filter>
+    <circle cx="240" cy="200" r="160" filter="url(#blur1)"></circle>
+  </svg>
 
-<main style="min-height:calc(100vh - 110px);display:flex;align-items:flex-start;justify-content:center;padding:28px;">
-  <div style="max-width:900px;width:100%;">
-    <h1 style="color:var(--accent);margin-bottom:12px">OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">GURU TECH LAB</div>
+      <div class="subtitle">Social Media Boosting</div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="website.html" class="nav-btn">Website</a>
+      <a href="bots.html" class="nav-btn">Bots</a>
+      <a href="branding.html" class="nav-btn">Branding</a>
+    </nav>
+  </header>
 
-    <section style="margin-bottom:18px">
-      <h2>IG Followers</h2>
-      <ul>
-        <li>1K Followers – 200</li>
-        <li>2K Followers – 300</li>
-        <li>5K Followers – 500</li>
-        <li>7K Followers – 700</li>
-        <li>10K Followers – 1000</li>
-        <li>15K Followers – 1250</li>
-        <li>20K Followers – 1500</li>
-        <li>30K Followers – 1800</li>
-        <li>45K Followers – 2400</li>
-        <li>50K Followers – 2900</li>
-        <li>100K Followers – 5000</li>
-        <li>200K Followers – 9800</li>
-      </ul>
-      <p><strong>Buy 7K+ Followers and get 10K FREE likes</strong></p>
-    </section>
+  <main style="min-height:calc(100vh - 110px);padding:28px;position:relative;z-index:3;">
+    <div style="max-width:1100px;margin:auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);box-shadow:0 20px 50px rgba(2,6,23,0.6)">
 
-    <section style="margin-bottom:18px">
-      <h2>IG Likes</h2>
-      <h3>1K Likes Packages</h3>
-      <ul>
-        <li>1 pic each 1K likes – 150</li>
-        <li>2 pics each 1K likes – 200</li>
-        <li>3 pics each 1K likes – 300</li>
-        <li>4 pics each 1K likes – 350</li>
-        <li>5 pics each 1K likes – 450</li>
-        <li>10 pics each 1K likes – 650</li>
-      </ul>
-    </section>
+      <h1 style="color:var(--accent);margin-bottom:8px">OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
 
-    <section style="margin-bottom:18px">
-      <h2>TikTok Followers & Likes</h2>
-      <ul>
-        <li>500 Followers – 300</li>
-        <li>1K Followers – 500</li>
-        <li>2K Followers – 1000</li>
-        <li>5K Followers – 1650</li>
-        <li>7K Followers – 2000</li>
-      </ul>
-    </section>
+      <p style="color:var(--muted);margin-bottom:18px">All packages below — editable. Contact via WhatsApp to order.</p>
 
-    <section style="margin-top:20px">
-      <strong>Contact:</strong> <a href="https://wa.me/254763986398">WhatsApp</a> • <a href="mailto:akidarajab462@gmail.com">Email</a>
-    </section>
-  </div>
-</main>
+      <!-- IG Followers -->
+      <section style="margin-bottom:18px">
+        <h2>IG FOLLOWERS</h2>
+        <ul>
+          <li>1K Followers – 200</li>
+          <li>2K Followers – 300</li>
+          <li>5K Followers – 500</li>
+          <li>7K Followers – 700</li>
+          <li>10K Followers – 1000</li>
+          <li>15K Followers – 1250</li>
+          <li>20K Followers – 1500</li>
+          <li>30K Followers – 1800</li>
+          <li>45K Followers – 2400</li>
+          <li>50K Followers – 2900</li>
+          <li>100K Followers – 5000</li>
+          <li>200K Followers – 9800</li>
+        </ul>
+        <p><strong>Buy 7K+ Followers and get 10K FREE likes</strong></p>
+      </section>
 
-<footer class="site-footer">© <span id="year2"></span> GURU TECH LAB</footer>
+      <!-- IG Likes -->
+      <section style="margin-bottom:18px">
+        <h2>IG LIKES</h2>
+        <h3>1K Likes Packages</h3>
+        <ul>
+          <li>1 pic each 1K likes – 150</li>
+          <li>2 pics each 1K likes – 200</li>
+          <li>3 pics each 1K likes – 300</li>
+          <li>4 pics each 1K likes – 350</li>
+          <li>5 pics each 1K likes – 450</li>
+          <li>10 pics each 1K likes – 650</li>
+        </ul>
 
-<script>
-  // small year patch for this page
-  document.addEventListener('DOMContentLoaded',()=> {
-    const y = document.getElementById('year2');
-    if(y) y.textContent = new Date().getFullYear();
-  });
-</script>
+        <h3>2K Likes Packages</h3>
+        <ul>
+          <li>1 pic each 2K likes – 200</li>
+          <li>2 pics each 2K likes – 350</li>
+          <li>3 pics each 2K likes – 550</li>
+          <li>4 pics each 2K likes – 600</li>
+          <li>5 pics each 2K likes – 650</li>
+          <li>10 pics each 2K likes – 900</li>
+        </ul>
+      </section>
 
+      <!-- TikTok Followers Offer -->
+      <section style="margin-bottom:18px">
+        <h2>TIKTOK FOLLOWERS — OFFER</h2>
+        <ul>
+          <li>500 Followers – 300</li>
+          <li>1K Followers – 500</li>
+          <li>2K Followers – 1000</li>
+          <li>5K Followers – 1650</li>
+          <li>7K Followers – 2000</li>
+          <li>10K Followers – 3500</li>
+          <li>20K Followers – 6550</li>
+        </ul>
+      </section>
+
+      <!-- TikTok Likes -->
+      <section style="margin-bottom:18px">
+        <h2>TIKTOK LIKES (COMES WITH FREE VIEWS)</h2>
+        <ul>
+          <li>500 likes + 2K views – 300</li>
+          <li>1K likes + 5K views – 550</li>
+          <li>2.5K likes + 10K views – 700</li>
+          <li>3K likes + 20K views – 880</li>
+          <li>5K likes + 50K views – 1300</li>
+          <li>7K likes + 80K views – 1500</li>
+          <li>10K likes + 150K views – 2250</li>
+          <li>17K likes + 400K views – 3200</li>
+        </ul>
+
+        <p><strong>Extra options:</strong><br>1K likes – 50 bob • 1K views – 40 bob</p>
+      </section>
+
+      <!-- YouTube Subs -->
+      <section style="margin-bottom:18px">
+        <h2>YOUTUBE SUBSCRIBERS</h2>
+        <ul>
+          <li>100 subs – 200</li>
+          <li>200 subs – 350</li>
+          <li>300 subs – 500</li>
+          <li>400 subs – 600</li>
+          <li>500 subs – 700</li>
+          <li>700 subs – 850</li>
+          <li>800 subs – 950</li>
+          <li>900 subs – 1000</li>
+          <li>1K subs – 1100</li>
+          <li>1.5K subs – 1500</li>
+          <li>2K subs – 2200</li>
+          <li>3K subs – 3200</li>
+          <li>5K subs – 5100</li>
+        </ul>
+        <p><strong>Free 2K views for purchases above 1K subs</strong></p>
+      </section>
+
+      <!-- Facebook -->
+      <section style="margin-bottom:18px">
+        <h2>FACEBOOK FOLLOWERS</h2>
+        <ul>
+          <li>1K Followers – 350</li>
+          <li>2K Followers – 700</li>
+          <li>5K Followers – 1100</li>
+          <li>10K Followers – 1500</li>
+          <li>20K Followers – 2350</li>
+        </ul>
+        <p><strong>Instant Delivery • Non-drop • No Password Required</strong></p>
+      </section>
+
+      <!-- YouTube Watch Hours -->
+      <section style="margin-bottom:18px">
+        <h2>YOUTUBE WATCH HOURS (Comes with free views)</h2>
+        <ul>
+          <li>1K hours – 1250</li>
+          <li>2K hours – 2300</li>
+          <li>3K hours – 3200</li>
+          <li>4K hours – 4500</li>
+        </ul>
+      </section>
+
+      <section style="margin-top:18px">
+        <h3>Contact</h3>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/254763986398">+254 763 986 398</a></p>
+        <p><strong>Note:</strong> I'm the only LEGIT plug in 254 ☝🤘</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">© <span id="year2"></span> GURU TECH LAB</footer>
+
+  <!-- Optional audio element — if you later upload assets/ambient.mp3 it will be used.
+       If you don't upload it, script.js will generate audio via WebAudio. -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/ambient.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    // year patch for this page (already in script.js but keep safe)
+    document.addEventListener('DOMContentLoaded', () => {
+      const y = document.getElementById('year2'); if (y) y.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
-</html>
+            </html>
