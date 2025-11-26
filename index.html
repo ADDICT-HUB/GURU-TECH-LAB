@@ -53,22 +53,16 @@
   </footer>
 </div>
 
-<!-- payment modal (popup) -->
-<div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
-  <div id="pay-modal" class="modal" role="dialog" aria-modal="true">
-    <button data-modal-close style="float:right;background:transparent;border:0;color:var(--muted);font-size:20px">×</button>
-    <h3>Complete Payment</h3>
-    <p class="small-note">Pay via M-Pesa Till <strong>3420564</strong> — AKIDA RAJAB. After payment paste your transaction ID in the WhatsApp confirmation that will open.</p>
 
-    <div class="row">
-      <label>Service</label>
-      <div id="modal-service" style="fo<!-- services -->
+
+<!-- SERVICES SECTION (Icons Updated ONLY) -->
 <div class="section-title">Services</div>
 <div class="services">
 
+  <!-- Social Media Boosting -->
   <a class="card" href="boosting.html">
     <div class="icon">
-      <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/64/instagram.png" class="svc-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="svc-icon-img">
     </div>
     <div class="meta">
       <div class="title">Social Media Boosting</div>
@@ -79,9 +73,10 @@
     </div>
   </a>
 
+  <!-- Website Development -->
   <a class="card" href="website.html">
     <div class="icon">
-      <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/64/laptop.png" class="svc-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" class="svc-icon-img">
     </div>
     <div class="meta">
       <div class="title">Website Development</div>
@@ -92,9 +87,10 @@
     </div>
   </a>
 
+  <!-- Automation & Bots -->
   <a class="card" href="bots.html">
     <div class="icon">
-      <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/64/android.png" class="svc-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="svc-icon-img">
     </div>
     <div class="meta">
       <div class="title">Automation & Bots</div>
@@ -105,9 +101,10 @@
     </div>
   </a>
 
+  <!-- Branding & Digital Setup -->
   <a class="card" href="branding.html">
     <div class="icon">
-      <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/64/paint-brush.png" class="svc-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" class="svc-icon-img">
     </div>
     <div class="meta">
       <div class="title">Branding & Digital Setup</div>
@@ -118,7 +115,20 @@
     </div>
   </a>
 
-</div>nt-weight:900">—</div>
+</div>
+
+
+
+<!-- PAYMENT MODAL -->
+<div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
+  <div id="pay-modal" class="modal" role="dialog" aria-modal="true">
+    <button data-modal-close style="float:right;background:transparent;border:0;color:var(--muted);font-size:20px">×</button>
+    <h3>Complete Payment</h3>
+    <p class="small-note">Pay via M-Pesa Till <strong>3420564</strong> — AKIDA RAJAB. After payment paste your transaction ID in the WhatsApp confirmation that will open.</p>
+
+    <div class="row">
+      <label>Service</label>
+      <div id="modal-service" style="font-weight:900">—</div>
     </div>
 
     <div class="row">
@@ -140,7 +150,10 @@
   </div>
 </div>
 
-<!-- floating bottom nav (style C) -->
+
+
+
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav" aria-hidden="false">
   <div class="nav-item active" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div>
   <div class="nav-item" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div>
@@ -148,31 +161,37 @@
   <div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div>
 </nav>
 
-<!-- audio -->
-<audio id="bg-audio" loop preload="auto"><source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3"></audio>
+
+
+<!-- AUDIO -->
+<audio id="bg-audio" loop preload="auto">
+  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
+</audio>
 
 <script src="app.js"></script>
 <script src="animations.js"></script>
+
 <script>
-  // set year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // wire buttons: data-buy-service links
   document.querySelectorAll('[data-buy-service]').forEach(btn=>{
-    btn.addEventListener('click', function(e){
-      const svc = this.getAttribute('data-buy-service') || this.dataset.buyService;
-      const pr  = this.getAttribute('data-buy-price') || this.dataset.buyPrice;
-      window._guruApp && window._guruApp.openPayModal ? window._guruApp.openPayModal(svc, pr) : alert('Buy: '+svc+' '+pr);
+    btn.addEventListener('click', function(){
+      const svc = this.getAttribute('data-buy-service');
+      const pr  = this.getAttribute('data-buy-price');
+      window._guruApp && window._guruApp.openPayModal
+        ? window._guruApp.openPayModal(svc, pr)
+        : alert('Buy: ' + svc + ' ' + pr);
     });
   });
 
-  // initialize modal open on generic Buy Now in hero
   document.querySelectorAll('.btn-ghost').forEach(b=>{
     b.addEventListener('click', ()=>{
-      // if it's hero "Buy Now" open modal default
-      window._guruApp.openPayModal && window._guruApp.openPayModal('Selected Service','350');
+      if (window._guruApp.openPayModal) {
+        window._guruApp.openPayModal('Selected Service','350');
+      }
     });
   });
 </script>
+
 </body>
 </html>
