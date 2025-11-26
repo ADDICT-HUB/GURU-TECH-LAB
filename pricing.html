@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Pricing - Guru Tech</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Pricing — Guru Tech Lab</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="app">
+  <div class="header"><div class="brand"><div class="logo">GURU TECH LAB</div><div class="sub">Pricing</div></div><button class="btn btn-ghost" data-music-toggle>🔊 Play Music</button></div>
 
-<div id="loading-screen">Loading...</div>
+  <div class="hero">
+    <div class="h-title">Pricing</div>
+    <div class="h-lead">Balanced packages, clear pricing.</div>
 
-<header>
-  <div class="logo">GURU TECH LAB</div>
-  <h1 class="title">Pricing</h1>
-</header>
+    <div class="services">
+      <div class="card"><div class="icon">⚡</div><div class="meta"><div class="title">Starter Pack</div><div class="sub">Small boosting — 200 KES</div></div><div class="actions"><button class="buy" data-buy-service="Starter Pack" data-buy-price="200">Buy</button></div></div>
+      <div class="card"><div class="icon">🔥</div><div class="meta"><div class="title">Growth Pack</div><div class="sub">Popular — 700 KES</div></div><div class="actions"><button class="buy" data-buy-service="Growth Pack" data-buy-price="700">Buy</button></div></div>
+      <div class="card"><div class="icon">🚀</div><div class="meta"><div class="title">Scale Pack</div><div class="sub">Large orders — 2500 KES</div></div><div class="actions"><button class="buy" data-buy-service="Scale Pack" data-buy-price="2500">Buy</button></div></div>
+    </div>
+  </div>
 
-<section>
-  <div class="card"><b>Starter – KES 500</b></div>
-  <div class="card"><b>Pro – KES 1500</b></div>
-</section>
+  <div class="contact-row"><a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a><a class="contact-btn email" href="mailto:akidarajab462@gmail.com">Email</a><a class="contact-btn ig" href="https://instagram.com">Instagram</a></div>
+  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">© <span id="year"></span> GURU TECH LAB</footer>
+</div>
 
-<nav>
-  <a href="index.html" class="btn">Back Home</a>
-</nav>
+<div id="pay-modal-back" class="modal-backdrop"><div id="pay-modal" class="modal">...same markup...</div></div>
+<nav class="bottom-nav"><div class="nav-item" onclick="location.href='index.html'">🏠</div><div class="nav-item" onclick="location.href='services.html'">⚙️</div><div class="nav-item" onclick="location.href='boosting.html'">📈</div><div class="nav-item" onclick="location.href='contact.html'">💬</div></nav>
 
+<audio id="bg-audio" loop preload="auto"><source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3"></audio>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
