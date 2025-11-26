@@ -1,137 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <!-- FORCE DESKTOP LAYOUT & DISABLE ZOOM -->
-  <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-  <title>GURU TECH LAB — Home</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>GURU TECH LAB — Digital Services</title>
 
-  <link rel="stylesheet" href="style.css" />
+<style>
+/* GLOBAL RESET */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: none;
+}
+
+/* DESKTOP WIDTH LOCK */
+.page-wrap {
+  width: 1100px;
+  margin: 0 auto;
+  transform-origin: top center;
+}
+
+/* SCALE FOR PHONES */
+@media (max-width: 1100px) {
+  .page-wrap {
+    transform: scale(calc(100vw / 1100));
+  }
+  body {
+    height: calc(1100px * 1.2);
+  }
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffd54a;
+}
+nav a {
+  margin-left: 25px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* HERO */
+.hero-title {
+  font-size: 34px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.hero-sub {
+  margin-top: 5px;
+  color: #bdbdbd;
+  font-size: 17px;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+.btn {
+  padding: 12px 22px;
+  background: #ffd54a;
+  color: #000;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-alt {
+  background: #1e90ff;
+  color: #fff;
+}
+
+/* SERVICES GRID */
+.services {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+.card {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.card-sub {
+  margin-top: 6px;
+  color: #a3a3a3;
+}
+.buy-btn {
+  margin-top: 16px;
+  padding: 10px;
+  background: #1e90ff;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 30px;
+  color: #777;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
-  <!-- hologram grid background -->
-  <div class="holo-bg" aria-hidden="true">
-    <canvas id="gridCanvas"></canvas>
-    <div class="holo-glow"></div>
+<div class="page-wrap">
+
+<header>
+  <div class="logo">GURU TECH LAB</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="boosting.html">Boosting</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-title">We amplify brands — fast & secure</div>
+  <div class="hero-sub">Hybrid digital services: social boosting, bots, websites, branding.</div>
+
+  <div class="hero-buttons">
+    <div class="btn">Explore Services</div>
+    <div class="btn-alt" onclick="document.getElementById('bg-audio').play()">Play Music</div>
+  </div>
+</section>
+
+<!-- PAYMENT LINE -->
+<div style="margin-top: 25px; padding: 14px; background: #111; border-radius: 10px; width: 450px;">
+  <b style="color:#ffd54a;">Till:</b> 3420564 — AKIDA RAJAB  
+  <br>
+  <b style="color:#1e90ff;">Support:</b> WhatsApp
+</div>
+
+<!-- SERVICE CARDS -->
+<section class="services">
+
+  <div class="card">
+    <div class="card-title">Social Media Boosting</div>
+    <div class="card-sub">Followers, Likes & Views</div>
+    <div class="buy-btn">Buy KES 350</div>
   </div>
 
-  <div class="page-wrap">
-    <header class="site-header">
-      <div class="brand">
-        <div class="logo">GURU TECH LAB</div>
-        <div class="tag">Digital Services — Hologram Interface</div>
-      </div>
-
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="boosting.html">Boosting</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
-
-    <main class="hero">
-      <section class="hero-left">
-        <h1 class="title">We amplify brands — fast & secure</h1>
-        <p class="lead">Hybrid hologram UI — social boosting, web dev, bots, branding. Tap any service to buy or view details.</p>
-
-        <div class="cta-row">
-          <a class="cta primary" href="services.html">Explore Services</a>
-          <button id="music-toggle" class="cta ghost">🔊 Play Music</button>
-        </div>
-
-        <div class="info-panels">
-          <div class="panel">
-            <div class="p-title">Till</div>
-            <div class="p-value">3420564 — AKIDA RAJAB</div>
-          </div>
-          <div class="panel">
-            <div class="p-title">Support</div>
-            <div class="p-value"><a href="https://wa.me/254763986398" class="link">WhatsApp</a></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="hero-right">
-        <div class="cards-grid">
-          <!-- Card: Social Boosting -->
-          <article class="holo-card">
-            <div class="card-head">
-              <div class="card-icon">🚀</div>
-              <div>
-                <div class="card-title">Social Media Boosting</div>
-                <div class="card-sub">Followers, Likes & Views</div>
-              </div>
-            </div>
-            <div class="card-body">Fast delivery, non-drop options. Choose package on boosting page.</div>
-            <div class="card-actions">
-              <a class="buy-btn" href="pay.html?service=Social%20Boosting%201K&price=350">Buy KES 350</a>
-              <a class="more" href="boosting.html">View</a>
-            </div>
-          </article>
-
-          <!-- Card: Website -->
-          <article class="holo-card">
-            <div class="card-head">
-              <div class="card-icon">💻</div>
-              <div>
-                <div class="card-title">Website Development</div>
-                <div class="card-sub">Landing pages & e-commerce</div>
-              </div>
-            </div>
-            <div class="card-body">Fast, secure, SEO-ready sites — custom or template-based.</div>
-            <div class="card-actions">
-              <a class="buy-btn" href="pay.html?service=Website%20Landing&price=1200">Buy KES 1200</a>
-              <a class="more" href="website.html">View</a>
-            </div>
-          </article>
-
-          <!-- Card: Bots -->
-          <article class="holo-card">
-            <div class="card-head">
-              <div class="card-icon">🤖</div>
-              <div>
-                <div class="card-title">Automation & Bots</div>
-                <div class="card-sub">WhatsApp bots & workflows</div>
-              </div>
-            </div>
-            <div class="card-body">Automate replies, payments, funnels and more.</div>
-            <div class="card-actions">
-              <a class="buy-btn" href="pay.html?service=WhatsApp%20Bot%20Setup&price=500">Buy KES 500</a>
-              <a class="more" href="bots.html">View</a>
-            </div>
-          </article>
-
-          <!-- Card: Branding -->
-          <article class="holo-card">
-            <div class="card-head">
-              <div class="card-icon">🎨</div>
-              <div>
-                <div class="card-title">Branding & Digital Setup</div>
-                <div class="card-sub">Logos, kits, social assets</div>
-              </div>
-            </div>
-            <div class="card-body">Complete branding packages, social-ready assets.</div>
-            <div class="card-actions">
-              <a class="buy-btn" href="pay.html?service=Branding%20Kit&price=300">Buy KES 300</a>
-              <a class="more" href="branding.html">View</a>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div>© <span id="year"></span> GURU TECH LAB — Digital Services</div>
-    </footer>
+  <div class="card">
+    <div class="card-title">Website Development</div>
+    <div class="card-sub">Landing pages & e-commerce</div>
+    <div class="buy-btn">Buy KES 1200</div>
   </div>
 
-  <!-- AUDIO (autoplay on first touch) -->
-  <audio id="bg-audio" loop preload="auto">
-    <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
-  </audio>
+  <div class="card">
+    <div class="card-title">Automation & Bots</div>
+    <div class="card-sub">WhatsApp bots & workflows</div>
+    <div class="buy-btn">Buy KES 500</div>
+  </div>
 
-  <script src="script.js"></script>
+  <div class="card">
+    <div class="card-title">Branding & Digital Setup</div>
+    <div class="card-sub">Logos, kits, online assets</div>
+    <div class="buy-btn">Buy KES 300</div>
+  </div>
+
+</section>
+
+<div class="footer">© 2025 GURU TECH LAB — Digital Services</div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bg-audio" loop preload="auto">
+  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
+</audio>
+
+<script>
+// auto play on first touch
+window.addEventListener("touchstart", () => {
+  document.getElementById("bg-audio").play().catch(()=>{});
+}, { once: true });
+</script>
+
 </body>
 </html>
