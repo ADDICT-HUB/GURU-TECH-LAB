@@ -1,90 +1,67 @@
-// script.js – GuruTech PRO Audio + Desktop-Only Layout + Payment Routing
-document.addEventListener("DOMContentLoaded", function () {
-  const audioEl = document.getElementById("bg-audio");
-  const musicButtons = document.querySelectorAll("#music-toggle, #music-toggle-hero");
-
+// script.js - Guru Tech full-site helpers
+document.addEventListener('DOMContentLoaded', () => {
+  const audioEl = document.getElementById('bg-audio');
+  const musicToggle = document.getElementById('music-toggle');
   let audioStarted = false;
 
-  /* -------------------------------------------------
-       AUTOPLAY HANDLER (Starts after first touch)
-  ---------------------------------------------------*/
-  function tryStartAudio() {
+  // Start audio on first user interaction
+  function startAudio() {
     if (audioStarted) return;
-
-    if (audioEl) {
-      audioEl.volume = 0.35;
-
-      audioEl.play().then(() => {
-        audioStarted = true;
-        musicButtons.forEach(btn => btn.textContent = "🔊 Music On");
-      }).catch(() => {
-        console.warn("Autoplay blocked.");
-      });
-    }
+    if (!audioEl) return;
+    audioEl.volume = 0.35;
+    audioEl.play().then(()=> {
+      audioStarted = true;
+      if (musicToggle) musicToggle.textContent = '🔊 Music On';
+    }).catch(()=> {
+      // fallback: do nothing; WebAudio fallback could be added if needed
+    });
   }
 
-  function firstUserInteraction() {
-    tryStartAudio();
-
-    window.removeEventListener("pointerdown", firstUserInteraction);
-    window.removeEventListener("touchstart", firstUserInteraction);
-    window.removeEventListener("keydown", firstUserInteraction);
+  function firstInteraction() {
+    startAudio();
+    window.removeEventListener('pointerdown', firstInteraction);
+    window.removeEventListener('touchstart', firstInteraction);
+    window.removeEventListener('keydown', firstInteraction);
   }
 
-  window.addEventListener("pointerdown", firstUserInteraction, { passive: true });
-  window.addEventListener("touchstart", firstUserInteraction, { passive: true });
-  window.addEventListener("keydown", firstUserInteraction);
+  window.addEventListener('pointerdown', firstInteraction, {passive:true});
+  window.addEventListener('touchstart', firstInteraction, {passive:true});
+  window.addEventListener('keydown', firstInteraction);
 
-  /* -------------------------------------------------
-      TOGGLE BUTTON
-  ---------------------------------------------------*/
-  musicButtons.forEach(btn =>
-    btn?.addEventListener("click", () => {
-      if (!audioEl) return;
+  if (musicToggle) musicToggle.addEventListener('click', () => {
+    if (!audioEl) return;
+    if (audioEl.paused) { audioEl.play(); musicToggle.textContent='🔊 Music On' }
+    else { audioEl.pause(); musicToggle.textContent='🔈 Paused' }
+  });
 
-      if (audioEl.paused) {
-        audioEl.play();
-        btn.textContent = "🔊 Music On";
-      } else {
-        audioEl.pause();
-        btn.textContent = "🔈 Paused";
-      }
-    })
-  );
+  // Prevent zoom: key + wheel + pinch
+  document.addEventListener('wheel', (e) => { if (e.ctrlKey) e.preventDefault(); }, {passive:false});
+  document.addEventListener('keydown', (e) => { if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')) e.preventDefault(); });
+  document.addEventListener('touchmove', (e) => { if (e.scale && e.scale !== 1) e.preventDefault(); }, {passive:false});
 
-  /* -------------------------------------------------
-      FORCE DESKTOP VIEW ON MOBILE (No zoom)
-  ---------------------------------------------------*/
-  const meta = document.querySelector("meta[name=viewport]");
-  if (meta) {
-    meta.setAttribute(
-      "content",
-      "width=1200, initial-scale=0.55, maximum-scale=0.55, user-scalable=no"
-    );
-  }
+  // Add buy button handlers (if any are normal anchors to pay.html this is optional)
+  document.querySelectorAll('[data-buy]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      // default anchor will navigate; prevent double processing
+    });
+  });
 
-  document.body.style.touchAction = "none";
+  // Auto-fill pay.html if present
+  (function populatePay(){
+    const url = new URL(window.location.href);
+    const service = url.searchParams.get('service');
+    const price = url.searchParams.get('price');
+    if (!service || !price) return;
+    const svcEl = document.getElementById('pay-service');
+    const amtEl = document.getElementById('pay-amount');
+    const hiddenSvc = document.getElementById('service-input');
+    const hiddenAmt = document.getElementById('amount-input');
+    const totalEl = document.getElementById('balance-info');
+    if (svcEl) svcEl.textContent = service;
+    if (amtEl) amtEl.textContent = price + ' KES';
+    if (hiddenSvc) hiddenSvc.value = service;
+    if (hiddenAmt) hiddenAmt.value = price;
+    if (totalEl) totalEl.textContent = 'Total: ' + price + ' KES';
+  })();
 
-  /* -------------------------------------------------
-      AUTO-FILL PAY.HTML (READ SERVICE + PRICE)
-  ---------------------------------------------------*/
-  const urlParams = new URLSearchParams(window.location.search);
-  const svc = urlParams.get("service");
-  const price = urlParams.get("price");
-
-  if (svc && price && document.getElementById("pay-service")) {
-    document.getElementById("pay-service").textContent = svc;
-    document.getElementById("pay-amount").textContent = price + " KES";
-
-    const hiddenService = document.getElementById("service-input");
-    const hiddenAmount = document.getElementById("amount-input");
-
-    if (hiddenService) hiddenService.value = svc;
-    if (hiddenAmount) hiddenAmount.value = price;
-
-    const balanceField = document.getElementById("balance-info");
-    if (balanceField) {
-      balanceField.textContent = `Total: ${price} KES`;
-    }
-  }
 });
