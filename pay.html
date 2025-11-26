@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — Guru Tech Marketing</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root { --accent: #ff3c00; }
+    body{font-family:Inter,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#071018 0%, #0f0f14 60%);color:#fff;min-width:1200px}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+    .card{width:640px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(2,6,23,0.7);backdrop-filter:blur(10px)}
+    .field{margin-bottom:12px}
+    label{display:block;color:var(--muted);margin-bottom:6px}
+    input[type="text"], input[type="tel"], input[type="number"]{width:100%;padding:12px;border-radius:10px;border:none;background:rgba(255,255,255,0.03);color:#fff}
+    .confirm-btn{background:var(--accent);color:#fff;padding:12px 14px;border-radius:12px;border:0;font-weight:900;cursor:pointer;width:100%}
+    .muted{color:#cfcfcf}
+    .row{display:flex;gap:12px}
+    .small{font-size:13px;color:var(--muted)}
+    .success { background: rgba(0,200,120,0.12); color: #baf3d2; padding:12px; border-radius:10px; margin-top:12px; display:none; }
+    .center { text-align:center }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="checkout-card">
+      <div class="center">
+        <h2 style="color:var(--accent);margin:0">Complete Payment</h2>
+        <p class="small" id="svc-desc">Preparing…</p>
+      </div>
+
+      <div style="margin-top:14px">
+        <div class="field">
+          <label>Service</label>
+          <input type="text" id="service-name" readonly />
+        </div>
+
+        <div class="field">
+          <label>Amount (KES)</label>
+          <input type="number" id="amount" readonly />
+        </div>
+
+        <div class="field">
+          <label>Your Phone (07xxxxxxxx)</label>
+          <input type="tel" id="cust-phone" placeholder="07XXXXXXXX" />
+        </div>
+
+        <div class="field">
+          <label>Username / Account (optional)</label>
+          <input type="text" id="cust-ref" placeholder="Instagram/TikTok/YouTube link or username" />
+        </div>
+
+        <button class="confirm-btn" id="pay-now">Pay with M-PESA</button>
+
+        <div id="pay-msg" class="small" style="margin-top:10px"></div>
+
+        <div id="success-box" class="success">
+          <div id="txn-ok">Payment completed</div>
+          <div id="new-balance" style="margin-top:8px;font-weight:800"></div>
+        </div>
+
+        <div style="margin-top:12px" class="small">
+          <strong>Till:</strong> 3420564 — <strong>Name:</strong> AKIDA RAJAB
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // helper for query params
+    function qp(name){ const p = new URLSearchParams(location.search); return p.get(name); }
+
+    // read params & populate
+    const svc = qp('service') || 'Unknown Service';
+    const amt = parseFloat(qp('amount') || '0') || 0;
+    document.getElementById('service-name').value = svc;
+    document.getElementById('amount').value = amt;
+    document.getElementById('svc-desc').textContent = svc.replace(/[-_]/g,' ');
+
+    // Payment endpoint (placeholder gateway) - Replace with your backend when available
+    const STK_GATEWAY = 'https://quickmpesa.xyz/api/stkpush'; // change to your backend later
+
+    // local balance key
+    const BAL_KEY = 'gtm_balance';
+
+    function showMsg(text){ const el = document.getElementById('pay-msg'); el.textContent = text; }
+
+    // update client balance UI
+    function updateBalanceUI(newBalance){
+      // update localStorage and show inside success
+      localStorage.setItem(BAL_KEY, String(newBalance));
+      document.getElementById('new-balance').textContent = 'Current Balance: KES ' + newBalance;
+      document.getElementById('success-box').style.display = 'block';
+      // also try update services page balance if open (via localStorage or postMessage)
+      try { window.opener && window.opener.postMessage({ type:'gtm_balance_update', balance:newBalance }, '*'); } catch(e){}
+    }
+
+    // confirm button
+    document.getElementById('pay-now').addEventListener('click', async function(){
+      const phoneRaw = document.getElementById('cust-phone').value.trim();
+      const ref = document.getElementById('cust-ref').value.trim() || svc;
+      if (!phoneRaw) { showMsg('Enter phone number'); return; }
+      // normalize phone to 254 format
+      let phone = phoneRaw;
+      if (phone.startsWith('0')) phone = '254' + phone.slice(1);
+      if (!/^2547\d{8}$/.test(phone)) { showMsg('Use phone like 07XXXXXXXX'); return; }
+      if (!amt || amt < 1) { showMsg('Invalid amount'); return; }
+
+      showMsg('⏳ Initiating STK push — check your phone');
+
+      // Attempt STK call to gateway
+      try {
+        const resp = await fetch(STK_GATEWAY, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({
+            till: '3420564',
+            name: 'AKIDA RAJAB',
+            phone: phone,
+            amount: amt,
+            reference: ref
+          })
+        });
+
+        const data = await resp.json();
+        // gateway should return { success:true } on queued STK.
+        if (resp.ok && data && data.success) {
+          showMsg('✅ STK sent — enter your M-PESA PIN. Waiting for confirmation...');
+          // For demo we simulate payment success after a short delay if gateway does not provide callback
+          // In real deployment, the backend should call the Daraja API and use callbacks.
+          setTimeout(()=> {
+            // add amount to local balance
+            const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+            const nb = Math.round((cur + amt) * 100) / 100;
+            updateBalanceUI(nb);
+            showMsg('Payment completed (simulated). Receipt recorded.');
+          }, 3500);
+        } else {
+          // if gateway failed, attempt fallback: still simulate success but show error
+          console.warn('STK response', data);
+          showMsg('⚠️ Gateway error, simulating payment for now.');
+          setTimeout(()=> {
+            const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+            const nb = Math.round((cur + amt) * 100) / 100;
+            updateBalanceUI(nb);
+            showMsg('Payment simulated and recorded locally.');
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('STK fetch error', err);
+        showMsg('Network error — could not contact payment gateway. Simulating payment locally.');
+        setTimeout(()=> {
+          const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+          const nb = Math.round((cur + amt) * 100) / 100;
+          updateBalanceUI(nb);
+          showMsg('Payment simulated and recorded locally.');
+        }, 1600);
+      }
+    });
+
+    // show previous balance on load
+    (function(){
+      const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+      if (cur > 0) {
+        document.getElementById('new-balance').textContent = 'Current Balance: KES ' + cur;
+        document.getElementById('success-box').style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>
