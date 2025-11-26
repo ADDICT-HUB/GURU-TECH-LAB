@@ -2,81 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-
-  <!-- FORCE DESKTOP ALWAYS + BLOCK ZOOM -->
-  <meta name="viewport"
-        content="width=1200,
-        initial-scale=1,
-        maximum-scale=1,
-        minimum-scale=1,
-        user-scalable=no" />
-
+  <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
   <title>Guru Tech Marketing — Home</title>
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* Force desktop container */
-    .page-wrap {
-      width: 1200px;
-      margin: 0 auto;
-      overflow-x: hidden;
-      transform: scale(1);
-    }
-
-    body {
-      overscroll-behavior: none;
-      touch-action: manipulation;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Stop font zoom on inputs (iOS fix) */
-    input, select, textarea {
-      font-size: 16px !important;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- floating blurred background shape -->
-  <svg class="bg-shape" aria-hidden="true" viewBox="0 0 520 420">
-    <defs>
-      <linearGradient id="g1" x1="0" x2="1">
-        <stop offset="0" stop-color="#ff6a2d"/>
-        <stop offset="1" stop-color="#ff3c00"/>
-      </linearGradient>
-      <filter id="blur1"><feGaussianBlur stdDeviation="36"/></filter>
-    </defs>
-    <circle cx="260" cy="200" r="160" fill="url(#g1)" filter="url(#blur1)"></circle>
-  </svg>
-
-  <div class="page-wrap">
+  <div class="page-wrap container">
     <header class="site-header">
       <div class="brand">
         <div class="logo-text">GURU TECH LAB</div>
         <div class="tagline">Digital Services</div>
       </div>
-
-      <nav class="top-nav" role="navigation">
-        <a class="nav-btn" href="index.html">Home</a>
-        <a class="nav-btn" href="services.html">Services</a>
-        <a class="nav-btn" href="boosting.html">Boosting</a>
-        <a class="nav-btn" href="pricing.html">Pricing</a>
-        <a class="nav-btn" href="contact.html">Contact</a>
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="boosting.html">Boosting</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </header>
 
     <main class="hero-wrap">
       <div class="hero-card">
-
         <div class="hero-top">
-          <div class="hero-logo">
+          <div>
             <div class="hero-logo-text">GURU TECH LAB</div>
             <div class="hero-sub">Digital Services</div>
           </div>
           <div class="hero-cta">
-            <button id="get-started" class="primary-btn">Get Started</button>
-            <button id="music-toggle" class="secondary-btn">🔊 Play Music</button>
+            <button id="get-started" class="buy-btn" onclick="location.href='services.html'">Get Started</button>
+            <button id="music-toggle" class="buy-btn" style="background: linear-gradient(45deg,#333, #555)">🔊 Play Music</button>
           </div>
         </div>
 
@@ -84,69 +39,44 @@
           <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding.</p>
 
           <div class="services-grid">
-
             <a class="svc-card" href="boosting.html">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42"><defs><linearGradient id="igG" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="1" stop-color="#dd2a7b"/></linearGradient></defs>
-                <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igG)"/></svg>
-              </div>
               <div class="svc-title">Social Media Boosting</div>
-              <div class="svc-sub muted">Followers, likes & views</div>
+              <div class="svc-sub">Followers, likes & views</div>
             </a>
 
             <a class="svc-card" href="website.html">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42">
-                  <rect x="3" y="5" width="18" height="12" rx="1.5" fill="#6ec1ff"/></svg>
-              </div>
               <div class="svc-title">Website Development</div>
-              <div class="svc-sub muted">Landing pages & e-commerce</div>
+              <div class="svc-sub">Landing pages & e-commerce</div>
             </a>
 
             <a class="svc-card" href="bots.html">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42">
-                  <rect x="4" y="6" width="16" height="12" rx="2" fill="#7cffb2"/></svg>
-              </div>
               <div class="svc-title">Automation & Bots</div>
-              <div class="svc-sub muted">WhatsApp bots & tools</div>
+              <div class="svc-sub">WhatsApp bots & tools</div>
             </a>
 
             <a class="svc-card" href="branding.html">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42">
-                  <path d="M12 3C8 3 5 6 5 10c0 3 2 5 5 5h1c3 0 5-2 5-5 0-1.66-1.34-3-3-3h-4" fill="#ffb86b"/></svg>
-              </div>
-              <div class="svc-title">Branding & Digital Setup</div>
-              <div class="svc-sub muted">Logos, social kits</div>
+              <div class="svc-title">Branding & Setup</div>
+              <div class="svc-sub">Logos, social kits</div>
             </a>
-
           </div>
         </div>
       </div>
     </main>
 
     <div class="contact-row">
-      <a class="contact-btn whatsapp" href="https://wa.me/254763986398">🟢 WhatsApp</a>
-      <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
-      <a class="contact-btn instagram" href="https://instagram.com">📸 Instagram</a>
+      <a href="https://wa.me/254763986398">🟢 WhatsApp</a>
+      <a href="mailto:akidarajab462@gmail.com">✉️ Email</a>
+      <a href="https://instagram.com">📸 Instagram</a>
     </div>
 
     <footer class="site-footer">© <span id="year"></span> GURU TECH LAB — Digital Services</footer>
   </div>
 
-  <!-- AUTOPLAY AUDIO -->
   <audio id="bg-audio" loop preload="auto">
     <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
   </audio>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("year").textContent = new Date().getFullYear();
-    });
-  </script>
-
-  <!-- main audio logic -->
+  <script>document.getElementById && document.addEventListener('DOMContentLoaded', ()=>{document.getElementById('year').textContent = new Date().getFullYear();});</script>
   <script src="script.js"></script>
 </body>
 </html>
