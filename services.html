@@ -6,7 +6,6 @@
   <title>Social Media Boosting — Guru Tech Marketing</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* small local overrides to ensure buy buttons match site color */
     .buy-btn {
       background: var(--accent, #ff3c00);
       color: #fff;
@@ -40,17 +39,8 @@
   </style>
 </head>
 <body>
-  <!-- balance shown here (updated by script.js) -->
-  <div id="balance" class="balance-pill">Balance: KES 0</div>
 
-  <!-- subtle floating glass shapes -->
-  <svg class="bg-shape" style="left:-8%;top:6%;width:480px;height:420px;fill:url(#g1);">
-    <defs>
-      <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff6a2d"/><stop offset="1" stop-color="#ff3c00"/></linearGradient>
-    </defs>
-    <filter id="blur1"><feGaussianBlur stdDeviation="40"/></filter>
-    <circle cx="240" cy="200" r="160" filter="url(#blur1)"></circle>
-  </svg>
+  <div id="balance" class="balance-pill">Balance: KES 0</div>
 
   <header class="site-header">
     <div class="brand">
@@ -65,143 +55,141 @@
     </nav>
   </header>
 
-  <main style="min-height:calc(100vh - 110px);padding:28px;position:relative;z-index:3;">
-    <div style="max-width:1100px;margin:auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);box-shadow:0 20px 50px rgba(2,6,23,0.6)">
+  <main style="min-height:calc(100vh - 110px);padding:28px">
+
+    <div style="max-width:1100px;margin:auto;background:rgba(255,255,255,0.02);padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(6px)">
 
       <h1 style="color:var(--accent);margin-bottom:8px">OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
-      <p style="color:var(--muted);margin-bottom:18px">All packages below — tap BUY NOW to pay with M-PESA.</p>
+      <p>All packages below — tap BUY NOW to pay with M-PESA.</p>
 
       <!-- IG FOLLOWERS -->
-      <section style="margin-bottom:18px">
+      <section>
         <h2>IG FOLLOWERS</h2>
         <div class="price-block">
           <ul>
-            <li>1K Followers <span class="price-val">200</span> <button class="buy-btn" data-service="IG-Followers-1K" data-price="200">Buy Now</button></li>
-            <li>2K Followers <span class="price-val">300</span> <button class="buy-btn" data-service="IG-Followers-2K" data-price="300">Buy Now</button></li>
-            <li>5K Followers <span class="price-val">500</span> <button class="buy-btn" data-service="IG-Followers-5K" data-price="500">Buy Now</button></li>
-            <li>7K Followers <span class="price-val">700</span> <button class="buy-btn" data-service="IG-Followers-7K" data-price="700">Buy Now</button></li>
-            <li>10K Followers <span class="price-val">1000</span> <button class="buy-btn" data-service="IG-Followers-10K" data-price="1000">Buy Now</button></li>
-            <li>15K Followers <span class="price-val">1250</span> <button class="buy-btn" data-service="IG-Followers-15K" data-price="1250">Buy Now</button></li>
-            <li>20K Followers <span class="price-val">1500</span> <button class="buy-btn" data-service="IG-Followers-20K" data-price="1500">Buy Now</button></li>
-            <li>30K Followers <span class="price-val">1800</span> <button class="buy-btn" data-service="IG-Followers-30K" data-price="1800">Buy Now</button></li>
-            <li>45K Followers <span class="price-val">2400</span> <button class="buy-btn" data-service="IG-Followers-45K" data-price="2400">Buy Now</button></li>
-            <li>50K Followers <span class="price-val">2900</span> <button class="buy-btn" data-service="IG-Followers-50K" data-price="2900">Buy Now</button></li>
-            <li>100K Followers <span class="price-val">5000</span> <button class="buy-btn" data-service="IG-Followers-100K" data-price="5000">Buy Now</button></li>
-            <li>200K Followers <span class="price-val">9800</span> <button class="buy-btn" data-service="IG-Followers-200K" data-price="9800">Buy Now</button></li>
+            <li>1K Followers <span class="price-val">200</span> <button class="buy-btn" data-service="IG 1K Followers" data-price="200">Buy Now</button></li>
+            <li>2K Followers <span class="price-val">300</span> <button class="buy-btn" data-service="IG 2K Followers" data-price="300">Buy Now</button></li>
+            <li>5K Followers <span class="price-val">500</span> <button class="buy-btn" data-service="IG 5K Followers" data-price="500">Buy Now</button></li>
+            <li>7K Followers <span class="price-val">700</span> <button class="buy-btn" data-service="IG 7K Followers" data-price="700">Buy Now</button></li>
+            <li>10K Followers <span class="price-val">1000</span> <button class="buy-btn" data-service="IG 10K Followers" data-price="1000">Buy Now</button></li>
+            <li>15K Followers <span class="price-val">1250</span> <button class="buy-btn" data-service="IG 15K Followers" data-price="1250">Buy Now</button></li>
+            <li>20K Followers <span class="price-val">1500</span> <button class="buy-btn" data-service="IG 20K Followers" data-price="1500">Buy Now</button></li>
+            <li>30K Followers <span class="price-val">1800</span> <button class="buy-btn" data-service="IG 30K Followers" data-price="1800">Buy Now</button></li>
+            <li>45K Followers <span class="price-val">2400</span> <button class="buy-btn" data-service="IG 45K Followers" data-price="2400">Buy Now</button></li>
+            <li>50K Followers <span class="price-val">2900</span> <button class="buy-btn" data-service="IG 50K Followers" data-price="2900">Buy Now</button></li>
+            <li>100K Followers <span class="price-val">5000</span> <button class="buy-btn" data-service="IG 100K Followers" data-price="5000">Buy Now</button></li>
+            <li>200K Followers <span class="price-val">9800</span> <button class="buy-btn" data-service="IG 200K Followers" data-price="9800">Buy Now</button></li>
           </ul>
         </div>
-        <p><strong>Buy 7K+ Followers and get 10K FREE likes</strong></p>
       </section>
 
       <!-- IG LIKES -->
-      <section style="margin-bottom:18px">
+      <section>
         <h2>IG LIKES</h2>
+
         <h3>1K Likes Packages</h3>
         <div class="price-block">
           <ul>
-            <li>1 pic each 1K likes <span class="price-val">150</span> <button class="buy-btn" data-service="IG-Likes-1pic-1K" data-price="150">Buy Now</button></li>
-            <li>2 pics each 1K likes <span class="price-val">200</span> <button class="buy-btn" data-service="IG-Likes-2pic-1K" data-price="200">Buy Now</button></li>
-            <li>3 pics each 1K likes <span class="price-val">300</span> <button class="buy-btn" data-service="IG-Likes-3pic-1K" data-price="300">Buy Now</button></li>
-            <li>4 pics each 1K likes <span class="price-val">350</span> <button class="buy-btn" data-service="IG-Likes-4pic-1K" data-price="350">Buy Now</button></li>
-            <li>5 pics each 1K likes <span class="price-val">450</span> <button class="buy-btn" data-service="IG-Likes-5pic-1K" data-price="450">Buy Now</button></li>
-            <li>10 pics each 1K likes <span class="price-val">650</span> <button class="buy-btn" data-service="IG-Likes-10pic-1K" data-price="650">Buy Now</button></li>
+            <li>1 pic 1K likes <span class="price-val">150</span> <button class="buy-btn" data-service="IG Likes 1K (1 PIC)" data-price="150">Buy Now</button></li>
+            <li>2 pics 1K likes <span class="price-val">200</span> <button class="buy-btn" data-service="IG Likes 1K (2 PIC)" data-price="200">Buy Now</button></li>
+            <li>3 pics 1K likes <span class="price-val">300</span> <button class="buy-btn" data-service="IG Likes 1K (3 PIC)" data-price="300">Buy Now</button></li>
+            <li>4 pics 1K likes <span class="price-val">350</span> <button class="buy-btn" data-service="IG Likes 1K (4 PIC)" data-price="350">Buy Now</button></li>
+            <li>5 pics 1K likes <span class="price-val">450</span> <button class="buy-btn" data-service="IG Likes 1K (5 PIC)" data-price="450">Buy Now</button></li>
+            <li>10 pics 1K likes <span class="price-val">650</span> <button class="buy-btn" data-service="IG Likes 1K (10 PIC)" data-price="650">Buy Now</button></li>
           </ul>
         </div>
 
         <h3>2K Likes Packages</h3>
         <div class="price-block">
           <ul>
-            <li>1 pic each 2K likes <span class="price-val">200</span> <button class="buy-btn" data-service="IG-Likes-1pic-2K" data-price="200">Buy Now</button></li>
-            <li>2 pics each 2K likes <span class="price-val">350</span> <button class="buy-btn" data-service="IG-Likes-2pic-2K" data-price="350">Buy Now</button></li>
-            <li>3 pics each 2K likes <span class="price-val">550</span> <button class="buy-btn" data-service="IG-Likes-3pic-2K" data-price="550">Buy Now</button></li>
-            <li>4 pics each 2K likes <span class="price-val">600</span> <button class="buy-btn" data-service="IG-Likes-4pic-2K" data-price="600">Buy Now</button></li>
-            <li>5 pics each 2K likes <span class="price-val">650</span> <button class="buy-btn" data-service="IG-Likes-5pic-2K" data-price="650">Buy Now</button></li>
-            <li>10 pics each 2K likes <span class="price-val">900</span> <button class="buy-btn" data-service="IG-Likes-10pic-2K" data-price="900">Buy Now</button></li>
+            <li>1 pic 2K likes <span class="price-val">200</span> <button class="buy-btn" data-service="IG Likes 2K (1 PIC)" data-price="200">Buy Now</button></li>
+            <li>2 pics 2K likes <span class="price-val">350</span> <button class="buy-btn" data-service="IG Likes 2K (2 PIC)" data-price="350">Buy Now</button></li>
+            <li>3 pics 2K likes <span class="price-val">550</span> <button class="buy-btn" data-service="IG Likes 2K (3 PIC)" data-price="550">Buy Now</button></li>
+            <li>4 pics 2K likes <span class="price-val">600</span> <button class="buy-btn" data-service="IG Likes 2K (4 PIC)" data-price="600">Buy Now</button></li>
+            <li>5 pics 2K likes <span class="price-val">650</span> <button class="buy-btn" data-service="IG Likes 2K (5 PIC)" data-price="650">Buy Now</button></li>
+            <li>10 pics 2K likes <span class="price-val">900</span> <button class="buy-btn" data-service="IG Likes 2K (10 PIC)" data-price="900">Buy Now</button></li>
           </ul>
         </div>
       </section>
 
-      <!-- TIKTOK -->
-      <section style="margin-bottom:18px">
-        <h2>TIKTOK FOLLOWERS — OFFER</h2>
+      <!-- TIKTOK FOLLOWERS -->
+      <section>
+        <h2>TIKTOK FOLLOWERS</h2>
         <div class="price-block">
           <ul>
-            <li>500 Followers <span class="price-val">300</span> <button class="buy-btn" data-service="TT-Followers-500" data-price="300">Buy Now</button></li>
-            <li>1K Followers <span class="price-val">500</span> <button class="buy-btn" data-service="TT-Followers-1K" data-price="500">Buy Now</button></li>
-            <li>2K Followers <span class="price-val">1000</span> <button class="buy-btn" data-service="TT-Followers-2K" data-price="1000">Buy Now</button></li>
-            <li>5K Followers <span class="price-val">1650</span> <button class="buy-btn" data-service="TT-Followers-5K" data-price="1650">Buy Now</button></li>
-            <li>7K Followers <span class="price-val">2000</span> <button class="buy-btn" data-service="TT-Followers-7K" data-price="2000">Buy Now</button></li>
-            <li>10K Followers <span class="price-val">3500</span> <button class="buy-btn" data-service="TT-Followers-10K" data-price="3500">Buy Now</button></li>
-            <li>20K Followers <span class="price-val">6550</span> <button class="buy-btn" data-service="TT-Followers-20K" data-price="6550">Buy Now</button></li>
+            <li>500 Followers <span class="price-val">300</span> <button class="buy-btn" data-service="TT 500 Followers" data-price="300">Buy Now</button></li>
+            <li>1K Followers <span class="price-val">500</span> <button class="buy-btn" data-service="TT 1K Followers" data-price="500">Buy Now</button></li>
+            <li>2K Followers <span class="price-val">1000</span> <button class="buy-btn" data-service="TT 2K Followers" data-price="1000">Buy Now</button></li>
+            <li>5K Followers <span class="price-val">1650</span> <button class="buy-btn" data-service="TT 5K Followers" data-price="1650">Buy Now</button></li>
+            <li>7K Followers <span class="price-val">2000</span> <button class="buy-btn" data-service="TT 7K Followers" data-price="2000">Buy Now</button></li>
+            <li>10K Followers <span class="price-val">3500</span> <button class="buy-btn" data-service="TT 10K Followers" data-price="3500">Buy Now</button></li>
+            <li>20K Followers <span class="price-val">6550</span> <button class="buy-btn" data-service="TT 20K Followers" data-price="6550">Buy Now</button></li>
           </ul>
         </div>
       </section>
 
       <!-- TIKTOK LIKES -->
-      <section style="margin-bottom:18px">
-        <h2>TIKTOK LIKES (COMES WITH FREE VIEWS)</h2>
+      <section>
+        <h2>TIKTOK LIKES (+ Free Views)</h2>
         <div class="price-block">
           <ul>
-            <li>500 likes + 2K views <span class="price-val">300</span> <button class="buy-btn" data-service="TT-Likes-500" data-price="300">Buy Now</button></li>
-            <li>1K likes + 5K views <span class="price-val">550</span> <button class="buy-btn" data-service="TT-Likes-1K" data-price="550">Buy Now</button></li>
-            <li>2.5K likes + 10K views <span class="price-val">700</span> <button class="buy-btn" data-service="TT-Likes-2.5K" data-price="700">Buy Now</button></li>
-            <li>3K likes + 20K views <span class="price-val">880</span> <button class="buy-btn" data-service="TT-Likes-3K" data-price="880">Buy Now</button></li>
-            <li>5K likes + 50K views <span class="price-val">1300</span> <button class="buy-btn" data-service="TT-Likes-5K" data-price="1300">Buy Now</button></li>
-            <li>7K likes + 80K views <span class="price-val">1500</span> <button class="buy-btn" data-service="TT-Likes-7K" data-price="1500">Buy Now</button></li>
-            <li>10K likes + 150K views <span class="price-val">2250</span> <button class="buy-btn" data-service="TT-Likes-10K" data-price="2250">Buy Now</button></li>
-            <li>17K likes + 400K views <span class="price-val">3200</span> <button class="buy-btn" data-service="TT-Likes-17K" data-price="3200">Buy Now</button></li>
+            <li>500 likes + 2K views <span class="price-val">300</span> <button class="buy-btn" data-service="TT 500 Likes" data-price="300">Buy Now</button></li>
+            <li>1K likes + 5K views <span class="price-val">550</span> <button class="buy-btn" data-service="TT 1K Likes" data-price="550">Buy Now</button></li>
+            <li>2.5K likes + 10K views <span class="price-val">700</span> <button class="buy-btn" data-service="TT 2.5K Likes" data-price="700">Buy Now</button></li>
+            <li>3K likes + 20K views <span class="price-val">880</span> <button class="buy-btn" data-service="TT 3K Likes" data-price="880">Buy Now</button></li>
+            <li>5K likes + 50K views <span class="price-val">1300</span> <button class="buy-btn" data-service="TT 5K Likes" data-price="1300">Buy Now</button></li>
+            <li>7K likes + 80K views <span class="price-val">1500</span> <button class="buy-btn" data-service="TT 7K Likes" data-price="1500">Buy Now</button></li>
+            <li>10K likes + 150K views <span class="price-val">2250</span> <button class="buy-btn" data-service="TT 10K Likes" data-price="2250">Buy Now</button></li>
+            <li>17K likes + 400K views <span class="price-val">3200</span> <button class="buy-btn" data-service="TT 17K Likes" data-price="3200">Buy Now</button></li>
           </ul>
         </div>
-        <p><strong>Extra options:</strong> 1K likes – 50 bob • 1K views – 40 bob</p>
       </section>
 
-      <!-- YOUTUBE SUBS -->
-      <section style="margin-bottom:18px">
+      <!-- YOUTUBE SUBSCRIBERS -->
+      <section>
         <h2>YOUTUBE SUBSCRIBERS</h2>
         <div class="price-block">
           <ul>
-            <li>100 subs <span class="price-val">200</span> <button class="buy-btn" data-service="YT-Subs-100" data-price="200">Buy Now</button></li>
-            <li>200 subs <span class="price-val">350</span> <button class="buy-btn" data-service="YT-Subs-200" data-price="350">Buy Now</button></li>
-            <li>300 subs <span class="price-val">500</span> <button class="buy-btn" data-service="YT-Subs-300" data-price="500">Buy Now</button></li>
-            <li>400 subs <span class="price-val">600</span> <button class="buy-btn" data-service="YT-Subs-400" data-price="600">Buy Now</button></li>
-            <li>500 subs <span class="price-val">700</span> <button class="buy-btn" data-service="YT-Subs-500" data-price="700">Buy Now</button></li>
-            <li>700 subs <span class="price-val">850</span> <button class="buy-btn" data-service="YT-Subs-700" data-price="850">Buy Now</button></li>
-            <li>800 subs <span class="price-val">950</span> <button class="buy-btn" data-service="YT-Subs-800" data-price="950">Buy Now</button></li>
-            <li>900 subs <span class="price-val">1000</span> <button class="buy-btn" data-service="YT-Subs-900" data-price="1000">Buy Now</button></li>
-            <li>1K subs <span class="price-val">1100</span> <button class="buy-btn" data-service="YT-Subs-1K" data-price="1100">Buy Now</button></li>
-            <li>1.5K subs <span class="price-val">1500</span> <button class="buy-btn" data-service="YT-Subs-1.5K" data-price="1500">Buy Now</button></li>
-            <li>2K subs <span class="price-val">2200</span> <button class="buy-btn" data-service="YT-Subs-2K" data-price="2200">Buy Now</button></li>
-            <li>3K subs <span class="price-val">3200</span> <button class="buy-btn" data-service="YT-Subs-3K" data-price="3200">Buy Now</button></li>
-            <li>5K subs <span class="price-val">5100</span> <button class="buy-btn" data-service="YT-Subs-5K" data-price="5100">Buy Now</button></li>
+            <li>100 subs <span class="price-val">200</span> <button class="buy-btn" data-service="YT 100 Subs" data-price="200">Buy Now</button></li>
+            <li>200 subs <span class="price-val">350</span> <button class="buy-btn" data-service="YT 200 Subs" data-price="350">Buy Now</button></li>
+            <li>300 subs <span class="price-val">500</span> <button class="buy-btn" data-service="YT 300 Subs" data-price="500">Buy Now</button></li>
+            <li>400 subs <span class="price-val">600</span> <button class="buy-btn" data-service="YT 400 Subs" data-price="600">Buy Now</button></li>
+            <li>500 subs <span class="price-val">700</span> <button class="buy-btn" data-service="YT 500 Subs" data-price="700">Buy Now</button></li>
+            <li>700 subs <span class="price-val">850</span> <button class="buy-btn" data-service="YT 700 Subs" data-price="850">Buy Now</button></li>
+            <li>800 subs <span class="price-val">950</span> <button class="buy-btn" data-service="YT 800 Subs" data-price="950">Buy Now</button></li>
+            <li>900 subs <span class="price-val">1000</span> <button class="buy-btn" data-service="YT 900 Subs" data-price="1000">Buy Now</button></li>
+            <li>1K subs <span class="price-val">1100</span> <button class="buy-btn" data-service="YT 1K Subs" data-price="1100">Buy Now</button></li>
+            <li>1.5K subs <span class="price-val">1500</span> <button class="buy-btn" data-service="YT 1.5K Subs" data-price="1500">Buy Now</button></li>
+            <li>2K subs <span class="price-val">2200</span> <button class="buy-btn" data-service="YT 2K Subs" data-price="2200">Buy Now</button></li>
+            <li>3K subs <span class="price-val">3200</span> <button class="buy-btn" data-service="YT 3K Subs" data-price="3200">Buy Now</button></li>
+            <li>5K subs <span class="price-val">5100</span> <button class="buy-btn" data-service="YT 5K Subs" data-price="5100">Buy Now</button></li>
           </ul>
         </div>
-        <p><strong>Free 2K views for purchases above 1K subs</strong></p>
       </section>
 
-      <!-- FACEBOOK -->
-      <section style="margin-bottom:18px">
+      <!-- FACEBOOK FOLLOWERS -->
+      <section>
         <h2>FACEBOOK FOLLOWERS</h2>
         <div class="price-block">
           <ul>
-            <li>1K Followers <span class="price-val">350</span> <button class="buy-btn" data-service="FB-Followers-1K" data-price="350">Buy Now</button></li>
-            <li>2K Followers <span class="price-val">700</span> <button class="buy-btn" data-service="FB-Followers-2K" data-price="700">Buy Now</button></li>
-            <li>5K Followers <span class="price-val">1100</span> <button class="buy-btn" data-service="FB-Followers-5K" data-price="1100">Buy Now</button></li>
-            <li>10K Followers <span class="price-val">1500</span> <button class="buy-btn" data-service="FB-Followers-10K" data-price="1500">Buy Now</button></li>
-            <li>20K Followers <span class="price-val">2350</span> <button class="buy-btn" data-service="FB-Followers-20K" data-price="2350">Buy Now</button></li>
+            <li>1K Followers <span class="price-val">350</span> <button class="buy-btn" data-service="FB 1K Followers" data-price="350">Buy Now</button></li>
+            <li>2K Followers <span class="price-val">700</span> <button class="buy-btn" data-service="FB 2K Followers" data-price="700">Buy Now</button></li>
+            <li>5K Followers <span class="price-val">1100</span> <button class="buy-btn" data-service="FB 5K Followers" data-price="1100">Buy Now</button></li>
+            <li>10K Followers <span class="price-val">1500</span> <button class="buy-btn" data-service="FB 10K Followers" data-price="1500">Buy Now</button></li>
+            <li>20K Followers <span class="price-val">2350</span> <button class="buy-btn" data-service="FB 20K Followers" data-price="2350">Buy Now</button></li>
           </ul>
         </div>
-        <p><strong>Instant Delivery • Non-drop • No Password Required</strong></p>
       </section>
 
-      <!-- YT WATCH HOURS -->
-      <section style="margin-bottom:18px">
-        <h2>YOUTUBE WATCH HOURS (Comes with free views)</h2>
+      <!-- YOUTUBE WATCH HOURS -->
+      <section>
+        <h2>YOUTUBE WATCH HOURS</h2>
         <div class="price-block">
           <ul>
-            <li>1K hours <span class="price-val">1250</span> <button class="buy-btn" data-service="YT-Hours-1K" data-price="1250">Buy Now</button></li>
-            <li>2K hours <span class="price-val">2300</span> <button class="buy-btn" data-service="YT-Hours-2K" data-price="2300">Buy Now</button></li>
-            <li>3K hours <span class="price-val">3200</span> <button class="buy-btn" data-service="YT-Hours-3K" data-price="3200">Buy Now</button></li>
-            <li>4K hours <span class="price-val">4500</span> <button class="buy-btn" data-service="YT-Hours-4K" data-price="4500">Buy Now</button></li>
+            <li>1K hours <span class="price-val">1250</span> <button class="buy-btn" data-service="YT 1K Hours" data-price="1250">Buy Now</button></li>
+            <li>2K hours <span class="price-val">2300</span> <button class="buy-btn" data-service="YT 2K Hours" data-price="2300">Buy Now</button></li>
+            <li>3K hours <span class="price-val">3200</span> <button class="buy-btn" data-service="YT 3K Hours" data-price="3200">Buy Now</button></li>
+            <li>4K hours <span class="price-val">4500</span> <button class="buy-btn" data-service="YT 4K Hours" data-price="4500">Buy Now</button></li>
           </ul>
         </div>
       </section>
@@ -217,27 +205,15 @@
 
   <footer class="site-footer">© <span id="year2"></span> GURU TECH MARKETING</footer>
 
-  <audio id="bg-audio" loop preload="auto">
-    <source src="assets/ambient.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script src="script.js"></script>
   <script>
-    // populate year
-    document.addEventListener('DOMContentLoaded', () => {
-      const y = document.getElementById('year2'); if (y) y.textContent = new Date().getFullYear();
-    });
+    document.getElementById("year2").textContent = new Date().getFullYear();
 
-    // Attach buy handlers (delegated)
     document.addEventListener('click', function(e){
       const b = e.target.closest('.buy-btn');
       if (!b) return;
       const service = b.getAttribute('data-service');
       const price = b.getAttribute('data-price');
-      // open pay page with service & price
-      const url = `pay.html?service=${encodeURIComponent(service)}&amount=${encodeURIComponent(price)}`;
-      window.location.href = url;
+      window.location.href = `pay.html?service=${encodeURIComponent(service)}&amount=${encodeURIComponent(price)}`;
     });
   </script>
 
