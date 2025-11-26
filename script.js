@@ -1,149 +1,90 @@
-/* ============================================================
-   GURU TECH LAB – MASTER SCRIPT.JS  
-   - Audio (Hero + Global)
-   - Payment Modal
-   - MPESA Simulation (Direct Till 3420564)
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   🎵 BACKGROUND AUDIO + FALLBACK WEB AUDIO DRONE
------------------------------------------------------------- */
+// script.js – GuruTech PRO Audio + Desktop-Only Layout + Payment Routing
 document.addEventListener("DOMContentLoaded", function () {
   const audioEl = document.getElementById("bg-audio");
   const musicButtons = document.querySelectorAll("#music-toggle, #music-toggle-hero");
 
-  let started = false;
-  let useWebAudio = false;
-  let webAudioCtx = null;
-  let webAudioOscs = null;
-  let webAudioGain = null;
+  let audioStarted = false;
 
-  function safePlayAudioElement() {
-    if (!audioEl) return Promise.reject(new Error("No audio element"));
-    audioEl.volume = 0.25;
-    return audioEl.play().then(() => {
-      started = true;
-      musicButtons.forEach(b => b.textContent = "🔊 Music On");
-    });
-  }
+  /* -------------------------------------------------
+       AUTOPLAY HANDLER (Starts after first touch)
+  ---------------------------------------------------*/
+  function tryStartAudio() {
+    if (audioStarted) return;
 
-  function startWebAudioDrone() {
-    if (started) return;
+    if (audioEl) {
+      audioEl.volume = 0.35;
 
-    try {
-      webAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-      const o1 = webAudioCtx.createOscillator();
-      const o2 = webAudioCtx.createOscillator();
-      webAudioGain = webAudioCtx.createGain();
-      const lfo = webAudioCtx.createOscillator();
-      const lfoGain = webAudioCtx.createGain();
-
-      o1.type = "sine"; o2.type = "sine";
-      o1.frequency.value = 110; 
-      o2.frequency.value = 112.3;
-
-      webAudioGain.gain.value = 0.08;
-
-      o1.connect(webAudioGain);
-      o2.connect(webAudioGain);
-      webAudioGain.connect(webAudioCtx.destination);
-
-      lfo.frequency.value = 0.08;
-      lfoGain.gain.value = 0.06;
-      lfo.connect(lfoGain);
-      lfoGain.connect(webAudioGain.gain);
-
-      o1.start(); o2.start(); lfo.start();
-
-      webAudioOscs = [o1, o2, lfo];
-      useWebAudio = true;
-      started = true;
-
-      musicButtons.forEach(b => b.textContent = "🔊 Music On");
-    } catch (err) {
-      console.warn("WebAudio error:", err);
+      audioEl.play().then(() => {
+        audioStarted = true;
+        musicButtons.forEach(btn => btn.textContent = "🔊 Music On");
+      }).catch(() => {
+        console.warn("Autoplay blocked.");
+      });
     }
   }
 
-  function toggleAudio() {
-    if (audioEl && audioEl.src) {
+  function firstUserInteraction() {
+    tryStartAudio();
+
+    window.removeEventListener("pointerdown", firstUserInteraction);
+    window.removeEventListener("touchstart", firstUserInteraction);
+    window.removeEventListener("keydown", firstUserInteraction);
+  }
+
+  window.addEventListener("pointerdown", firstUserInteraction, { passive: true });
+  window.addEventListener("touchstart", firstUserInteraction, { passive: true });
+  window.addEventListener("keydown", firstUserInteraction);
+
+  /* -------------------------------------------------
+      TOGGLE BUTTON
+  ---------------------------------------------------*/
+  musicButtons.forEach(btn =>
+    btn?.addEventListener("click", () => {
+      if (!audioEl) return;
+
       if (audioEl.paused) {
-        safePlayAudioElement().catch(() => startWebAudioDrone());
+        audioEl.play();
+        btn.textContent = "🔊 Music On";
       } else {
         audioEl.pause();
-        musicButtons.forEach(b => b.textContent = "🔈 Paused");
+        btn.textContent = "🔈 Paused";
       }
-      return;
-    }
-
-    if (!useWebAudio) startWebAudioDrone();
-    else {
-      if (webAudioCtx) webAudioCtx.close();
-      started = false;
-      useWebAudio = false;
-      musicButtons.forEach(b => b.textContent = "🔈 Paused");
-    }
-  }
-
-  function firstInteraction() {
-    safePlayAudioElement().catch(startWebAudioDrone);
-    window.removeEventListener("pointerdown", firstInteraction);
-  }
-
-  window.addEventListener("pointerdown", firstInteraction, { passive: true });
-
-  musicButtons.forEach(btn => btn && btn.addEventListener("click", toggleAudio));
-});
-
-/* ------------------------------------------------------------
-   💰 PAYMENT SYSTEM (MPESA – DIRECT TILL 3420564)
------------------------------------------------------------- */
-
-// GLOBAL BALANCE TRACKER
-let accountBalance = 0;
-
-/* OPEN PAYMENT MODAL */
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("buy-btn")) {
-    const service = e.target.dataset.service;
-    const price = parseInt(e.target.dataset.price);
-
-    document.getElementById("payServiceName").textContent = service;
-    document.getElementById("payAmount").textContent = price;
-
-    document.getElementById("paymentModal").style.display = "flex";
-  }
-});
-
-/* CLOSE PAYMENT MODAL */
-function closeModal() {
-  document.getElementById("paymentModal").style.display = "none";
-}
-
-/* PROCESS PAYMENT (SIMULATED MPESA DIRECT TILL 3420564) */
-function confirmPayment() {
-  const amount = parseInt(document.getElementById("payAmount").textContent);
-
-  // Simulate deposit into business balance
-  accountBalance += amount;
-
-  // Show confirmation
-  alert(
-    "✔ PAYMENT SUCCESSFUL\n\n" +
-    "Till Number: 3420564\n" +
-    "Account Name: AKIDA RAJAB\n" +
-    "Amount Paid: KES " + amount + "\n\n" +
-    "Your order is being processed!"
+    })
   );
 
-  // Update balance display if present
-  const bal = document.getElementById("balanceDisplay");
-  if (bal) bal.textContent = `KES ${accountBalance}`;
+  /* -------------------------------------------------
+      FORCE DESKTOP VIEW ON MOBILE (No zoom)
+  ---------------------------------------------------*/
+  const meta = document.querySelector("meta[name=viewport]");
+  if (meta) {
+    meta.setAttribute(
+      "content",
+      "width=1200, initial-scale=0.55, maximum-scale=0.55, user-scalable=no"
+    );
+  }
 
-  closeModal();
-}
+  document.body.style.touchAction = "none";
 
-/* Make functions available to HTML */
-window.closeModal = closeModal;
-window.confirmPayment = confirmPayment;
+  /* -------------------------------------------------
+      AUTO-FILL PAY.HTML (READ SERVICE + PRICE)
+  ---------------------------------------------------*/
+  const urlParams = new URLSearchParams(window.location.search);
+  const svc = urlParams.get("service");
+  const price = urlParams.get("price");
+
+  if (svc && price && document.getElementById("pay-service")) {
+    document.getElementById("pay-service").textContent = svc;
+    document.getElementById("pay-amount").textContent = price + " KES";
+
+    const hiddenService = document.getElementById("service-input");
+    const hiddenAmount = document.getElementById("amount-input");
+
+    if (hiddenService) hiddenService.value = svc;
+    if (hiddenAmount) hiddenAmount.value = price;
+
+    const balanceField = document.getElementById("balance-info");
+    if (balanceField) {
+      balanceField.textContent = `Total: ${price} KES`;
+    }
+  }
+});
