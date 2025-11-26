@@ -2,20 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <!-- FORCE DESKTOP LAYOUT + NO ZOOM -->
+  <meta name="viewport"
+    content="width=1200,
+    initial-scale=1,
+    maximum-scale=1,
+    user-scalable=no" />
+
   <title>Guru Tech Marketing — Home</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
+    /* Disable mobile overscroll + zoom feel */
     body {
       overscroll-behavior: none;
       touch-action: manipulation;
+      background: #080808;
+      color: #fff;
     }
-    /* ensure no zoom on inputs (iOS fix) */
-    input, select, textarea {
-      font-size: 16px !important;
+
+    /* Force desktop width */
+    .page-wrap {
+      width: 1200px;
+      margin: 0 auto;
+      transform: scale(1);
+    }
+
+    /* Fix hero card centering & spacing */
+    .hero-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .hero-card {
+      width: 900px;
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Space issue fix */
+    .services-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .svc-card {
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Big improvement: music toggle always same size */
+    #music-toggle {
+      min-width: 160px;
+      text-align: center;
     }
   </style>
 </head>
+
 <body>
 
   <!-- floating blurred background shape -->
@@ -28,13 +81,15 @@
   </svg>
 
   <div class="page-wrap">
+
+    <!-- HEADER -->
     <header class="site-header">
       <div class="brand">
         <div class="logo-text">GURU TECH LAB</div>
         <div class="tagline">Digital Services</div>
       </div>
 
-      <nav class="top-nav" role="navigation" aria-label="Main">
+      <nav class="top-nav" aria-label="Main">
         <a class="nav-btn" href="index.html">Home</a>
         <a class="nav-btn" href="services.html">Services</a>
         <a class="nav-btn" href="boosting.html">Boosting</a>
@@ -43,14 +98,16 @@
       </nav>
     </header>
 
-    <!-- Central glass card hero -->
+    <!-- HERO -->
     <main class="hero-wrap" role="main">
-      <div class="hero-card" role="region" aria-label="Hero">
+      <div class="hero-card">
+
         <div class="hero-top">
           <div class="hero-logo">
             <div class="hero-logo-text">GURU TECH LAB</div>
             <div class="hero-sub">Digital Services</div>
           </div>
+
           <div class="hero-cta">
             <button id="get-started" class="primary-btn">Get Started</button>
             <button id="music-toggle" class="secondary-btn">🔊 Play Music</button>
@@ -58,68 +115,32 @@
         </div>
 
         <div class="hero-body">
-          <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding.</p>
 
-          <div class="controls-row">
-            <label for="country-select" class="muted">Prices shown for</label>
-            <select id="country-select" class="country-select" aria-label="Select country">
-              <option value="AUTO">Auto-detect</option>
-              <option value="KE">Kenya (KES)</option>
-              <option value="NG">Nigeria (NGN)</option>
-              <option value="US">USA (USD)</option>
-              <option value="GB">UK (GBP)</option>
-              <option value="ZA">South Africa (ZAR)</option>
-              <option value="IN">India (INR)</option>
-            </select>
-            <div id="price-status" class="price-status muted" aria-live="polite"></div>
-          </div>
+          <p class="hero-lead">
+            Premium, fast digital services — social boosting, websites, bots, branding.
+          </p>
 
-          <!-- service cards (prices removed) -->
-          <div class="services-grid" role="list">
+          <!-- Services -->
+          <div class="services-grid">
 
-            <!-- Social Boosting -->
-            <a class="svc-card" href="boosting.html" role="listitem">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42">
-                  <defs><linearGradient id="igG" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="1" stop-color="#dd2a7b"/></linearGradient></defs>
-                  <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igG)"></rect>
-                </svg>
-              </div>
+            <a class="svc-card" href="boosting.html">
               <div class="svc-title">Social Media Boosting</div>
-              <div class="svc-sub muted">Followers, likes & views</div>
+              <div class="svc-sub">Followers, likes & views</div>
             </a>
 
-            <!-- Website -->
-            <a class="svc-card" href="website.html" role="listitem">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42">
-                  <rect x="3" y="5" width="18" height="12" rx="1.5" fill="#6ec1ff"></rect>
-                </svg>
-              </div>
+            <a class="svc-card" href="website.html">
               <div class="svc-title">Website Development</div>
-              <div class="svc-sub muted">Landing pages & e-commerce</div>
+              <div class="svc-sub">Landing pages & e-commerce</div>
             </a>
 
-            <!-- Bots -->
-            <a class="svc-card" href="bots.html" role="listitem">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42">
-                  <rect x="4" y="6" width="16" height="12" rx="2" fill="#7cffb2"></rect>
-                </svg>
-              </div>
+            <a class="svc-card" href="bots.html">
               <div class="svc-title">Automation & Bots</div>
-              <div class="svc-sub muted">WhatsApp bots & tools</div>
+              <div class="svc-sub">WhatsApp bots & tools</div>
             </a>
 
-            <!-- Branding -->
-            <a class="svc-card" href="branding.html" role="listitem">
-              <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42">
-                  <path d="M12 3C8 3 5 6 5 10c0 3 2 5 5 5h1c3 0 5-2 5-5 0-1.66-1.34-3-3-3h-4" fill="#ffb86b"></path>
-                </svg>
-              </div>
-              <div class="svc-title">Branding & Digital Setup</div>
-              <div class="svc-sub muted">Logos, social kits</div>
+            <a class="svc-card" href="branding.html">
+              <div class="svc-title">Branding & Setup</div>
+              <div class="svc-sub">Logos, social kits</div>
             </a>
 
           </div>
@@ -127,6 +148,7 @@
       </div>
     </main>
 
+    <!-- CONTACT -->
     <div class="contact-row">
       <a class="contact-btn whatsapp" href="https://wa.me/254763986398">🟢 WhatsApp</a>
       <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">✉️ Email</a>
@@ -136,17 +158,28 @@
     <footer class="site-footer">© <span id="year"></span> GURU TECH LAB — Digital Services</footer>
   </div>
 
-  <!-- Music -->
-  <audio id="bg-audio" loop preload="auto">
+  <!-- MUSIC -->
+  <audio id="bg-audio" preload="auto" loop>
     <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Year + audio logic -->
+  <!-- AUTOPLAY FIX -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const y = document.getElementById("year");
       if (y) y.textContent = new Date().getFullYear();
     });
+
+    // Autoforce music play on first interaction
+    window.addEventListener("touchstart", () => {
+      const a = document.getElementById("bg-audio");
+      if (a) { a.volume = 0.35; a.play().catch(()=>{}); }
+    }, { once: true });
+
+    window.addEventListener("click", () => {
+      const a = document.getElementById("bg-audio");
+      if (a) { a.volume = 0.35; a.play().catch(()=>{}); }
+    }, { once: true });
   </script>
 
   <script src="script.js"></script>
