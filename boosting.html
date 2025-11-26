@@ -6,373 +6,350 @@
   <title>Social Media Boosting — Guru Tech Lab</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .cards-grid {
-      display:grid;
-      grid-template-columns: repeat(2, minmax(220px, 1fr));
-      gap:18px;
-      align-items:stretch;
+    :root {
+      --accent: #ff3c00;
+      --muted: rgba(255,255,255,0.65);
     }
 
-    .service-card {
-      position:relative;
-      padding:18px;
-      border-radius:14px;
-      min-height:160px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
+    body {
+      margin:0;
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(255,90,40,0.06), transparent 20%),
+                  radial-gradient(circle at 90% 80%, rgba(0,200,255,0.03), transparent 20%),
+                  #031025;
+      color:#fff;
+    }
+
+    .container { max-width:1100px; margin:28px auto; padding:24px; }
+
+    h1 { color:var(--accent); margin:0 0 8px 0; font-size:28px }
+    p.lead { color:var(--muted); margin:6px 0 18px 0 }
+
+    .section {
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 18px 40px rgba(2,6,23,0.5);
-      transition: transform .18s ease, box-shadow .18s ease;
-      overflow:hidden;
-    }
-    .service-card:hover{ transform: translateY(-8px); box-shadow:0 30px 60px rgba(2,6,23,0.6) }
-
-    .service-head { display:flex;align-items:center;gap:12px; }
-    .service-title { font-weight:800; font-size:16px; color:#fff; }
-    .service-sub { font-size:12px; color:var(--muted) }
-
-    .icon-3d {
-      width:64px; height:64px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      display:flex;align-items:center;justify-content:center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 6px 18px rgba(255,255,255,0.02);
+      padding:18px;
+      border-radius:14px;
+      box-shadow:0 20px 50px rgba(2,6,23,0.6);
+      margin-bottom:18px;
     }
 
-    .view-btn {
-      margin-top:12px;
-      padding:10px 14px;
-      border-radius:10px;
-      border:0;
-      background:var(--accent);
-      color:#fff;
-      font-weight:800;
-      cursor:pointer;
-      width:100%;
-      box-shadow:0 10px 24px rgba(0,0,0,0.45);
+    .price-list { list-style:none; padding:0; margin:0; display:block; }
+    .price-list li {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 8px;
+      border-bottom:1px dashed rgba(255,255,255,0.02);
     }
-    .view-btn:hover{ transform:translateY(-3px) }
+    .price-list li:last-child { border-bottom:0; }
 
+    .pkg-name { flex:1; font-weight:700; color:#fff; }
+    .pkg-price { width:120px; text-align:right; font-weight:900; color:var(--accent); margin-right:12px; }
+
+    /* Compact theme-colored BUY button (Style A) */
     .buy-btn {
-      margin-top:10px;
-      padding:10px 14px;
+      background: linear-gradient(180deg, var(--accent), #ff4f1e);
+      border: none;
+      color: #fff;
+      padding:8px 12px;
       border-radius:10px;
-      border:0;
-      background:#00c851;
-      color:#fff;
       font-weight:800;
       cursor:pointer;
-      width:100%;
-      box-shadow:0 10px 24px rgba(0,0,0,0.45);
+      box-shadow: 0 10px 24px rgba(255,76,20,0.18);
+      text-decoration:none;
+      white-space:nowrap;
     }
-    .buy-btn:hover{ transform:translateY(-3px); background:#00e65b; }
-
-    .modal-backdrop {
-      position:fixed;inset:0;background:rgba(2,6,23,0.65);
-      display:none;align-items:center;justify-content:center;z-index:9999;padding:24px;
-    }
-    .modal-backdrop.open{ display:flex }
-
-    .modal {
-      width:100%; max-width:980px; max-height:90vh; overflow:auto;
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015));
-      border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 30px 80px rgba(2,6,23,0.7);
-    }
-    .modal h2{ color:var(--accent); margin-bottom:6px }
-    .modal .close {
-      position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;
+    .buy-btn:hover {
+      transform:translateY(-3px);
+      box-shadow: 0 14px 30px rgba(255,76,20,0.28);
     }
 
-    .price-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
-    .price-block { background: rgba(0,0,0,0.25); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02) }
-    .price-block ul{ list-style:none;padding-left:0; margin:6px 0 0 0 }
-    .price-block li{ padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.03); font-weight:700 }
-    .price-block li:last-child{ border-bottom:0 }
+    /* small responsive tweak */
+    @media (max-width:720px) {
+      .price-list li { flex-direction:column; align-items:flex-start; gap:8px; }
+      .pkg-price { width:auto; text-align:left; }
+    }
+
+    /* footer contact row */
+    .contact-row { display:flex; gap:12px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+    .contact-row a { color:#fff; text-decoration:none; background:rgba(255,255,255,0.03); padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+
   </style>
 </head>
 <body>
+  <div class="container">
+    <header style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+      <div>
+        <div style="font-weight:900;font-size:18px">GURU TECH LAB</div>
+        <div style="color:var(--muted);font-size:12px">Social Media Boosting</div>
+      </div>
+      <nav>
+        <a href="index.html" style="color:var(--muted);margin-right:10px">Home</a>
+        <a href="services.html" style="color:var(--muted);margin-right:10px">Services</a>
+        <a href="contact.html" style="color:var(--muted)">Contact</a>
+      </nav>
+    </header>
 
-<header class="site-header">
-  <div class="brand">
-    <div class="logo">GURU TECH LAB</div>
-    <div class="subtitle">Social Media Boosting</div>
+    <main>
+      <h1>OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
+      <p class="lead">Tap any package's <strong>Purchase</strong> button to open WhatsApp and place an order. We'll reply fast — payment via M-PESA Till <strong>3420564</strong>.</p>
+
+      <!-- IG FOLLOWERS -->
+      <section class="section" aria-labelledby="igf">
+        <h2 id="igf" style="margin-top:0">IG FOLLOWERS</h2>
+        <ul class="price-list">
+          <li>
+            <div class="pkg-name">1K Followers</div>
+            <div class="pkg-price">200</div>
+            <a
+              class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%201K%20Followers%0A%20%E2%80%A2%20Price%3A%20200%20KES"
+              target="_blank" rel="noopener">200 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">2K Followers</div>
+            <div class="pkg-price">300</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%202K%20Followers%0A%20%E2%80%A2%20Price%3A%20300%20KES"
+              target="_blank" rel="noopener">300 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">5K Followers</div>
+            <div class="pkg-price">500</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%205K%20Followers%0A%20%E2%80%A2%20Price%3A%20500%20KES"
+              target="_blank" rel="noopener">500 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">7K Followers</div>
+            <div class="pkg-price">700</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%207K%20Followers%0A%20%E2%80%A2%20Price%3A%20700%20KES"
+              target="_blank" rel="noopener">700 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">10K Followers</div>
+            <div class="pkg-price">1000</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2010K%20Followers%0A%20%E2%80%A2%20Price%3A%201000%20KES"
+              target="_blank" rel="noopener">1000 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">15K Followers</div>
+            <div class="pkg-price">1250</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2015K%20Followers%0A%20%E2%80%A2%20Price%3A%201250%20KES"
+              target="_blank" rel="noopener">1250 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">20K Followers</div>
+            <div class="pkg-price">1500</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2020K%20Followers%0A%20%E2%80%A2%20Price%3A%201500%20KES"
+              target="_blank" rel="noopener">1500 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">30K Followers</div>
+            <div class="pkg-price">1800</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2030K%20Followers%0A%20%E2%80%A2%20Price%3A%201800%20KES"
+              target="_blank" rel="noopener">1800 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">45K Followers</div>
+            <div class="pkg-price">2400</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2045K%20Followers%0A%20%E2%80%A2%20Price%3A%202400%20KES"
+              target="_blank" rel="noopener">2400 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">50K Followers</div>
+            <div class="pkg-price">2900</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%2050K%20Followers%0A%20%E2%80%A2%20Price%3A%202900%20KES"
+              target="_blank" rel="noopener">2900 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">100K Followers</div>
+            <div class="pkg-price">5000</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%20100K%20Followers%0A%20%E2%80%A2%20Price%3A%205000%20KES"
+              target="_blank" rel="noopener">5000 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">200K Followers</div>
+            <div class="pkg-price">9800</div>
+            <a class="buy-btn"
+              href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Followers%0A%20%E2%80%A2%20Package%3A%20200K%20Followers%0A%20%E2%80%A2%20Price%3A%209800%20KES"
+              target="_blank" rel="noopener">9800 KES – Buy Now</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- IG LIKES -->
+      <section class="section" aria-labelledby="igl">
+        <h2 id="igl">IG LIKES</h2>
+
+        <ul class="price-list">
+          <li>
+            <div class="pkg-name">1 pic — 1K likes</div>
+            <div class="pkg-price">150</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%201%20pic%201K%20likes%0A%20%E2%80%A2%20Price%3A%20150%20KES" target="_blank" rel="noopener">150 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">2 pics — 1K likes</div>
+            <div class="pkg-price">200</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%202%20pics%201K%20likes%0A%20%E2%80%A2%20Price%3A%20200%20KES" target="_blank" rel="noopener">200 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">3 pics — 1K likes</div>
+            <div class="pkg-price">300</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%203%20pics%201K%20likes%0A%20%E2%80%A2%20Price%3A%20300%20KES" target="_blank" rel="noopener">300 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">4 pics — 1K likes</div>
+            <div class="pkg-price">350</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%204%20pics%201K%20likes%0A%20%E2%80%A2%20Price%3A%20350%20KES" target="_blank" rel="noopener">350 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">5 pics — 1K likes</div>
+            <div class="pkg-price">450</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%205%20pics%201K%20likes%0A%20%E2%80%A2%20Price%3A%20450%20KES" target="_blank" rel="noopener">450 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">10 pics — 1K likes</div>
+            <div class="pkg-price">650</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20IG%20Likes%0A%20%E2%80%A2%20Package%3A%2010%20pics%201K%20likes%0A%20%E2%80%A2%20Price%3A%20650%20KES" target="_blank" rel="noopener">650 KES – Buy Now</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- TikTok Boost -->
+      <section class="section" aria-labelledby="tt">
+        <h2 id="tt">TikTok Boost</h2>
+
+        <ul class="price-list">
+          <li>
+            <div class="pkg-name">500 Followers</div>
+            <div class="pkg-price">300</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%20500%20Followers%0A%20%E2%80%A2%20Price%3A%20300%20KES" target="_blank" rel="noopener">300 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">1K Followers</div>
+            <div class="pkg-price">500</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%201K%20Followers%0A%20%E2%80%A2%20Price%3A%20500%20KES" target="_blank" rel="noopener">500 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">2K Followers</div>
+            <div class="pkg-price">1000</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%202K%20Followers%0A%20%E2%80%A2%20Price%3A%201000%20KES" target="_blank" rel="noopener">1000 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">5K Followers</div>
+            <div class="pkg-price">1650</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%205K%20Followers%0A%20%E2%80%A2%20Price%3A%201650%20KES" target="_blank" rel="noopener">1650 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">7K Followers</div>
+            <div class="pkg-price">2000</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%207K%20Followers%0A%20%E2%80%A2%20Price%3A%202000%20KES" target="_blank" rel="noopener">2000 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">10K Followers</div>
+            <div class="pkg-price">3500</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%2010K%20Followers%0A%20%E2%80%A2%20Price%3A%203500%20KES" target="_blank" rel="noopener">3500 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">20K Followers</div>
+            <div class="pkg-price">6550</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20TikTok%20Boost%0A%20%E2%80%A2%20Package%3A%2020K%20Followers%0A%20%E2%80%A2%20Price%3A%206550%20KES" target="_blank" rel="noopener">6550 KES – Buy Now</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- YouTube & Facebook -->
+      <section class="section" aria-labelledby="ytfb">
+        <h2 id="ytfb">YT / FB Boost</h2>
+
+        <ul class="price-list">
+          <li>
+            <div class="pkg-name">100 YouTube Subs</div>
+            <div class="pkg-price">200</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%20100%20YouTube%20Subs%0A%20%E2%80%A2%20Price%3A%20200%20KES" target="_blank" rel="noopener">200 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">500 YouTube Subs</div>
+            <div class="pkg-price">700</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%20500%20YouTube%20Subs%0A%20%E2%80%A2%20Price%3A%20700%20KES" target="_blank" rel="noopener">700 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">1K YouTube Subs</div>
+            <div class="pkg-price">1100</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%201K%20YouTube%20Subs%0A%20%E2%80%A2%20Price%3A%201100%20KES" target="_blank" rel="noopener">1100 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">1K Facebook Followers</div>
+            <div class="pkg-price">350</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%201K%20Facebook%20Followers%0A%20%E2%80%A2%20Price%3A%20350%20KES" target="_blank" rel="noopener">350 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">5K Facebook Followers</div>
+            <div class="pkg-price">1100</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%205K%20Facebook%20Followers%0A%20%E2%80%A2%20Price%3A%201100%20KES" target="_blank" rel="noopener">1100 KES – Buy Now</a>
+          </li>
+
+          <li>
+            <div class="pkg-name">10K Facebook Followers</div>
+            <div class="pkg-price">1500</div>
+            <a class="buy-btn" href="https://wa.me/254763986398?text=Hello%2C%20I%20want%20to%20order%3A%0A%20%E2%80%A2%20Service%3A%20YT%20%2F%20FB%20Boost%0A%20%E2%80%A2%20Package%3A%2010K%20Facebook%20Followers%0A%20%E2%80%A2%20Price%3A%201500%20KES" target="_blank" rel="noopener">1500 KES – Buy Now</a>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <div class="contact-row">
+      <a href="https://wa.me/254763986398" target="_blank" rel="noopener">🟢 WhatsApp</a>
+      <a href="mailto:akidarajab462@gmail.com">✉️ Email</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
+    </div>
+
+    <footer style="text-align:center;color:var(--muted);margin-top:18px">© <span id="yr"></span> GURU TECH LAB</footer>
   </div>
-  <nav class="top-nav">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="website.html" class="nav-btn">Website</a>
-    <a href="bots.html" class="nav-btn">Bots</a>
-    <a href="branding.html" class="nav-btn">Branding</a>
-  </nav>
-</header>
 
-<main style="padding:28px;">
-  <h1 style="color:var(--accent)">OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
-  <p style="color:var(--muted);margin-bottom:10px">Tap any service to view prices or buy instantly.</p>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 
-  <div class="cards-grid">
-    <!-- IG Followers Card -->
-    <div class="service-card">
-      <div class="service-head">
-        <div class="icon-3d">
-          <svg width="42" height="42" viewBox="0 0 24 24">
-            <rect x="2" y="3" width="20" height="18" rx="4" fill="url(#iggrad2)"></rect>
-            <defs>
-              <linearGradient id="iggrad2" x1="0" x2="1">
-                <stop offset="0" stop-color="#ff8a4b"/>
-                <stop offset="1" stop-color="#ff3c00"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div>
-          <div class="service-title">Instagram Followers</div>
-          <div class="service-sub">Quick Growth</div>
-        </div>
-      </div>
-
-      <button class="view-btn" data-modal="modal-ig-followers">View Prices</button>
-
-      <!-- BUY NOW -->
-      <a class="buy-btn"
-        href="https://wa.me/254763986398?text=Hello%20Guru%20Tech%20Lab%2C%20I%20want%20to%20order%20Instagram%20Followers.%0A%0A*PACKAGE:*%20(please%20type%20your%20selected%20package)%0A*USERNAME:*%20%0A*TRANSACTION%20ID:*%20%0A*PAYMENT%20METHOD:*%20M-Pesa%20Till%203420564%0A%0AThank%20you!"
-        target="_blank">Buy Now</a>
-    </div>
-
-    <!-- IG Likes Card -->
-    <div class="service-card">
-      <div class="service-head">
-        <div class="icon-3d">
-          <svg width="42" height="42" viewBox="0 0 24 24">
-            <circle cx="12" cy="10" r="6" fill="url(#like2)"></circle>
-            <defs>
-              <linearGradient id="like2" x1="0" x2="1">
-                <stop offset="0" stop-color="#ffd86b"/>
-                <stop offset="1" stop-color="#ff7a2d"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div>
-          <div class="service-title">Instagram Likes</div>
-          <div class="service-sub">Per-Post Likes</div>
-        </div>
-      </div>
-
-      <button class="view-btn" data-modal="modal-ig-likes">View Prices</button>
-
-      <!-- BUY NOW -->
-      <a class="buy-btn"
-        href="https://wa.me/254763986398?text=Hello%20Guru%20Tech%20Lab%2C%20I%20want%20to%20order%20Instagram%20Likes.%0A%0A*PACKAGE:*%20(please%20type)%0A*POST%20LINK:*%20%0A*TRANSACTION%20ID:*%20%0A*PAYMENT:*%20M-Pesa%20Till%203420564"
-        target="_blank">Buy Now</a>
-    </div>
-
-    <!-- TikTok -->
-    <div class="service-card">
-      <div class="service-head">
-        <div class="icon-3d">
-          <svg width="42" height="42" viewBox="0 0 24 24">
-            <path d="M6 3v12a4 4 0 1 0 4-4V3H6z" fill="url(#tt2)"></path>
-            <defs>
-              <linearGradient id="tt2" x1="0" x2="1">
-                <stop offset="0" stop-color="#3bd0ff"/>
-                <stop offset="1" stop-color="#2b9cff"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div>
-          <div class="service-title">TikTok Followers & Likes</div>
-          <div class="service-sub">Fast Delivery</div>
-        </div>
-      </div>
-
-      <button class="view-btn" data-modal="modal-tiktok">View Prices</button>
-
-      <!-- BUY NOW -->
-      <a class="buy-btn"
-        href="https://wa.me/254763986398?text=Hello%20Guru%20Tech%20Lab%2C%20I%20want%20TikTok%20Followers%20or%20Likes.%0A%0A*PACKAGE:*%20%0A*USERNAME%20OR%20VIDEO%20LINK:*%20%0A*TRANSACTION%20ID:*%20%0A*PAYMENT:*%20M-Pesa%20Till%203420564"
-        target="_blank">Buy Now</a>
-    </div>
-
-    <!-- YouTube / Facebook -->
-    <div class="service-card">
-      <div class="service-head">
-        <div class="icon-3d">
-          <svg width="42" height="42" viewBox="0 0 24 24">
-            <rect x="2" y="4" width="20" height="16" rx="3" fill="url(#yt2)"></rect>
-            <defs>
-              <linearGradient id="yt2" x1="0" x2="1">
-                <stop offset="0" stop-color="#ff5d5d"/>
-                <stop offset="1" stop-color="#ff3c00"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div>
-          <div class="service-title">YouTube & Facebook</div>
-          <div class="service-sub">Subscribers & Followers</div>
-        </div>
-      </div>
-
-      <button class="view-btn" data-modal="modal-yt-fb">View Prices</button>
-
-      <!-- BUY NOW -->
-      <a class="buy-btn"
-        href="https://wa.me/254763986398?text=Hello%20Guru%20Tech%20Lab%2C%20I%20want%20to%20order%20YouTube%20or%20Facebook%20services.%0A%0A*PACKAGE:*%20%0A*CHANNEL%20OR%20PROFILE%20LINK:*%20%0A*TRANSACTION%20ID:*%20%0A*PAYMENT:*%20M-Pesa%20Till%203420564"
-        target="_blank">Buy Now</a>
-    </div>
-
-  </div>
-</main>
-
-<!-- ALL MODALS BELOW -->
-
-<!-- IG Followers Modal -->
-<div class="modal-backdrop" id="modal-ig-followers-back">
-  <div class="modal">
-    <button class="close" data-close>&times;</button>
-    <h2>IG Followers — Packages</h2>
-    <p style="color:var(--muted)">Tap Buy Now inside the card to order instantly.</p>
-
-    <div class="price-grid">
-      <div class="price-block">
-        <h4>Standard</h4>
-        <ul>
-          <li>1K — 200</li>
-          <li>2K — 300</li>
-          <li>5K — 500</li>
-          <li>10K — 1000</li>
-          <li>15K — 1250</li>
-        </ul>
-      </div>
-
-      <div class="price-block">
-        <h4>Large</h4>
-        <ul>
-          <li>20K — 1500</li>
-          <li>30K — 1800</li>
-          <li>50K — 2900</li>
-          <li>100K — 5000</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- IG Likes Modal -->
-<div class="modal-backdrop" id="modal-ig-likes-back">
-  <div class="modal">
-    <button class="close" data-close>&times;</button>
-    <h2>IG Likes — Packages</h2>
-    <p style="color:var(--muted)">Per-post likes packages.</p>
-
-    <div class="price-grid">
-      <div class="price-block">
-        <h4>1K Likes</h4>
-        <ul>
-          <li>1 pic — 150</li>
-          <li>2 pics — 200</li>
-          <li>5 pics — 450</li>
-        </ul>
-      </div>
-
-      <div class="price-block">
-        <h4>2K Likes</h4>
-        <ul>
-          <li>1 pic — 200</li>
-          <li>3 pics — 550</li>
-          <li>5 pics — 650</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TikTok Modal -->
-<div class="modal-backdrop" id="modal-tiktok-back">
-  <div class="modal">
-    <button class="close" data-close>&times;</button>
-    <h2>TikTok Followers & Likes</h2>
-
-    <div class="price-grid">
-      <div class="price-block">
-        <h4>Followers</h4>
-        <ul>
-          <li>500 — 300</li>
-          <li>1K — 500</li>
-          <li>2K — 1000</li>
-        </ul>
-      </div>
-
-      <div class="price-block">
-        <h4>Likes</h4>
-        <ul>
-          <li>1K likes + 5K views — 550</li>
-          <li>3K likes + 20K views — 880</li>
-          <li>5K likes + 50K views — 1300</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- YT + FB Modal -->
-<div class="modal-backdrop" id="modal-yt-fb-back">
-  <div class="modal">
-    <button class="close" data-close>&times;</button>
-    <h2>YouTube & Facebook — Packages</h2>
-
-    <div class="price-grid">
-      <div class="price-block">
-        <h4>YouTube Subs</h4>
-        <ul>
-          <li>100 subs — 200</li>
-          <li>500 subs — 700</li>
-          <li>1K subs — 1100</li>
-        </ul>
-      </div>
-
-      <div class="price-block">
-        <h4>Facebook Followers</h4>
-        <ul>
-          <li>1K — 350</li>
-          <li>5K — 1100</li>
-          <li>10K — 1500</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Script -->
-<script>
-  document.querySelectorAll('.view-btn').forEach(btn=>{
-    btn.onclick = () => {
-      const id = btn.dataset.modal + "-back";
-      document.getElementById(id).classList.add("open");
-      document.body.style.overflow="hidden";
-    };
-  });
-
-  document.querySelectorAll('[data-close]').forEach(btn=>{
-    btn.onclick = () => {
-      btn.closest('.modal-backdrop').classList.remove("open");
-      document.body.style.overflow="";
-    };
-  });
-
-  document.querySelectorAll('.modal-backdrop').forEach(back=>{
-    back.onclick = (e) => {
-      if(e.target === back){
-        back.classList.remove("open");
-        document.body.style.overflow="";
-      }
-    };
-  });
-</script>
-
-<script src="script.js"></script>
+  <!-- keep your audio + helpers script -->
+  <script src="script.js"></script>
 </body>
 </html>
