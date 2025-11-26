@@ -24,7 +24,7 @@
 
     /* --- Desktop container that scales down on phone (keeps layout) --- */
     .desktop-container{width:1200px;margin:0 auto;transform-origin:top center}
-    @media (max-width:800px){
+    @media (max-width:1200px){
       .desktop-container{transform:scale(calc(100vw / 1200));}
       body{height:calc(1200px * 1.2)}
     }
@@ -53,7 +53,7 @@
     /* --- Floating center hologram card (A1) --- */
     .hero-stage{display:flex;justify-content:center;align-items:center;min-height:72vh}
     .holo-card{
-      width:960px;
+      width:600px;
       border-radius:var(--card-radius);
       padding:28px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.012));
