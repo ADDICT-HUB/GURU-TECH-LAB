@@ -2,18 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- FORCE DESKTOP LAYOUT & DISABLE ZOOM -->
   <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-  <title>Guru Tech Marketing — Home</title>
+  <title>GURU TECH LAB — Home</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page-wrap container">
+  <!-- hologram grid background -->
+  <div class="holo-bg" aria-hidden="true">
+    <canvas id="gridCanvas"></canvas>
+    <div class="holo-glow"></div>
+  </div>
+
+  <div class="page-wrap">
     <header class="site-header">
       <div class="brand">
-        <div class="logo-text">GURU TECH LAB</div>
-        <div class="tagline">Digital Services</div>
+        <div class="logo">GURU TECH LAB</div>
+        <div class="tag">Digital Services — Hologram Interface</div>
       </div>
-      <nav class="top-nav">
+
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="boosting.html">Boosting</a>
@@ -22,61 +31,107 @@
       </nav>
     </header>
 
-    <main class="hero-wrap">
-      <div class="hero-card">
-        <div class="hero-top">
-          <div>
-            <div class="hero-logo-text">GURU TECH LAB</div>
-            <div class="hero-sub">Digital Services</div>
-          </div>
-          <div class="hero-cta">
-            <button id="get-started" class="buy-btn" onclick="location.href='services.html'">Get Started</button>
-            <button id="music-toggle" class="buy-btn" style="background: linear-gradient(45deg,#333, #555)">🔊 Play Music</button>
-          </div>
+    <main class="hero">
+      <section class="hero-left">
+        <h1 class="title">We amplify brands — fast & secure</h1>
+        <p class="lead">Hybrid hologram UI — social boosting, web dev, bots, branding. Tap any service to buy or view details.</p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="services.html">Explore Services</a>
+          <button id="music-toggle" class="cta ghost">🔊 Play Music</button>
         </div>
 
-        <div class="hero-body">
-          <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding.</p>
-
-          <div class="services-grid">
-            <a class="svc-card" href="boosting.html">
-              <div class="svc-title">Social Media Boosting</div>
-              <div class="svc-sub">Followers, likes & views</div>
-            </a>
-
-            <a class="svc-card" href="website.html">
-              <div class="svc-title">Website Development</div>
-              <div class="svc-sub">Landing pages & e-commerce</div>
-            </a>
-
-            <a class="svc-card" href="bots.html">
-              <div class="svc-title">Automation & Bots</div>
-              <div class="svc-sub">WhatsApp bots & tools</div>
-            </a>
-
-            <a class="svc-card" href="branding.html">
-              <div class="svc-title">Branding & Setup</div>
-              <div class="svc-sub">Logos, social kits</div>
-            </a>
+        <div class="info-panels">
+          <div class="panel">
+            <div class="p-title">Till</div>
+            <div class="p-value">3420564 — AKIDA RAJAB</div>
+          </div>
+          <div class="panel">
+            <div class="p-title">Support</div>
+            <div class="p-value"><a href="https://wa.me/254763986398" class="link">WhatsApp</a></div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="hero-right">
+        <div class="cards-grid">
+          <!-- Card: Social Boosting -->
+          <article class="holo-card">
+            <div class="card-head">
+              <div class="card-icon">🚀</div>
+              <div>
+                <div class="card-title">Social Media Boosting</div>
+                <div class="card-sub">Followers, Likes & Views</div>
+              </div>
+            </div>
+            <div class="card-body">Fast delivery, non-drop options. Choose package on boosting page.</div>
+            <div class="card-actions">
+              <a class="buy-btn" href="pay.html?service=Social%20Boosting%201K&price=350">Buy KES 350</a>
+              <a class="more" href="boosting.html">View</a>
+            </div>
+          </article>
+
+          <!-- Card: Website -->
+          <article class="holo-card">
+            <div class="card-head">
+              <div class="card-icon">💻</div>
+              <div>
+                <div class="card-title">Website Development</div>
+                <div class="card-sub">Landing pages & e-commerce</div>
+              </div>
+            </div>
+            <div class="card-body">Fast, secure, SEO-ready sites — custom or template-based.</div>
+            <div class="card-actions">
+              <a class="buy-btn" href="pay.html?service=Website%20Landing&price=1200">Buy KES 1200</a>
+              <a class="more" href="website.html">View</a>
+            </div>
+          </article>
+
+          <!-- Card: Bots -->
+          <article class="holo-card">
+            <div class="card-head">
+              <div class="card-icon">🤖</div>
+              <div>
+                <div class="card-title">Automation & Bots</div>
+                <div class="card-sub">WhatsApp bots & workflows</div>
+              </div>
+            </div>
+            <div class="card-body">Automate replies, payments, funnels and more.</div>
+            <div class="card-actions">
+              <a class="buy-btn" href="pay.html?service=WhatsApp%20Bot%20Setup&price=500">Buy KES 500</a>
+              <a class="more" href="bots.html">View</a>
+            </div>
+          </article>
+
+          <!-- Card: Branding -->
+          <article class="holo-card">
+            <div class="card-head">
+              <div class="card-icon">🎨</div>
+              <div>
+                <div class="card-title">Branding & Digital Setup</div>
+                <div class="card-sub">Logos, kits, social assets</div>
+              </div>
+            </div>
+            <div class="card-body">Complete branding packages, social-ready assets.</div>
+            <div class="card-actions">
+              <a class="buy-btn" href="pay.html?service=Branding%20Kit&price=300">Buy KES 300</a>
+              <a class="more" href="branding.html">View</a>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
-    <div class="contact-row">
-      <a href="https://wa.me/254763986398">🟢 WhatsApp</a>
-      <a href="mailto:akidarajab462@gmail.com">✉️ Email</a>
-      <a href="https://instagram.com">📸 Instagram</a>
-    </div>
-
-    <footer class="site-footer">© <span id="year"></span> GURU TECH LAB — Digital Services</footer>
+    <footer class="site-footer">
+      <div>© <span id="year"></span> GURU TECH LAB — Digital Services</div>
+    </footer>
   </div>
 
+  <!-- AUDIO (autoplay on first touch) -->
   <audio id="bg-audio" loop preload="auto">
     <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
   </audio>
 
-  <script>document.getElementById && document.addEventListener('DOMContentLoaded', ()=>{document.getElementById('year').textContent = new Date().getFullYear();});</script>
   <script src="script.js"></script>
 </body>
 </html>
