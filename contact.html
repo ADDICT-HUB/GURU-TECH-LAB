@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Contact — Guru Tech Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <div class="header"><div class="brand"><div class="logo">GURU TECH LAB</div><div class="sub">Contact</div></div><button class="btn btn-ghost" data-music-toggle>🔊 Play Music</button></div>
+
+  <div class="hero">
+    <div class="h-title">Contact</div>
+    <div class="h-lead">Reach us on WhatsApp for orders and support.</div>
+
+    <div class="row" style="margin-top:12px">
+      <a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a>
+      <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">Email</a>
+    </div>
+
+    <div style="margin-top:18px;color:var(--muted)">Till: <strong>3420564</strong> — Akida Rajab</div>
+  </div>
+
+  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">© <span id="year"></span> GURU TECH LAB</footer>
+</div>
+
+<div id="pay-modal-back" class="modal-backdrop"><div id="pay-modal" class="modal">...same markup...</div></div>
+<nav class="bottom-nav"><div class="nav-item" onclick="location.href='index.html'">🏠</div><div class="nav-item" onclick="location.href='services.html'">⚙️</div><div class="nav-item" onclick="location.href='boosting.html'">📈</div><div class="nav-item" onclick="location.href='contact.html'">💬</div></nav>
+
+<audio id="bg-audio" loop preload="auto"><source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3"></audio>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
