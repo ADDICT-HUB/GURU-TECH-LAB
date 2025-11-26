@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Guru Tech Marketing — Home</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      overscroll-behavior: none;
+      touch-action: manipulation;
+    }
+    /* ensure no zoom on inputs (iOS fix) */
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +43,7 @@
       </nav>
     </header>
 
-    <!-- Central glass card hero (A4) -->
+    <!-- Central glass card hero -->
     <main class="hero-wrap" role="main">
       <div class="hero-card" role="region" aria-label="Hero">
         <div class="hero-top">
@@ -48,7 +58,7 @@
         </div>
 
         <div class="hero-body">
-          <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding. Prices adapt to your country.</p>
+          <p class="hero-lead">Premium, fast digital services — social boosting, websites, bots, branding.</p>
 
           <div class="controls-row">
             <label for="country-select" class="muted">Prices shown for</label>
@@ -61,64 +71,57 @@
               <option value="ZA">South Africa (ZAR)</option>
               <option value="IN">India (INR)</option>
             </select>
-            <div id="price-status" class="price-status muted" aria-live="polite">Detecting country & rates…</div>
+            <div id="price-status" class="price-status muted" aria-live="polite"></div>
           </div>
 
-          <!-- service cards inside the hero card -->
+          <!-- service cards (prices removed) -->
           <div class="services-grid" role="list">
+
             <!-- Social Boosting -->
-            <a class="svc-card" href="boosting.html" role="listitem" aria-label="Social Media Boosting">
+            <a class="svc-card" href="boosting.html" role="listitem">
               <div class="svc-icon">
-                <!-- Instagram colored SVG (example composite) -->
-                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="42" height="42">
                   <defs><linearGradient id="igG" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="1" stop-color="#dd2a7b"/></linearGradient></defs>
                   <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igG)"></rect>
-                  <circle cx="12" cy="12" r="4" fill="#fff" opacity="0.12"></circle>
                 </svg>
               </div>
               <div class="svc-title">Social Media Boosting</div>
               <div class="svc-sub muted">Followers, likes & views</div>
-              <div class="svc-price" data-price-ksh="700">—</div>
             </a>
 
             <!-- Website -->
-            <a class="svc-card" href="website.html" role="listitem" aria-label="Website Development">
+            <a class="svc-card" href="website.html" role="listitem">
               <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="42" height="42">
                   <rect x="3" y="5" width="18" height="12" rx="1.5" fill="#6ec1ff"></rect>
-                  <rect x="6" y="8" width="12" height="6" rx="1" fill="#fff" opacity="0.06"></rect>
                 </svg>
               </div>
               <div class="svc-title">Website Development</div>
               <div class="svc-sub muted">Landing pages & e-commerce</div>
-              <div class="svc-price" data-price-ksh="1200">—</div>
             </a>
 
             <!-- Bots -->
-            <a class="svc-card" href="bots.html" role="listitem" aria-label="Automation & Bots">
+            <a class="svc-card" href="bots.html" role="listitem">
               <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="42" height="42">
                   <rect x="4" y="6" width="16" height="12" rx="2" fill="#7cffb2"></rect>
-                  <circle cx="9" cy="11" r="1.6" fill="#000" opacity="0.12" />
-                  <circle cx="15" cy="11" r="1.6" fill="#000" opacity="0.12" />
                 </svg>
               </div>
               <div class="svc-title">Automation & Bots</div>
               <div class="svc-sub muted">WhatsApp bots & tools</div>
-              <div class="svc-price" data-price-ksh="500">—</div>
             </a>
 
             <!-- Branding -->
-            <a class="svc-card" href="branding.html" role="listitem" aria-label="Branding & Digital Setup">
+            <a class="svc-card" href="branding.html" role="listitem">
               <div class="svc-icon">
-                <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="42" height="42">
                   <path d="M12 3C8 3 5 6 5 10c0 3 2 5 5 5h1c3 0 5-2 5-5 0-1.66-1.34-3-3-3h-4" fill="#ffb86b"></path>
                 </svg>
               </div>
               <div class="svc-title">Branding & Digital Setup</div>
               <div class="svc-sub muted">Logos, social kits</div>
-              <div class="svc-price" data-price-ksh="300">—</div>
             </a>
+
           </div>
         </div>
       </div>
@@ -133,125 +136,19 @@
     <footer class="site-footer">© <span id="year"></span> GURU TECH LAB — Digital Services</footer>
   </div>
 
-  <!-- hidden audio element: script.js will try to use it first, otherwise WebAudio fallback -->
+  <!-- Music -->
   <audio id="bg-audio" loop preload="auto">
-    <source src="assets/ambient.mp3" type="audio/mp3">
+    <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
   </audio>
 
-  <!-- country price conversion (uses exchangerate.host + ipapi.co) -->
+  <!-- Year + audio logic -->
   <script>
-    (function(){
-      const currencySymbols = { KES: 'KSH', NGN: '₦', USD: '$', GBP: '£', ZAR: 'R', INR: '₹' };
-      const countryToCurrency = { KE: 'KES', NG: 'NGN', US: 'USD', GB: 'GBP', ZA: 'ZAR', IN: 'INR' };
-      const select = document.getElementById('country-select');
-      const status = document.getElementById('price-status');
-      const priceEls = Array.from(document.querySelectorAll('.svc-price'));
-      let rates = null;
-
-      function numberWithCommas(x){
-        if (typeof x === 'number') x = x.toString();
-        const parts = x.split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return parts.join('.');
-      }
-
-      function setPriceDisplays(cur='KES'){
-        priceEls.forEach(el=>{
-          const base = parseFloat(el.dataset.priceKsh || el.getAttribute('data-price-ksh') || '0');
-          if (!rates || cur==='KES') {
-            el.textContent = `${base} ${currencySymbols.KES}`;
-            return;
-          }
-          const rate = rates[cur];
-          if (!rate) { el.textContent = `${base} ${currencySymbols.KES}`; return; }
-          const converted = Math.round((base * rate) * 100) / 100;
-          el.textContent = `${currencySymbols[cur] || cur} ${numberWithCommas(converted)}`;
-        });
-      }
-
-      async function fetchRates(){
-        status.textContent = 'Fetching exchange rates…';
-        try {
-          const res = await fetch('https://api.exchangerate.host/latest?base=KES&symbols=USD,NGN,GBP,ZAR,INR,KES');
-          if (!res.ok) throw new Error('Rates fetch failed');
-          const d = await res.json();
-          rates = d.rates;
-          status.textContent = 'Prices converted';
-          return true;
-        } catch(e){ console.warn(e); rates=null; status.textContent='Conversion unavailable — showing KSH'; return false; }
-      }
-
-      async function detectCountry(){
-        status.textContent = 'Detecting country…';
-        try {
-          const r = await fetch('https://ipapi.co/json/');
-          if (!r.ok) throw new Error('geo failed');
-          const data = await r.json();
-          return data && data.country;
-        } catch(e){ console.warn(e); return null; }
-      }
-
-      async function updateFlow(sel){
-        if (sel==='AUTO') {
-          const country = await detectCountry();
-          const cur = country && countryToCurrency[country] ? countryToCurrency[country] : 'KES';
-          status.textContent = cur==='KES' ? 'Showing KSH' : `Showing ${cur}`;
-          if (cur!=='KES') { const ok = await fetchRates(); if(ok) setPriceDisplays(cur); else setPriceDisplays('KES'); }
-          else setPriceDisplays('KES');
-        } else {
-          const cur = countryToCurrency[sel] || 'KES';
-          status.textContent = cur==='KES' ? 'Showing KSH' : `Showing ${cur}`;
-          if (cur!=='KES') { const ok = await fetchRates(); if(ok) setPriceDisplays(cur); else setPriceDisplays('KES'); }
-          else setPriceDisplays('KES');
-        }
-      }
-
-      (async function init(){
-        select.value='AUTO';
-        setPriceDisplays('KES');
-        await updateFlow('AUTO');
-      })();
-
-      select.addEventListener('change', ()=> updateFlow(select.value));
-      window._gtPricing = { updateFlow };
-    })();
+    document.addEventListener("DOMContentLoaded", () => {
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    });
   </script>
 
-  <!-- autoplay-on-touch & music toggle hooking into script.js (which provides WebAudio fallback) -->
-  <script>
-    (function(){
-      const musicBtn = document.getElementById('music-toggle');
-      function startAudioOnce() {
-        setTimeout(()=> {
-          if (window._guruAudio && typeof window._guruAudio.start === 'function') {
-            window._guruAudio.start();
-            musicBtn && (musicBtn.textContent = '🔊 Music On');
-            return;
-          }
-          const el = document.getElementById('bg-audio');
-          if (el) { el.volume = 0.25; el.play().then(()=>musicBtn && (musicBtn.textContent='🔊 Music On')).catch(()=>musicBtn && (musicBtn.textContent='🔊 Play Music')); }
-        },30);
-        window.removeEventListener('pointerdown', startAudioOnce);
-        window.removeEventListener('touchstart', startAudioOnce);
-        window.removeEventListener('keydown', startAudioOnce);
-      }
-      window.addEventListener('pointerdown', startAudioOnce, {passive:true});
-      window.addEventListener('touchstart', startAudioOnce, {passive:true});
-      window.addEventListener('keydown', startAudioOnce);
-
-      if (musicBtn) musicBtn.addEventListener('click', function(){
-        if (window._guruAudio && window._guruAudio.status && window._guruAudio.status().started) { window._guruAudio.stop(); musicBtn.textContent='🔈 Paused'; return; }
-        if (window._guruAudio && window._guruAudio.start) { window._guruAudio.start(); musicBtn.textContent='🔊 Music On'; return; }
-        const el = document.getElementById('bg-audio'); if (!el) return;
-        if (el.paused) { el.play().then(()=>musicBtn.textContent='🔊 Music On').catch(()=>musicBtn.textContent='🔊 Play Music'); } else { el.pause(); musicBtn.textContent='🔈 Paused'; }
-      });
-
-      // year
-      document.addEventListener('DOMContentLoaded', ()=>{ const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear(); });
-    })();
-  </script>
-
-  <!-- load robust audio script (below) -->
   <script src="script.js"></script>
 </body>
 </html>
