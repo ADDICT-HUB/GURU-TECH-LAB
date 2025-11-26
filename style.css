@@ -1,65 +1,83 @@
+/* style.css — Hybrid Hologram (Yellow / Blue / Black) */
+/* Palette */
 :root{
-  --accent1:#ff6a2d;
-  --accent2:#ff3c00;
-  --muted: rgba(255,255,255,0.72);
+  --yellow:#feca2f;
+  --blue:#4cc9ff;
+  --bg:#0a0a0a;
   --glass: rgba(255,255,255,0.03);
-  --bg:#04060a;
-  --card-bg: rgba(255,255,255,0.04);
-  --radius:14px;
+  --muted: rgba(255,255,255,0.7);
+  --card: rgba(255,255,255,0.03);
 }
 
-/* Base */
+/* Base reset */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.container{max-width:1200px;margin:0 auto;padding:20px}
+a{color:inherit;text-decoration:none}
 
-/* Force desktop container (keeps layout desktop-like) */
-.page-wrap{width:1200px;margin:0 auto;overflow-x:hidden}
+/* Force desktop wrapper */
+.page-wrap{width:1200px;margin:18px auto;position:relative;z-index:6;}
 
-/* Header */
-.site-header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.brand .logo-text{font-weight:900;letter-spacing:0.6px}
-.brand .tagline{font-size:13px;color:var(--muted)}
+/* header */
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:18px 6px}
+.brand .logo{font-weight:900;font-size:18px;letter-spacing:0.6px}
+.brand .tag{font-size:12px;color:var(--muted)}
 
-/* Nav */
-.top-nav a{margin-left:12px;color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+/* nav */
+.nav a{margin-left:14px;color:var(--muted);font-weight:700}
 
-/* Hero */
-.hero-wrap{display:flex;justify-content:center;margin-top:28px}
-.hero-card{width:900px;padding:28px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.04)}
-.hero-top{display:flex;align-items:center;justify-content:space-between}
-.hero-logo-text{font-weight:900;font-size:20px}
-.hero-sub{color:var(--muted);font-size:13px}
-.hero-cta button{margin-left:10px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:800}
+/* hologram background */
+.holo-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.holo-glow{position:absolute;inset:0;background:radial-gradient(600px 300px at 20% 30%, rgba(76,201,255,0.06), transparent 10%), radial-gradient(600px 300px at 80% 70%, rgba(254,202,47,0.06), transparent 12%);mix-blend-mode:screen}
 
-/* Services grid */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
-.svc-card{padding:18px;border-radius:12px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.03);min-height:120px;display:flex;flex-direction:column;gap:8px;justify-content:center;text-decoration:none}
-.svc-title{font-weight:800}
-.svc-sub{font-size:13px;color:var(--muted)}
+/* canvas grid will be drawn by script */
+#gridCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:0.06;filter:blur(2px)}
 
-/* Contact row */
-.contact-row{display:flex;gap:12px;justify-content:center;margin-top:18px}
-.contact-row a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);text-decoration:none;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+/* hero layout */
+.hero{display:flex;gap:28px;align-items:stretch;position:relative;z-index:6}
+.hero-left{flex:1;display:flex;flex-direction:column;gap:18px;max-width:520px}
+.hero-right{flex:1.1}
 
-/* Footer */
-.site-footer{margin-top:18px;text-align:center;color:var(--muted)}
+/* hero card look */
+.hero-card{padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.04);}
 
-/* BUY BUTTON - ORANGE GRADIENT (Style B) */
+/* title */
+.title{font-size:28px;margin:0;color:var(--yellow);text-shadow:0 6px 30px rgba(252,202,47,0.06)}
+.lead{color:var(--muted);margin:0}
+
+/* cta row */
+.cta-row{display:flex;gap:12px}
+.cta{padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;border:0}
+.cta.primary{background:linear-gradient(90deg, rgba(252,202,47,1), rgba(76,201,255,0.95));color:#071017;box-shadow:0 12px 40px rgba(76,201,255,0.06)}
+.cta.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+/* info panels */
+.info-panels{display:flex;gap:12px;margin-top:6px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03);min-width:160px}
+.p-title{font-size:12px;color:var(--muted)}
+.p-value{font-weight:800; margin-top:6px}
+
+/* cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.holo-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(8px);box-shadow: 0 10px 40px rgba(0,0,0,0.6);display:flex;flex-direction:column;gap:8px}
+.card-head{display:flex;gap:12px;align-items:center}
+.card-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--blue),var(--yellow));color:#070707;font-weight:900;font-size:20px;box-shadow:0 8px 30px rgba(76,201,255,0.08)}
+.card-title{font-weight:900}
+.card-sub{font-size:13px;color:var(--muted)}
+.card-body{color:var(--muted);font-size:13px;margin-top:6px}
+
+/* actions */
+.card-actions{display:flex;gap:10px;align-items:center;margin-top:10px}
 .buy-btn{
-  display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(45deg,var(--accent1),var(--accent2));color:#fff;font-weight:800;text-decoration:none;border:0;cursor:pointer;box-shadow:0 8px 24px rgba(255,90,20,0.18)
+  padding:10px 14px;border-radius:10px;font-weight:900;border:0;cursor:pointer;background:linear-gradient(90deg,var(--yellow),var(--blue));color:#071017;box-shadow:0 14px 40px rgba(76,201,255,0.08);
 }
-.buy-btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,90,20,0.28)}
+.buy-btn:hover{transform:translateY(-4px)}
+.more{padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
-/* Modal small */
-.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.65);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
-.modal-backdrop.open{display:flex}
-.modal{width:100%;max-width:980px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.7);}
+/* footer */
+.site-footer{margin-top:22px;text-align:center;color:var(--muted);padding-bottom:30px}
 
-/* Responsive note: we keep desktop look, but add safe small tweaks if someone squeezes extremely */
-@media (max-width:500px){
-  .page-wrap{width:100%}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-card{width:calc(100% - 40px);padding:18px}
+/* small screens: still show desktop layout, but allow scrolling */
+@media (max-width:600px){
+  .page-wrap{width:1100px}
+  .cards-grid{grid-template-columns:repeat(1,1fr)}
 }
