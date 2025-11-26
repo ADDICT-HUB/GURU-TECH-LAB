@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Guru Tech Marketing — Home</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* FIXED ICON SIZES */
+    .svc-icon-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -41,6 +53,64 @@
     </div>
   </div>
 
+  <!-- services -->
+  <div class="section-title">Services</div>
+  <div class="services">
+
+    <a class="card" href="boosting.html">
+      <div class="icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="svc-icon-img">
+      </div>
+      <div class="meta">
+        <div class="title">Social Media Boosting</div>
+        <div class="sub">Followers, likes, views</div>
+      </div>
+      <div class="actions">
+        <button class="buy" data-buy-service="Social Media Boosting - 1K" data-buy-price="350">Buy</button>
+      </div>
+    </a>
+
+    <a class="card" href="website.html">
+      <div class="icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Computer_icon.png" class="svc-icon-img">
+      </div>
+      <div class="meta">
+        <div class="title">Website Development</div>
+        <div class="sub">Landing pages & e-commerce</div>
+      </div>
+      <div class="actions">
+        <button class="buy" data-buy-service="Website Landing Page" data-buy-price="1200">Buy</button>
+      </div>
+    </a>
+
+    <a class="card" href="bots.html">
+      <div class="icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Android_robot_head.png" class="svc-icon-img">
+      </div>
+      <div class="meta">
+        <div class="title">Automation & Bots</div>
+        <div class="sub">WhatsApp bots & funnels</div>
+      </div>
+      <div class="actions">
+        <button class="buy" data-buy-service="WhatsApp Bot Setup" data-buy-price="500">Buy</button>
+      </div>
+    </a>
+
+    <a class="card" href="branding.html">
+      <div class="icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Paintbrush_icon.png" class="svc-icon-img">
+      </div>
+      <div class="meta">
+        <div class="title">Branding & Digital Setup</div>
+        <div class="sub">Logos, social kits</div>
+      </div>
+      <div class="actions">
+        <button class="buy" data-buy-service="Branding Kit" data-buy-price="300">Buy</button>
+      </div>
+    </a>
+
+  </div>
+
   <!-- contact -->
   <div class="contact-row">
     <a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a>
@@ -53,78 +123,12 @@
   </footer>
 </div>
 
-
-
-<!-- SERVICES SECTION (Icons Updated ONLY) -->
-<div class="section-title">Services</div>
-<div class="services">
-
-  <!-- Social Media Boosting -->
-  <a class="card" href="boosting.html">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="svc-icon-img">
-    </div>
-    <div class="meta">
-      <div class="title">Social Media Boosting</div>
-      <div class="sub">Followers, likes, views</div>
-    </div>
-    <div class="actions">
-      <button class="buy" data-buy-service="Social Media Boosting - 1K" data-buy-price="350">Buy</button>
-    </div>
-  </a>
-
-  <!-- Website Development -->
-  <a class="card" href="website.html">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" class="svc-icon-img">
-    </div>
-    <div class="meta">
-      <div class="title">Website Development</div>
-      <div class="sub">Landing pages & e-commerce</div>
-    </div>
-    <div class="actions">
-      <button class="buy" data-buy-service="Website Landing Page" data-buy-price="1200">Buy</button>
-    </div>
-  </a>
-
-  <!-- Automation & Bots -->
-  <a class="card" href="bots.html">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="svc-icon-img">
-    </div>
-    <div class="meta">
-      <div class="title">Automation & Bots</div>
-      <div class="sub">WhatsApp bots & funnels</div>
-    </div>
-    <div class="actions">
-      <button class="buy" data-buy-service="WhatsApp Bot Setup" data-buy-price="500">Buy</button>
-    </div>
-  </a>
-
-  <!-- Branding & Digital Setup -->
-  <a class="card" href="branding.html">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" class="svc-icon-img">
-    </div>
-    <div class="meta">
-      <div class="title">Branding & Digital Setup</div>
-      <div class="sub">Logos, social kits</div>
-    </div>
-    <div class="actions">
-      <button class="buy" data-buy-service="Branding Kit" data-buy-price="300">Buy</button>
-    </div>
-  </a>
-
-</div>
-
-
-
-<!-- PAYMENT MODAL -->
+<!-- payment modal -->
 <div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
   <div id="pay-modal" class="modal" role="dialog" aria-modal="true">
     <button data-modal-close style="float:right;background:transparent;border:0;color:var(--muted);font-size:20px">×</button>
     <h3>Complete Payment</h3>
-    <p class="small-note">Pay via M-Pesa Till <strong>3420564</strong> — AKIDA RAJAB. After payment paste your transaction ID in the WhatsApp confirmation that will open.</p>
+    <p class="small-note">Pay via M-Pesa Till <strong>3420564</strong> — AKIDA RAJAB. After payment paste your transaction ID in WhatsApp.</p>
 
     <div class="row">
       <label>Service</label>
@@ -146,24 +150,18 @@
       <button data-modal-close class="btn btn-ghost" style="flex:1">Cancel</button>
     </div>
 
-    <div class="small-note">We will open WhatsApp for confirmation after you tap "I Paid — Notify".</div>
   </div>
 </div>
 
-
-
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav" aria-hidden="false">
+<!-- bottom nav -->
+<nav class="bottom-nav">
   <div class="nav-item active" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div>
   <div class="nav-item" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div>
   <div class="nav-item" onclick="location.href='boosting.html'"><div class="ni-icon">📈</div>Boost</div>
   <div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div>
 </nav>
 
-
-
-<!-- AUDIO -->
+<!-- audio -->
 <audio id="bg-audio" loop preload="auto">
   <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
 </audio>
@@ -176,19 +174,9 @@
 
   document.querySelectorAll('[data-buy-service]').forEach(btn=>{
     btn.addEventListener('click', function(){
-      const svc = this.getAttribute('data-buy-service');
-      const pr  = this.getAttribute('data-buy-price');
-      window._guruApp && window._guruApp.openPayModal
-        ? window._guruApp.openPayModal(svc, pr)
-        : alert('Buy: ' + svc + ' ' + pr);
-    });
-  });
-
-  document.querySelectorAll('.btn-ghost').forEach(b=>{
-    b.addEventListener('click', ()=>{
-      if (window._guruApp.openPayModal) {
-        window._guruApp.openPayModal('Selected Service','350');
-      }
+      const svc = this.dataset.buyService;
+      const pr = this.dataset.buyPrice;
+      window._guruApp.openPayModal(svc, pr);
     });
   });
 </script>
