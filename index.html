@@ -1,184 +1,355 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>Guru Tech Marketing — Home</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Guru Tech Lab — Home</title>
 
-  <style>
-    /* FIXED ICON SIZES */
-    .svc-icon-img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-      border-radius: 10px;
-      display: block;
-    }
-  </style>
+<style>
+:root{
+  --accent:#ff3c00;
+  --accent-2:#ffb86b;
+  --muted:rgba(255,255,255,0.65);
+  --glass:rgba(255,255,255,0.03);
+  --glass-border:rgba(255,255,255,0.04);
+  --buy-grad:linear-gradient(180deg,var(--accent),#ff4f1e);
+}
 
+html,body{
+  margin:0;
+  background:#031025;
+  color:#fff;
+  font-family:Inter,system-ui;
+}
+
+/* Layout */
+.page{max-width:1100px;margin:auto;padding:18px}
+
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.logo{font-size:20px;font-weight:900}
+nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
+
+/* Hero */
+.hero{
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  padding:20px;
+  border-radius:18px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 30px 60px rgba(2,6,23,0.7);
+}
+.hero-title{font-size:22px;font-weight:900;color:var(--accent)}
+.hero-sub{color:var(--muted);margin-top:6px}
+
+/* Buttons */
+.row{display:flex;gap:10px;margin-top:14px}
+.btn{
+  padding:12px 16px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  border:0;
+}
+.btn-primary{background:var(--buy-grad);color:#fff}
+.btn-ghost{background:rgba(255,255,255,0.04);color:#fff;border:1px solid var(--glass-border)}
+
+/* Till & Support box */
+.info-row{display:flex;gap:10px;margin-top:12px}
+.info-box{
+  flex:1;
+  background:rgba(255,255,255,0.02);
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(6px);
+  box-shadow:0 10px 25px rgba(2,6,23,0.55);
+}
+
+/* Services cards */
+.section-title{margin-top:20px;font-size:20px;font-weight:900}
+.services{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
+@media(min-width:760px){.services{grid-template-columns:repeat(2,1fr)}}
+
+.card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);
+  box-shadow:0 20px 50px rgba(2,6,23,0.55);
+  text-decoration:none;
+  color:#fff;
+}
+.icon{font-size:34px}
+.meta{flex:1}
+.title{font-weight:800;font-size:17px}
+.sub{font-size:13px;color:var(--muted)}
+
+.buy{
+  background:var(--buy-grad);
+  color:#fff;
+  border:0;
+  padding:6px 10px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* Contact */
+.contact-row{display:flex;gap:10px;margin-top:22px}
+.contact-btn{
+  flex:1;
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.02);
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+}
+
+footer{text-align:center;margin-top:18px;color:var(--muted)}
+
+/* Modal (blurry) */
+.modal-backdrop{
+  position:fixed;inset:0;
+  background:rgba(2,6,23,0.62);
+  backdrop-filter:blur(9px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:9999;
+}
+.modal-backdrop.open{display:flex}
+
+.modal{
+  width:95%;
+  max-width:400px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 30px 70px rgba(2,6,23,0.7);
+}
+
+label{font-size:13px;color:var(--muted)}
+input{
+  width:100%;
+  background:rgba(255,255,255,0.03);
+  border:0;
+  padding:12px;
+  border-radius:12px;
+  color:#fff;
+}
+.copy-btn{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--glass-border);
+  padding:8px 10px;
+  border-radius:10px;
+  font-weight:900;
+  color:#fff;
+  cursor:pointer;
+}
+
+.pay-btn{
+  margin-top:12px;
+  width:100%;
+  background:var(--buy-grad);
+  color:#fff;
+  padding:12px;
+  border:0;
+  border-radius:14px;
+  font-weight:900;
+}
+
+.success{color:#00e779;font-weight:800;margin-top:10px;display:none}
+
+/* Toast */
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,0.08);
+  border:1px solid var(--glass-border);
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:900;
+  color:#fff;
+  backdrop-filter:blur(8px);
+  opacity:0;
+  pointer-events:none;
+  transition:0.35s;
+  z-index:999999;
+}
+.toast.show{
+  opacity:1;
+  bottom:35px;
+}
+</style>
 </head>
+
 <body>
+<div class="page">
 
-<div class="app">
+<header>
+  <div class="logo">GURU TECH LAB</div>
+  <nav>
+    <a href="boosting.html">Boosting</a>
+    <a href="website.html">Website</a>
+    <a href="bots.html">Bots</a>
+    <a href="branding.html">Branding</a>
+  </nav>
+</header>
 
-  <!-- header -->
-  <div class="header">
-    <div class="brand">
-      <div class="logo">GURU TECH LAB</div>
-      <div class="sub">Digital Services — Mobile</div>
-    </div>
-    <button class="btn btn-ghost" data-music-toggle>🔊 Play Music</button>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">We Amplify Brands — Fast & Secure</div>
+  <div class="hero-sub">Boosting • Websites • Bots • Branding — Instant delivery + secure support.</div>
+
+  <div class="row">
+    <a href="services.html" class="btn btn-primary">Get Started</a>
+    <button class="btn btn-ghost" onclick="openPay()">Buy Now</button>
   </div>
 
-  <!-- hero -->
-  <div class="hero">
-    <div class="h-title">We amplify brands — fast & secure</div>
-    <div class="h-lead">Social boosting, websites, automation & branding. Fast delivery, secure support.</div>
+  <!-- UPDATED TILL DESIGN -->
+  <div class="info-row">
 
-    <div class="row">
-      <a class="btn btn-primary" href="services.html">Get Started</a>
-      <button class="btn btn-ghost" onclick="document.getElementById('pay-modal-back').classList.add('open')">Buy Now</button>
+    <div class="info-box">
+      <div style="font-size:12px;color:var(--muted)">TILL NUMBER</div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <div style="font-weight:900;font-size:15px">3420564</div>
+
+        <button 
+          class="copy-btn" 
+          style="padding:6px 10px;border-radius:10px;font-size:12px"
+          onclick="copyTill()"
+        >Copy</button>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">AKIDA RAJAB</div>
     </div>
 
-    <div class="info-row" style="display:flex;gap:10px;margin-top:12px">
-      <div style="flex:1;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border:1px solid var(--glass-border)">
-        <div style="font-size:12px;color:var(--muted)">Till</div>
-        <div style="font-weight:900;margin-top:6px">3420564 — AKIDA RAJAB</div>
+    <div class="info-box">
+      <div style="font-size:12px;color:var(--muted)">Support</div>
+      <div style="margin-top:8px;font-weight:900">
+        <a href="https://wa.me/254763986398" style="color:#fff;text-decoration:none">WhatsApp Chat</a>
       </div>
-      <div style="flex:1;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border:1px solid var(--glass-border)">
-        <div style="font-size:12px;color:var(--muted)">Support</div>
-        <div style="font-weight:900;margin-top:6px"><a href="https://wa.me/254763986398">WhatsApp</a></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- services -->
-  <div class="section-title">Services</div>
-  <div class="services">
-
-    <a class="card" href="boosting.html">
-      <div class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="svc-icon-img">
-      </div>
-      <div class="meta">
-        <div class="title">Social Media Boosting</div>
-        <div class="sub">Followers, likes, views</div>
-      </div>
-      <div class="actions">
-        <button class="buy" data-buy-service="Social Media Boosting - 1K" data-buy-price="350">Buy</button>
-      </div>
-    </a>
-
-    <a class="card" href="website.html">
-      <div class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Computer_icon.png" class="svc-icon-img">
-      </div>
-      <div class="meta">
-        <div class="title">Website Development</div>
-        <div class="sub">Landing pages & e-commerce</div>
-      </div>
-      <div class="actions">
-        <button class="buy" data-buy-service="Website Landing Page" data-buy-price="1200">Buy</button>
-      </div>
-    </a>
-
-    <a class="card" href="bots.html">
-      <div class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Android_robot_head.png" class="svc-icon-img">
-      </div>
-      <div class="meta">
-        <div class="title">Automation & Bots</div>
-        <div class="sub">WhatsApp bots & funnels</div>
-      </div>
-      <div class="actions">
-        <button class="buy" data-buy-service="WhatsApp Bot Setup" data-buy-price="500">Buy</button>
-      </div>
-    </a>
-
-    <a class="card" href="branding.html">
-      <div class="icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Paintbrush_icon.png" class="svc-icon-img">
-      </div>
-      <div class="meta">
-        <div class="title">Branding & Digital Setup</div>
-        <div class="sub">Logos, social kits</div>
-      </div>
-      <div class="actions">
-        <button class="buy" data-buy-service="Branding Kit" data-buy-price="300">Buy</button>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- contact -->
-  <div class="contact-row">
-    <a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a>
-    <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">Email</a>
-    <a class="contact-btn ig" href="https://instagram.com">Instagram</a>
-  </div>
-
-  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">
-    © <span id="year"></span> GURU TECH LAB
-  </footer>
-</div>
-
-<!-- payment modal -->
-<div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
-  <div id="pay-modal" class="modal" role="dialog" aria-modal="true">
-    <button data-modal-close style="float:right;background:transparent;border:0;color:var(--muted);font-size:20px">×</button>
-    <h3>Complete Payment</h3>
-    <p class="small-note">Pay via M-Pesa Till <strong>3420564</strong> — AKIDA RAJAB. After payment paste your transaction ID in WhatsApp.</p>
-
-    <div class="row">
-      <label>Service</label>
-      <div id="modal-service" style="font-weight:900">—</div>
-    </div>
-
-    <div class="row">
-      <label>Amount</label>
-      <div id="modal-price" style="font-weight:900">—</div>
-    </div>
-
-    <div class="row">
-      <label for="modal-phone">Your phone (for M-Pesa)</label>
-      <input id="modal-phone" class="input" placeholder="+2547..." />
-    </div>
-
-    <div class="row" style="display:flex;gap:8px">
-      <button id="modal-confirm" class="btn btn-primary" style="flex:1">I Paid — Notify</button>
-      <button data-modal-close class="btn btn-ghost" style="flex:1">Cancel</button>
     </div>
 
   </div>
 </div>
 
-<!-- bottom nav -->
-<nav class="bottom-nav">
-  <div class="nav-item active" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div>
-  <div class="nav-item" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div>
-  <div class="nav-item" onclick="location.href='boosting.html'"><div class="ni-icon">📈</div>Boost</div>
-  <div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div>
-</nav>
+<!-- SERVICES -->
+<div class="section-title">Services</div>
 
-<!-- audio -->
-<audio id="bg-audio" loop preload="auto">
-  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
-</audio>
+<div class="services">
 
-<script src="app.js"></script>
-<script src="animations.js"></script>
+  <a class="card" href="boosting.html">
+    <div class="icon">📈</div>
+    <div class="meta">
+      <div class="title">Social Media Boosting</div>
+      <div class="sub">Followers, likes, views — all platforms</div>
+    </div>
+    <button class="buy" onclick="openPay()">Buy</button>
+  </a>
+
+  <a class="card" href="website.html">
+    <div class="icon">💻</div>
+    <div class="meta">
+      <div class="title">Website Development</div>
+      <div class="sub">Business & e-commerce sites</div>
+    </div>
+    <button class="buy" onclick="openPay()">Buy</button>
+  </a>
+
+  <a class="card" href="bots.html">
+    <div class="icon">🤖</div>
+    <div class="meta">
+      <div class="title">Automation & Bots</div>
+      <div class="sub">WhatsApp bots & funnels</div>
+    </div>
+    <button class="buy" onclick="openPay()">Buy</button>
+  </a>
+
+  <a class="card" href="branding.html">
+    <div class="icon">🎨</div>
+    <div class="meta">
+      <div class="title">Branding & Setup</div>
+      <div class="sub">Logos & social kits</div>
+    </div>
+    <button class="buy" onclick="openPay()">Buy</button>
+  </a>
+
+</div>
+
+<footer>
+  © <span id="year"></span> GURU TECH LAB
+</footer>
+
+</div>
+
+<!-- PAYMENT POPUP -->
+<div id="pay-modal-back" class="modal-backdrop">
+  <div class="modal">
+    <button onclick="closePay()" style="float:right;background:none;border:0;color:#fff;font-size:20px">&times;</button>
+    <h3 style="color:var(--accent)">Complete Payment</h3>
+
+    <label>TILL NUMBER</label>
+    <div style="display:flex;gap:8px;margin-top:6px">
+      <input id="till" value="3420564" readonly />
+      <button class="copy-btn" onclick="copyTill()">Copy</button>
+    </div>
+
+    <label style="margin-top:12px">Enter Transaction Code</label>
+    <input id="trx" placeholder="e.g. QFA23HH72P" />
+
+    <button class="pay-btn" onclick="finishPay()">I've Paid</button>
+    <div id="success" class="success">✓ Opening WhatsApp…</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast">Till Number Copied</div>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+function openPay(){
+  document.getElementById("pay-modal-back").classList.add("open");
+}
+function closePay(){
+  document.getElementById("pay-modal-back").classList.remove("open");
+}
 
-  document.querySelectorAll('[data-buy-service]').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      const svc = this.dataset.buyService;
-      const pr = this.dataset.buyPrice;
-      window._guruApp.openPayModal(svc, pr);
-    });
-  });
+function showToast(){
+  let t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>{t.classList.remove("show")},1800);
+}
+
+function copyTill(){
+  navigator.clipboard.writeText("3420564");
+  showToast();
+}
+
+function finishPay(){
+  const code=document.getElementById("trx").value.trim();
+  if(!code){alert("Enter Transaction Code");return;}
+
+  document.getElementById("success").style.display="block";
+
+  setTimeout(()=>{
+    const msg = encodeURIComponent("Hello, I have completed payment.\nTill: 3420564\nTransaction Code: "+code);
+    window.location.href="https://wa.me/254763986398?text="+msg;
+  },600);
+}
+
+document.getElementById("year").innerText=new Date().getFullYear();
 </script>
 
 </body>
