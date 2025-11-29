@@ -2,325 +2,174 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Social Media Boosting — Guru Tech Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Social Media Boosting — Guru Tech Marketing</title>
+
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    :root {
-      --accent: #ff3c00;
-      --muted: rgba(255,255,255,0.65);
-    }
-
     body {
-      margin:0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at 10% 10%, rgba(255,90,40,0.06), transparent 20%),
-                  radial-gradient(circle at 90% 80%, rgba(0,200,255,0.03), transparent 20%),
-                  #031025;
-      color:#fff;
-    }
-
-    .container { max-width:1100px; margin:28px auto; padding:24px; }
-
-    h1 { color:var(--accent); margin:0 0 8px 0; font-size:28px }
-    p.lead { color:var(--muted); margin:6px 0 18px 0 }
-
-    .section {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.03);
-      padding:18px;
-      border-radius:14px;
-      box-shadow:0 20px 50px rgba(2,6,23,0.6);
-      margin-bottom:18px;
-    }
-
-    .price-list { list-style:none; padding:0; margin:0; display:block; }
-    .price-list li {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 8px;
-      border-bottom:1px dashed rgba(255,255,255,0.02);
-    }
-    .price-list li:last-child { border-bottom:0; }
-
-    .pkg-name { flex:1; font-weight:700; color:#fff; }
-    .pkg-price { width:120px; text-align:right; font-weight:900; color:var(--accent); margin-right:12px; }
-
-    /* BUY BUTTON (same as original) */
-    .buy-btn {
-      background: linear-gradient(180deg, var(--accent), #ff4f1e);
-      border: none;
+      background: linear-gradient(180deg, #071018 0%, #0f0f14 60%);
       color: #fff;
-      padding:8px 12px;
-      border-radius:10px;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow: 0 10px 24px rgba(255,76,20,0.18);
-      text-decoration:none;
-      white-space:nowrap;
-      display:inline-block;
-    }
-    .buy-btn:hover {
-      transform:translateY(-3px);
-      box-shadow: 0 14px 30px rgba(255,76,20,0.28);
+      font-family: Inter, Arial, sans-serif;
+      min-width: 1200px;
+      padding: 20px;
     }
 
-    @media (max-width:720px) {
-      .price-list li { flex-direction:column; align-items:flex-start; gap:8px; }
-      .pkg-price { width:auto; text-align:left; }
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 25px;
     }
 
-    .contact-row { display:flex; gap:12px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
-    .contact-row a { color:#fff; text-decoration:none; background:rgba(255,255,255,0.03); padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
-
-
-    /* PAYMENT POPUP (same style as homepage modal) */
-
-    .modal {
-      display:none;
-      position:fixed;
-      z-index:3000;
-      left:0; top:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.7);
-      backdrop-filter:blur(4px);
+    .boost-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 6px 0;
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
     }
 
-    .modal-content {
-      background:#0a162f;
-      margin:10% auto;
-      padding:22px;
-      border-radius:16px;
-      max-width:360px;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 12px 40px rgba(0,0,0,0.55);
-      color:#fff;
-      animation:pop 0.25s ease-out;
+    .boost-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    @keyframes pop {
-      from { transform:scale(0.8); opacity:0; }
-      to   { transform:scale(1); opacity:1; }
+    .boost-row:last-child {
+      border-bottom: none;
     }
 
-    .close {
-      float:right;
-      font-size:24px;
-      cursor:pointer;
-      color:#fff;
+    .b-info {}
+    .b-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0;
+      color: #fff;
+    }
+    .b-sub {
+      margin: 4px 0 0;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
     }
 
-    .pay-box {
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:12px;
-      border-radius:12px;
-      margin-top:12px;
+    .b-price {
+      width: 90px;
+      text-align: right;
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 900;
     }
 
+    .b-btn {
+      background: var(--accent);
+      border: none;
+      padding: 10px 16px;
+      color: #fff;
+      font-weight: 900;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .b-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <header style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
-      <div>
-        <div style="font-weight:900;font-size:18px">GURU TECH LAB</div>
-        <div style="color:var(--muted);font-size:12px">Social Media Boosting</div>
+  <h2 class="section-title">Social Media Boosting</h2>
+
+  <div class="boost-box">
+
+    <!-- Instagram Followers -->
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">1,000 Instagram Followers</div>
+        <div class="b-sub">Fast delivery • Real-looking profiles</div>
       </div>
-      <nav>
-        <a href="index.html" style="color:var(--muted);margin-right:10px">Home</a>
-        <a href="services.html" style="color:var(--muted);margin-right:10px">Services</a>
-        <a href="contact.html" style="color:var(--muted)">Contact</a>
-      </nav>
-    </header>
-
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <main>
-      <h1>OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
-      <p class="lead">Tap any package's <strong>Purchase</strong> button to order. Pay via M-PESA Till <strong>3420564</strong>.</p>
-
-
-      <!-- ================= IG FOLLOWERS ================= -->
-      <!-- (UNCHANGED — only buttons now trigger modal) -->
-
-      <!-- IG FOLLOWERS -->
-      <section class="section" aria-labelledby="igf">
-        <h2 id="igf" style="margin-top:0">IG FOLLOWERS</h2>
-        <ul class="price-list">
-
-          <li>
-            <div class="pkg-name">1K Followers</div>
-            <div class="pkg-price">200</div>
-            <a class="buy-btn">200 KES – Buy Now</a>
-          </li>
-
-          <li>
-            <div class="pkg-name">2K Followers</div>
-            <div class="pkg-price">300</div>
-            <a class="buy-btn">300 KES – Buy Now</a>
-          </li>
-
-          <li>
-            <div class="pkg-name">5K Followers</div>
-            <div class="pkg-price">500</div>
-            <a class="buy-btn">500 KES – Buy Now</a>
-          </li>
-
-          <!-- Continue same structure... (unchanged content) -->
-
-        </ul>
-      </section>
-
-
-      <!-- IG LIKES -->
-      <section class="section" aria-labelledby="igl">
-        <h2 id="igl">IG LIKES</h2>
-
-        <ul class="price-list">
-          <li>
-            <div class="pkg-name">1 pic — 1K likes</div>
-            <div class="pkg-price">150</div>
-            <a class="buy-btn">150 KES – Buy Now</a>
-          </li>
-
-          <!-- (all similar items remain unchanged) -->
-
-        </ul>
-      </section>
-
-
-      <!-- TikTok Boost -->
-      <section class="section" aria-labelledby="tt">
-        <h2 id="tt">TikTok Boost</h2>
-
-        <ul class="price-list">
-          <li>
-            <div class="pkg-name">500 Followers</div>
-            <div class="pkg-price">300</div>
-            <a class="buy-btn">300 KES – Buy Now</a>
-          </li>
-
-          <!-- (others unchanged) -->
-        </ul>
-      </section>
-
-
-      <!-- YouTube / Facebook -->
-      <section class="section" aria-labelledby="ytfb">
-        <h2 id="ytfb">YT / FB Boost</h2>
-        <ul class="price-list">
-
-          <li>
-            <div class="pkg-name">100 YouTube Subs</div>
-            <div class="pkg-price">200</div>
-            <a class="buy-btn">200 KES – Buy Now</a>
-          </li>
-
-          <!-- (others unchanged) -->
-
-        </ul>
-      </section>
-
-    </main>
-
-
-    <!-- CONTACT -->
-    <div class="contact-row">
-      <a href="https://wa.me/254763986398" target="_blank">🟢 WhatsApp</a>
-      <a href="mailto:akidarajab462@gmail.com">✉️ Email</a>
-      <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+      <div class="b-price">KES 200</div>
+      <button class="b-btn" onclick="buy('1K Instagram Followers',200)">Buy</button>
     </div>
 
-    <footer style="text-align:center;color:var(--muted);margin-top:18px">
-      © <span id="yr"></span> GURU TECH LAB
-    </footer>
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">5,000 Instagram Followers</div>
+        <div class="b-sub">High retention • Trusted</div>
+      </div>
+      <div class="b-price">KES 800</div>
+      <button class="b-btn" onclick="buy('5K Instagram Followers',800)">Buy</button>
+    </div>
+
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">10,000 Instagram Followers</div>
+        <div class="b-sub">Fastest growth option</div>
+      </div>
+      <div class="b-price">KES 1500</div>
+      <button class="b-btn" onclick="buy('10K Instagram Followers',1500)">Buy</button>
+    </div>
+
+    <!-- Instagram Likes -->
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">1,000 Instagram Likes</div>
+        <div class="b-sub">Real engagement</div>
+      </div>
+      <div class="b-price">KES 100</div>
+      <button class="b-btn" onclick="buy('1K Instagram Likes',100)">Buy</button>
+    </div>
+
+    <!-- TikTok Followers -->
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">1,000 TikTok Followers</div>
+        <div class="b-sub">Organic style growth</div>
+      </div>
+      <div class="b-price">KES 250</div>
+      <button class="b-btn" onclick="buy('1K TikTok Followers',250)">Buy</button>
+    </div>
+
+    <!-- YouTube Subscribers -->
+    <div class="boost-row">
+      <div class="b-info">
+        <div class="b-title">100 YouTube Subscribers</div>
+        <div class="b-sub">High-quality subscribers</div>
+      </div>
+      <div class="b-price">KES 300</div>
+      <button class="b-btn" onclick="buy('100 YouTube Subscribers',300)">Buy</button>
+    </div>
 
   </div>
 
-
-
-  <!-- ================= PAYMENT POPUP ================= -->
-
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-
-      <span class="close">&times;</span>
-
-      <h2 style="color:#ff3c00;margin-top:0">M-PESA PAYMENT</h2>
-
-      <p>Make payment to:</p>
-
-      <div class="pay-box">
-        <strong>Till Number: 3420564</strong><br>
-        <span>GURU TECH LAB</span>
-      </div>
-
-      <p id="orderText" style="margin-top:14px;color:#d7d7d7;font-size:14px"></p>
-
-      <button id="confirmPay" class="buy-btn" style="width:100%;margin-top:15px">
-        I HAVE PAID — CONTINUE TO WHATSAPP
-      </button>
-
-    </div>
-  </div>
-
-
-
-  <!-- ================= SCRIPTS ================= -->
+  <a href="index.html" class="back-link">← Back to Home</a>
 
   <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-
-    let modal = document.getElementById("paymentModal");
-    let span = document.getElementsByClassName("close")[0];
-    let confirmBtn = document.getElementById("confirmPay");
-
-    let selectedOrder = "";
-
-
-    document.querySelectorAll(".buy-btn").forEach(btn => {
-      btn.addEventListener("click", function(event) {
-        event.preventDefault();
-
-        let service = this.closest("section").querySelector("h2").innerText;
-        let pkg = this.parentElement.querySelector(".pkg-name").innerText;
-        let price = this.parentElement.querySelector(".pkg-price").innerText;
-
-        selectedOrder =
-          `Service: ${service}\nPackage: ${pkg}\nPrice: ${price} KES`;
-
-        document.getElementById("orderText").innerText =
-          "Order Details:\n" + selectedOrder;
-
-        modal.style.display = "block";
-      });
-    });
-
-    span.onclick = () => modal.style.display = "none";
-
-    window.onclick = event => {
-      if (event.target == modal) modal.style.display = "none";
-    };
-
-    confirmBtn.onclick = () => {
-      let waMsg = encodeURIComponent(
-        "Hello, I have completed payment.\n\n" + selectedOrder
-      );
-
-      window.open(`https://wa.me/254763986398?text=${waMsg}`, "_blank");
-      modal.style.display = "none";
-    };
+    function buy(service, amount) {
+      window.location.href =
+        "checkout.html?service=" +
+        encodeURIComponent(service) +
+        "&amount=" + amount;
+    }
   </script>
-
-  <script src="script.js"></script>
 
 </body>
 </html>
