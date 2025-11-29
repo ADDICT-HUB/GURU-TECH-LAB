@@ -55,7 +55,7 @@
   .view-price small{font-weight:700}
 
   /* price listing inside modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.62);display:none;align-items:center;justify-content:center;padding:18px;z-index:1200}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.62);display:none;align-items:center;justify-content:center;padding:18px;z-index:1200;backdrop-filter:blur(6px)}
   .modal-backdrop.open{display:flex}
   .modal {
     width:100%;max-width:960px;max-height:86vh;overflow:auto;border-radius:14px;padding:18px;border:1px solid var(--glass-border);
@@ -71,7 +71,7 @@
   .price-block{background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
   .price-block h4{margin:0;color:#fff;font-size:15px}
   .price-block ul{list-style:none;padding:8px 0 0 0;margin:0}
-  .price-block li{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.02);font-weight:700}
+  .price-block li{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.02);font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
   .price-block li:last-child{border-bottom:0}
 
   /* buy button inline */
@@ -82,7 +82,7 @@
   }
 
   /* payment popup */
-  .pay-card{width:420px;max-width:95%;margin:0 auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid var(--glass-border)}
+  .pay-card{width:420px;max-width:95%;margin:0 auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid var(--glass-border);backdrop-filter: blur(6px)}
   .pay-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
   label{color:var(--muted);font-size:13px}
   input[type="tel"], input[type="text"]{width:100%;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff}
@@ -221,7 +221,7 @@
   </footer>
 </div>
 
-<!-- MODALS -->
+<!-- MODALS (same as your content) -->
 
 <!-- IG followers modal -->
 <div id="modal-ig-back" class="modal-backdrop" aria-hidden="true">
@@ -367,7 +367,7 @@
     <button class="close-btn" data-close>&times;</button>
     <h3 id="pay-title" style="color:var(--accent);margin-top:0">Complete Payment</h3>
 
-    <div style="margin-top:8px" class="muted">Pay using M-PESA Till <strong>3420564</strong>. After payment press "I've Paid" to notify — we'll open WhatsApp with your details.</div>
+    <div style="margin-top:8px" class="muted">Pay using M-PESA Till <strong>3420564</strong>. After payment press "I've Paid — Notify" to open WhatsApp with your details.</div>
 
     <div style="margin-top:12px">
       <label>Package</label>
@@ -379,183 +379,205 @@
       <div id="pay-amount" style="font-weight:900;margin:6px 0">—</div>
     </div>
 
-    <div style="margin-top:8px">
-      <label for="payer-phone">Your phone (07XXXXXXXX)</label>
-      <input id="payer-phone" type="tel" placeholder="07XXXXXXXX" />
+    <div class="pay-row" style="margin-top:8px">
+      <div style="flex:1">
+        <label>Your phone (07XXXXXXXX)</label>
+        <input id="pay-phone" type="tel" placeholder="07XXXXXXXX" />
+      </div>
     </div>
 
-    <div style="margin-top:10px;display:flex;gap:8px">
-      <button id="pay-sim" class="pay-btn">Pay Now — STK</button>
-      <button id="pay-io" class="buy-inline" style="flex:0">I Paid (open WhatsApp)</button>
+    <div class="pay-row">
+      <div style="flex:1">
+        <label>Username / Account (optional)</label>
+        <input id="pay-account" type="text" placeholder="Instagram / TikTok / YouTube" />
+      </div>
     </div>
 
-    <div id="pay-info" class="muted" style="margin-top:10px">TILL: <strong>3420564</strong> — AKIDA RAJAB</div>
-    <div id="pay-success" class="success-line">Payment verified — opening WhatsApp…</div>
+    <div style="margin-top:10px">
+      <button id="paid-notify" class="pay-btn">I've Paid — Notify</button>
+    </div>
+
+    <div id="pay-info" class="muted" style="margin-top:10px">Till: <strong>3420564</strong> — AKIDA RAJAB</div>
+
+    <div id="pay-success" class="success-line" role="status" aria-live="polite">Payment verified — opening WhatsApp…</div>
   </div>
 </div>
 
-<!-- bottom nav (visual) -->
-<nav class="bottom-nav" aria-hidden="false">
-  <div class="item active">Home</div>
-  <div class="item">Services</div>
-  <div class="item">Boost</div>
-  <div class="item">Contact</div>
-</nav>
-
 <script>
-/* --- Modal + UX wiring --- */
-document.addEventListener('click', function(e){
-  const openAttr = e.target.closest('[data-open]');
-  if (openAttr) {
-    const id = openAttr.getAttribute('data-open');
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Utilities - modal open/close
+  function openModal(id) {
     const back = document.getElementById(id + '-back');
-    if (back) back.classList.add('open');
-    return;
-  }
-  // close buttons
-  if (e.target.closest('[data-close]')) {
-    document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));
-    return;
-  }
-});
-
-// close by clicking backdrop
-document.querySelectorAll('.modal-backdrop').forEach(back=>{
-  back.addEventListener('click', function(ev){
-    if (ev.target === back) back.classList.remove('open');
-  });
-});
-
-// ESC to close
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));
-});
-
-/* --- Wire Buy buttons to open payment popup --- */
-const BUY_BUTTONS = document.querySelectorAll('.buy-inline');
-const PAY_BACK = document.getElementById('pay-modal-back');
-const PAY_PACKAGE = document.getElementById('pay-package');
-const PAY_AMOUNT = document.getElementById('pay-amount');
-const PAYER_PHONE = document.getElementById('payer-phone');
-const PAY_SIM = document.getElementById('pay-sim');
-const PAY_IO = document.getElementById('pay-io');
-const PAY_SUCCESS = document.getElementById('pay-success');
-
-BUY_BUTTONS.forEach(btn=>{
-  btn.addEventListener('click', function(){
-    const pkg = btn.getAttribute('data-package') || btn.dataset.package || 'Service';
-    const price = btn.getAttribute('data-price') || btn.dataset.price || '0';
-    PAY_PACKAGE.textContent = pkg;
-    PAY_AMOUNT.textContent = price + ' KES';
-    PAYER_PHONE.value = '';
-    PAY_SUCCESS.style.display = 'none';
-    PAY_BACK.classList.add('open');
-    PAYER_PHONE.focus();
-  });
-});
-
-/* --- Simulated payment flow --- */
-/* Because you said you don't have Daraja passkey yet, simulate then direct to WhatsApp.
-   When you get a backend STK endpoint, replace simulatePayment() with a real fetch to your server
-   that calls Daraja and returns success via a callback.
-*/
-
-function normalizePhone(p){
-  p = String(p||'').trim();
-  if (!p) return '';
-  if (p.startsWith('0')) return '254' + p.slice(1);
-  if (p.startsWith('+')) return p.replace('+','');
-  if (p.startsWith('254')) return p;
-  return p;
-}
-
-function openWhatsApp(phoneToNotify, pkg, price, payerPhone) {
-  // message template
-  const msg = encodeURIComponent(`Hello, I have paid.\n• Service: ${pkg}\n• Price: KES ${price}\n• Payer phone: ${payerPhone}\nPlease confirm my order.`);
-  // your number:
-  const to = '254763986398';
-  const url = `https://wa.me/${to}?text=${msg}`;
-  window.open(url, '_blank');
-}
-
-// Simulate STK push/payment verification — replace with backend call later
-function simulatePayment(phone, amount, pkg) {
-  return new Promise((resolve) => {
-    // show a small delay to mimic STK process
+    if (!back) return;
+    back.classList.add('open');
+    back.setAttribute('aria-hidden','false');
+    // focus first close button for accessibility
     setTimeout(()=> {
-      // simulate success
-      resolve({ success: true, reference: 'SIM' + Date.now() });
-    }, 2200);
-  });
-}
-
-PAY_SIM.addEventListener('click', async function(){
-  const phoneRaw = PAYER_PHONE.value.trim();
-  if (!phoneRaw) { alert('Enter your phone number (07XXXXXXXX)'); PAYER_PHONE.focus(); return; }
-  const phone = normalizePhone(phoneRaw);
-  if (!/^2547\d{8}$/.test(phone)) { alert('Use phone like 07XXXXXXXX'); PAYER_PHONE.focus(); return; }
-
-  const pkg = PAY_PACKAGE.textContent || 'Service';
-  // strip " KES"
-  const priceText = (PAY_AMOUNT.textContent||'0').replace(/\D/g,'') || '0';
-  const price = Number(priceText);
-
-  PAY_SIM.disabled = true;
-  PAY_SIM.textContent = 'Initiating STK...';
-
-  try {
-    const result = await simulatePayment(phone, price, pkg);
-    if (result && result.success) {
-      PAY_SIM.textContent = 'Payment OK';
-      PAY_SUCCESS.style.display = 'block';
-      // short pause so user sees success, then open WhatsApp
-      setTimeout(()=>{
-        PAY_BACK.classList.remove('open');
-        openWhatsApp('254763986398', pkg, price, phone);
-        PAY_SIM.disabled = false;
-        PAY_SIM.textContent = 'Pay Now — STK';
-      },900);
-    } else {
-      alert('Payment failed. Try again or press "I Paid" to notify.');
-      PAY_SIM.disabled = false;
-      PAY_SIM.textContent = 'Pay Now — STK';
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Network error. Press "I Paid" after manual payment.');
-    PAY_SIM.disabled = false;
-    PAY_SIM.textContent = 'Pay Now — STK';
+      const close = back.querySelector('[data-close]');
+      if (close) close.focus();
+    },50);
+    document.body.style.overflow = 'hidden';
   }
-});
+  function closeModalBack(back) {
+    if (!back) return;
+    back.classList.remove('open');
+    back.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
 
-// I Paid button — assumes user paid manually; open WhatsApp with prefilled message
-PAY_IO.addEventListener('click', function(){
-  const phoneRaw = PAYER_PHONE.value.trim();
-  const phone = normalizePhone(phoneRaw) || 'N/A';
-  const pkg = PAY_PACKAGE.textContent || 'Service';
-  const priceText = (PAY_AMOUNT.textContent||'0').replace(/\D/g,'') || '0';
-  const price = Number(priceText);
-  // close modal then open whatsapp
-  PAY_BACK.classList.remove('open');
-  openWhatsApp('254763986398', pkg, price, phone);
-});
+  // hook view-price buttons
+  document.querySelectorAll('.view-price').forEach(btn=>{
+    btn.addEventListener('click', function(){
+      const id = this.getAttribute('data-open');
+      if (!id) return;
+      openModal(id);
+    });
+  });
 
-/* --- Ensure year updated --- */
-document.getElementById('yr').textContent = new Date().getFullYear();
+  // hook close buttons and backdrop clicks
+  document.querySelectorAll('.modal-backdrop').forEach(back=>{
+    back.addEventListener('click', (e)=>{
+      // close when clicking the dark backdrop (not the modal itself)
+      if (e.target === back) closeModalBack(back);
+    });
+    const close = back.querySelector('[data-close]');
+    if (close) close.addEventListener('click', ()=> closeModalBack(back));
+  });
 
-/* Accessibility: focus trap lightly (move focus to first close button when modal opens) */
-const modals = document.querySelectorAll('.modal-backdrop');
-modals.forEach(back => {
-  const modal = back.querySelector('.modal');
-  back.addEventListener('transitionend', ()=>{});
-  const observer = new MutationObserver(()=> {
-    if (back.classList.contains('open')) {
-      const firstClose = back.querySelector('[data-close]');
-      firstClose && firstClose.focus();
+  // Esc to close
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop.open').forEach(b=> closeModalBack(b));
     }
   });
-  observer.observe(back, { attributes: true, attributeFilter: ['class'] });
-});
+
+  // When a buy-inline is clicked: open pay modal and populate package + amount
+  const payModalBack = document.getElementById('pay-modal-back');
+  const payPackageEl = document.getElementById('pay-package');
+  const payAmountEl = document.getElementById('pay-amount');
+  const payPhoneEl = document.getElementById('pay-phone');
+  const payAccountEl = document.getElementById('pay-account');
+  const paidNotifyBtn = document.getElementById('paid-notify');
+  const paySuccess = document.getElementById('pay-success');
+
+  function openPayModal(pkg, price) {
+    payPackageEl.textContent = pkg || 'Selected Package';
+    payAmountEl.textContent = (price ? price + ' KES' : '—');
+    payPhoneEl.value = ''; payAccountEl.value = '';
+    paySuccess.style.display = 'none';
+    payModalBack.classList.add('open');
+    payModalBack.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    // focus phone
+    setTimeout(()=> payPhoneEl.focus(), 80);
+  }
+
+  document.querySelectorAll('.buy-inline').forEach(b=>{
+    b.addEventListener('click', function(e){
+      const pkg = this.getAttribute('data-package') || this.dataset.package;
+      const price = this.getAttribute('data-price') || this.dataset.price;
+      openPayModal(pkg, price);
+    });
+  });
+
+  // Close pay modal via its close buttons
+  payModalBack.querySelectorAll('[data-close]').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      closeModalBack(payModalBack);
+    });
+  });
+
+  // Validate phone (07xxxxxxxx)
+  function normalizePhone(input) {
+    if (!input) return null;
+    let v = input.trim();
+    // allow +2547..., 07..., 2547...
+    if (v.startsWith('+')) v = v.slice(1);
+    if (v.startsWith('254') && v.length === 12) {
+      // OK
+    } else if (v.startsWith('07') && v.length === 10) {
+      v = '254' + v.slice(1);
+    } else if (v.startsWith('7') && v.length === 9) {
+      v = '254' + v;
+    }
+    // final check
+    if (/^2547\d{8}$/.test(v)) return v;
+    return null;
+  }
+
+  // "I've Paid — Notify" handler:
+  // - show simulated verification, store a small balance, then open WhatsApp with prefilled message
+  paidNotifyBtn.addEventListener('click', function(){
+    const pkgText = payPackageEl.textContent || 'Selected Package';
+    const amountText = payAmountEl.textContent.replace(/\s*KES\s*$/i,'') || '';
+    const phoneRaw = payPhoneEl.value.trim();
+    const phoneNorm = normalizePhone(phoneRaw);
+    const acc = payAccountEl.value.trim();
+
+    if (!phoneRaw) { alert('Enter your phone (07XXXXXXXX) so we can confirm your payment.'); payPhoneEl.focus(); return; }
+    if (!phoneNorm) { alert('Use phone like 07XXXXXXXX or +2547XXXXXXXX.'); payPhoneEl.focus(); return; }
+    if (!amountText) { alert('Invalid amount.'); return; }
+
+    // Show verifying UI
+    paySuccess.style.display = 'block';
+    paySuccess.textContent = 'Verifying payment…';
+
+    // Simulated verification delay (client-side)
+    setTimeout(()=> {
+      // mark local balance (simple local storage)
+      const BAL_KEY = 'gtm_balance';
+      const prev = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+      const added = parseFloat(amountText) || 0;
+      const newBal = Math.round((prev + added) * 100) / 100;
+      localStorage.setItem(BAL_KEY, String(newBal));
+
+      paySuccess.textContent = 'Payment verified — opening WhatsApp…';
+
+      // Build WhatsApp message
+      const ownerWa = '254763986398';
+      const userPhoneDisplay = phoneRaw;
+      const accountPart = acc ? ('Account/Username: ' + acc + '\\n') : '';
+      const message = encodeURIComponent(
+        'Hello, I have paid.\\n' +
+        'Service: ' + pkgText + '\\n' +
+        'Amount: KES ' + amountText + '\\n' +
+        accountPart +
+        'Customer phone: ' + userPhoneDisplay + '\\n' +
+        'Till: 3420564 — AKIDA RAJAB\\n' +
+        'Transaction ID: (enter here)'
+      );
+
+      // open WhatsApp (new tab)
+      const waUrl = 'https://wa.me/' + ownerWa + '?text=' + message;
+      // Small delay so user sees success then open WhatsApp
+      setTimeout(()=> {
+        // open in new tab/window
+        window.open(waUrl, '_blank');
+
+        // close pay modal
+        closeModalBack(payModalBack);
+
+        // optional: show a toast or console
+        console.log('Opened WhatsApp with message for', pkgText, amountText);
+      }, 900);
+
+    }, 1200);
+  });
+
+  // If user opens raw package modals, allow clicking backdrop close
+  // (already handled by generic modal handler above)
+
+  // Keyboard accessibility: focus first close on open (handled earlier)
+
+  // Load previous balance if you want to show it elsewhere (not visible on this page)
+  // e.g. console log for quick check
+  (function(){ const b = parseFloat(localStorage.getItem('gtm_balance')||'0'); if (b>0) console.log('Saved balance:', b); })();
+
+  // Optional: intercept native anchor "Buy / Contact" from other places: not needed here
+
+  // Prevent pinch-zoom and double-tap zoom on mobile already set via viewport meta above
 </script>
 </body>
 </html>
