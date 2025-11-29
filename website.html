@@ -1,234 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>Website Design — Guru Tech Lab</title>
-
-<style>
-  :root{
-    --accent:#ff3c00;
-    --accent-2:#ffb86b;
-    --muted:rgba(255,255,255,0.65);
-    --glass:rgba(255,255,255,0.03);
-    --glass-border:rgba(255,255,255,0.06);
-    --buy-grad:linear-gradient(180deg,#ff3c00,#ff4f1e);
-  }
-
-  html,body{
-    margin:0;padding:0;height:100%;
-    background:#031025;color:white;
-    font-family:Inter,system-ui,Arial;
-    user-select:none;
-  }
-
-  .page{max-width:1100px;margin:18px auto;padding:18px;}
-
-  header.site-header{
-    display:flex;justify-content:space-between;align-items:center;
-  }
-  .logo-text{font-weight:900;font-size:20px;}
-  nav a{color:var(--muted);margin-left:12px;font-weight:700;text-decoration:none;}
-
-  .hero{
-    background:var(--glass);
-    border:1px solid var(--glass-border);
-    border-radius:14px;
-    padding:20px;margin-top:10px;
-    box-shadow:0 40px 80px rgba(2,6,23,0.55);
-  }
-  .hero h1{color:var(--accent);margin:0 0 6px 0;}
-
-  .cards{display:grid;gap:14px;margin-top:16px;}
-  @media(min-width:760px){.cards{grid-template-columns:repeat(2,1fr);}}
-
-  .card{
-    background:var(--glass);
-    border:1px solid var(--glass-border);
-    padding:18px;border-radius:14px;
-    box-shadow:0 20px 50px rgba(2,6,23,0.5);
-    animation:fadeUp 0.6s ease;
-  }
-  @keyframes fadeUp{
-    from{transform:translateY(20px);opacity:0;}
-    to{transform:translateY(0);opacity:1;}
-  }
-
-  .card-btn{
-    border:0;padding:12px;border-radius:12px;
-    background:var(--buy-grad);color:white;font-weight:900;
-    cursor:pointer;margin-top:14px;
-    width:100%;
-    box-shadow:0 12px 30px rgba(255,80,20,0.25);
-  }
-
-  footer{text-align:center;margin-top:20px;color:var(--muted);}
-
-  /* PAYMENT POPUP */
-  .modal-backdrop{
-    position:fixed;inset:0;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(12px);
-    display:none;justify-content:center;align-items:center;
-    padding:20px;z-index:999;
-  }
-  .modal-backdrop.open{display:flex;}
-
-  .modal{
-    width:100%;max-width:420px;
-    padding:20px;border-radius:14px;
-    background:var(--glass);
-    border:1px solid var(--glass-border);
-    box-shadow:0 40px 80px rgba(0,0,0,0.7);
-    animation:pop 0.25s ease;
-  }
-  @keyframes pop{
-    from{transform:scale(0.85);opacity:0;}
-    to{transform:scale(1);opacity:1;}
-  }
-
-  .close-btn{
-    position:absolute;right:16px;top:12px;
-    background:none;border:0;color:var(--muted);
-    font-size:24px;cursor:pointer;
-  }
-
-  input{
-    width:100%;padding:12px;margin-top:6px;
-    border-radius:10px;border:0;
-    background:rgba(255,255,255,0.05);
-    color:white;
-  }
-
-  .copy-btn{
-    margin-top:6px;
-    background:#1a1f2b;border:1px solid var(--glass-border);
-    padding:8px 12px;border-radius:8px;color:white;font-size:13px;
-    cursor:pointer;
-  }
-
-  .pay-btn{
-    margin-top:14px;background:var(--buy-grad);
-    padding:12px;border-radius:12px;border:0;
-    width:100%;font-weight:900;color:white;
-  }
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Services – Guru Tech Lab</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="page">
 
-<header class="site-header">
-  <div class="logo-text">GURU TECH LAB</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="website.html" style="color:white">Website</a>
-    <a href="bots.html">Bots</a>
-    <a href="branding.html">Branding</a>
-    <a href="boosting.html">Boosting</a>
-  </nav>
-</header>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-text">GURU TECH LAB</div>
+      <div class="tag">Professional Web Solutions</div>
+    </div>
 
-<section class="hero">
-  <h1>Website Design</h1>
-  <p>Clean & modern websites built professionally.</p>
-</section>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="website.html" class="active">Website</a>
+      <a href="boosting.html">Boosting</a>
+      <a href="branding.html">Branding</a>
+    </nav>
+  </header>
 
-<div class="cards">
-
-  <div class="card">
-    <div class="title">Business Website</div>
-    <button class="card-btn pay-open" data-package="Business Website" data-price="2500">Order — 2500</button>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="left">
+      <h1>Website Development & Professional Web Solutions</h1>
+      <p>
+        Get high-quality websites, portfolios, e-commerce stores, landing pages, 
+        and custom dashboards — all with modern animations, security & premium hosting.
+      </p>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="title">E-Commerce Store</div>
-    <button class="card-btn pay-open" data-package="E-Commerce Store" data-price="4500">Order — 4500</button>
-  </div>
+  <!-- SERVICES GRID -->
+  <div class="cards">
 
-  <div class="card">
-    <div class="title">Portfolio Website</div>
-    <button class="card-btn pay-open" data-package="Portfolio Website" data-price="2000">Order — 2000</button>
-  </div>
+    <!-- Example Card -->
+    <div class="card">
+      <div class="icon-box">
+        🌐
+      </div>
 
-  <div class="card">
-    <div class="title">Custom System</div>
-    <button class="card-btn pay-open" data-package="Custom System" data-price="6000">Order — 6000</button>
-  </div>
+      <div class="meta">
+        <div class="svc-title">Business Website</div>
+        <div class="svc-sub">Professional 5–7 page business website</div>
+      </div>
 
+      <button class="view-price" onclick="openModal('business')">View Price</button>
+    </div>
+
+    <div class="card">
+      <div class="icon-box">
+        🛒
+      </div>
+
+      <div class="meta">
+        <div class="svc-title">E-Commerce Store</div>
+        <div class="svc-sub">Online shop with payments & inventory</div>
+      </div>
+
+      <button class="view-price" onclick="openModal('ecom')">View Price</button>
+    </div>
+
+    <div class="card">
+      <div class="icon-box">📱</div>
+      <div class="meta">
+        <div class="svc-title">Portfolio Website</div>
+        <div class="svc-sub">Personal portfolio or resume site</div>
+      </div>
+      <button class="view-price" onclick="openModal('portfolio')">View Price</button>
+    </div>
+
+    <div class="card">
+      <div class="icon-box">⚙️</div>
+      <div class="meta">
+        <div class="svc-title">Custom Web System</div>
+        <div class="svc-sub">Dashboards, booking system, CRM, automations</div>
+      </div>
+      <button class="view-price" onclick="openModal('custom')">View Price</button>
+    </div>
+
+  </div>
 </div>
 
-<footer>© <span id="yr"></span> GURU TECH LAB</footer>
 
-</div>
-
-<!-- PAYMENT POPUP -->
-<div id="pay-back" class="modal-backdrop">
+<!-- PRICE MODAL -->
+<div class="modal-backdrop" id="modal">
   <div class="modal">
-    <button class="close-btn" data-close>&times;</button>
+    <button class="close-btn" onclick="closeModal()">✕</button>
 
-    <h3 style="color:var(--accent)">Payment</h3>
-    <p style="color:var(--muted)">Pay to Till <b>3420564</b></p>
+    <h2 id="modalTitle">Service Price</h2>
 
-    <button class="copy-btn" onclick="copyTill()">Copy Till Number</button>
+    <div class="price-grid" id="priceList"></div>
 
-    <label>Package</label>
-    <div id="pk" style="font-weight:900;margin-top:5px;"></div>
+    <br><br>
 
-    <label>Amount</label>
-    <input id="amt" readonly>
+    <!-- PAYMENT SECTION -->
+    <div class="pay-card">
 
-    <label>Enter Transaction Code</label>
-    <input id="tx" placeholder="Example: QJ36H9W9CF">
+      <div class="pay-row">
+        <label>Till Number</label>
+        <button class="copy-btn" onclick="copyTill()">Copy</button>
+      </div>
 
-    <button class="pay-btn" id="paidBtn">I've Paid</button>
+      <input type="text" value="3420564" id="till" readonly>
+
+      <div class="pay-row">
+        <label>Your Mpesa Name</label>
+      </div>
+      <input type="text" id="custName" placeholder="Name used in payment">
+
+      <div class="pay-row">
+        <label>Phone Number</label>
+      </div>
+      <input type="tel" id="custPhone" placeholder="07xxxxxxxx">
+
+      <br>
+
+      <button class="pay-btn" onclick="finishPayment()">Confirm Payment</button>
+
+      <div class="success-line" id="successLine">
+        Payment confirmed — redirecting to WhatsApp…
+      </div>
+
+    </div>
   </div>
 </div>
 
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="item active">Website</div>
+  <a href="boosting.html"><div class="item">Boosting</div></a>
+  <a href="branding.html"><div class="item">Branding</div></a>
+  <a href="bot.html"><div class="item">Bots</div></a>
+</div>
+
+
+<!-- SCRIPT ---------------------------------- -->
 <script>
-document.getElementById("yr").textContent = new Date().getFullYear();
-
-const payBack = document.getElementById("pay-back");
-const pk = document.getElementById("pk");
-const amt = document.getElementById("amt");
-
-document.querySelectorAll(".pay-open").forEach(btn=>{
-  btn.onclick = ()=>{
-    pk.textContent = btn.dataset.package;
-    amt.value = btn.dataset.price;
-    payBack.classList.add("open");
+let servicePrices = {
+  business: {
+    title: "Business Website",
+    prices: [
+      { title: "Basic Package", items: ["Homepage", "About", "Services", "Contact", "Basic SEO", "Ksh 3,500"] },
+      { title: "Advanced Package", items: ["Full Website", "Professional Theme", "SEO", "Hosting", "Ksh 5,500"] }
+    ]
+  },
+  ecom: {
+    title: "E-Commerce Store",
+    prices: [
+      { title: "Starter", items: ["10 Products", "Payments", "Inventory", "Admin Panel", "Ksh 6,500"] },
+      { title: "Pro Store", items: ["Unlimited Products", "Automation", "SMS Alerts", "Ksh 9,500"] }
+    ]
+  },
+  portfolio: {
+    title: "Portfolio Website",
+    prices: [
+      { title: "Starter", items: ["Portfolio", "Gallery", "Contact Form", "Ksh 2,500"] },
+      { title: "Pro Portfolio", items: ["Animations", "Custom UI", "Hosting", "Ksh 4,000"] }
+    ]
+  },
+  custom: {
+    title: "Custom Web System",
+    prices: [
+      { title: "Basic System", items: ["Dashboard", "Login System", "Database", "Ksh 7,000"] },
+      { title: "Advanced", items: ["Full System", "Automation", "Mobile App Link", "Ksh 15,000"] }
+    ]
   }
-});
-document.querySelectorAll("[data-close]").forEach(btn=>{
-  btn.onclick = ()=> payBack.classList.remove("open");
-});
+};
 
-function copyTill(){
-  navigator.clipboard.writeText("3420564");
-  alert("Till number copied!");
+function openModal(type){
+  let data = servicePrices[type];
+  document.getElementById("modalTitle").innerText = data.title;
+
+  let html = "";
+  data.prices.forEach(block => {
+    html += `<div class="price-block">
+      <h4>${block.title}</h4>
+      <ul>${block.items.map(i => `<li>${i}</li>`).join("")}</ul>
+    </div>`;
+  });
+
+  document.getElementById("priceList").innerHTML = html;
+  document.getElementById("modal").classList.add("open");
 }
 
-document.getElementById("paidBtn").onclick = ()=>{
-  let pack = pk.textContent;
-  let amount = amt.value;
-  let tx = document.getElementById("tx").value.trim();
+function closeModal(){
+  document.getElementById("modal").classList.remove("open");
+}
 
-  if(tx.length < 8){
-    alert("Enter a valid transaction code");
+function copyTill(){
+  let till = document.getElementById("till");
+  navigator.clipboard.writeText(till.value);
+  alert("Till Number Copied ✔");
+}
+
+function finishPayment(){
+  let name = document.getElementById("custName").value;
+  let phone = document.getElementById("custPhone").value;
+
+  if(name.trim() === "" || phone.trim() === ""){
+    alert("Enter your Mpesa name & phone number");
     return;
   }
 
-  // WhatsApp message
-  let msg =
-    "Hello, I have completed payment.\n\n" +
-    "Package: " + pack + "\n" +
-    "Amount: " + amount + "\n" +
-    "Transaction Code: " + tx + "\n\n" +
-    "Please confirm.";
+  document.getElementById("successLine").style.display = "block";
 
-  window.location.href = "https://wa.me/254763986398?text=" + encodeURIComponent(msg);
-};
+  setTimeout(() => {
+    let msg = `Hello, I have completed the website payment. 
+Name: ${name}
+Phone: ${phone}
+Till: 3420564`;
+
+    window.location.href =
+      "https://wa.me/254743105665?text=" + encodeURIComponent(msg);
+  }, 1500);
+}
 </script>
 
 </body>
