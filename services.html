@@ -9,72 +9,194 @@
 <body>
 
 <div class="app">
+
+  <!-- HEADER -->
   <div class="header">
-    <div class="brand"><div class="logo">GURU TECH LAB</div><div class="sub">Services</div></div>
-    <button class="btn btn-ghost" data-music-toggle>🔊 Play Music</button>
+    <div class="brand">
+      <div class="logo">GURU TECH LAB</div>
+      <div class="sub">Services</div>
+    </div>
+
+    <button class="btn btn-ghost" data-music-toggle>
+      🔊 Play Music
+    </button>
   </div>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="h-title">Services</div>
-    <div class="h-lead">Choose a service and tap BUY — confirm payment via the popup.</div>
+    <div class="h-title">Our Services</div>
+    <div class="h-lead">Tap BUY → Confirm payment → WhatsApp will open automatically.</div>
 
+    <!-- SERVICE CARDS -->
     <div class="services">
+
       <div class="card">
         <div class="icon">📈</div>
-        <div class="meta"><div class="title">IG Followers</div><div class="sub">1K — 350 KES</div></div>
-        <div class="actions"><button class="buy" data-buy-service="IG Followers - 1K" data-buy-price="350">Buy</button></div>
+        <div class="meta">
+          <div class="title">IG Followers</div>
+          <div class="sub">1K — 350 KES</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-service="IG Followers — 1K" data-price="350">Buy</button>
+        </div>
       </div>
 
       <div class="card">
         <div class="icon">💻</div>
-        <div class="meta"><div class="title">Website Landing</div><div class="sub">One page — 1200 KES</div></div>
-        <div class="actions"><button class="buy" data-buy-service="Landing Page" data-buy-price="1200">Buy</button></div>
+        <div class="meta">
+          <div class="title">Landing Website</div>
+          <div class="sub">One Page — 1200 KES</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-service="Landing Page" data-price="1200">Buy</button>
+        </div>
       </div>
 
       <div class="card">
         <div class="icon">🤖</div>
-        <div class="meta"><div class="title">WhatsApp Bot</div><div class="sub">Setup — 500 KES</div></div>
-        <div class="actions"><button class="buy" data-buy-service="WhatsApp Bot" data-buy-price="500">Buy</button></div>
+        <div class="meta">
+          <div class="title">WhatsApp Bot</div>
+          <div class="sub">Setup — 500 KES</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-service="WhatsApp Bot" data-price="500">Buy</button>
+        </div>
       </div>
 
       <div class="card">
         <div class="icon">🎨</div>
-        <div class="meta"><div class="title">Branding Kit</div><div class="sub">Logo + socials — 300 KES</div></div>
-        <div class="actions"><button class="buy" data-buy-service="Branding Kit" data-buy-price="300">Buy</button></div>
+        <div class="meta">
+          <div class="title">Branding Kit</div>
+          <div class="sub">Logo + Socials — 300 KES</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-service="Branding Kit" data-price="300">Buy</button>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
 
+  <!-- CONTACT -->
   <div class="contact-row">
     <a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a>
     <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">Email</a>
     <a class="contact-btn ig" href="https://instagram.com">Instagram</a>
   </div>
 
-  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">© <span id="year"></span> GURU TECH LAB</footer>
+  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">
+    © <span id="year"></span> GURU TECH LAB
+  </footer>
+
 </div>
 
-<!-- payment modal and bottom nav same as index -->
-<div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
-  <div id="pay-modal" class="modal" role="dialog" aria-modal="true">
-    <button data-modal-close style="float:right;background:transparent;border:0;color:var(--muted);font-size:20px">×</button>
-    <h3>Complete Payment</h3>
-    <p class="small-note">Pay via Till <strong>3420564</strong>. After payment paste the transaction ID in WhatsApp.</p>
-    <div class="row"><label>Service</label><div id="modal-service">—</div></div>
-    <div class="row"><label>Amount</label><div id="modal-price">—</div></div>
-    <div class="row"><label for="modal-phone">Phone</label><input id="modal-phone" class="input" placeholder="+2547..." /></div>
-    <div class="row" style="display:flex;gap:8px"><button id="modal-confirm" class="btn btn-primary" style="flex:1">I Paid — Notify</button><button data-modal-close class="btn btn-ghost" style="flex:1">Cancel</button></div>
-    <div class="small-note">We will open WhatsApp with a template for confirmation.</div>
+
+<!-- UPDATED PAYMENT POPUP -->
+<div id="pay-modal-back" class="modal-backdrop">
+
+  <div id="pay-modal" class="modal">
+
+    <button data-modal-close class="close-btn">×</button>
+
+    <h2 style="color:var(--accent)">Complete Payment</h2>
+
+    <!-- SERVICE + PRICE -->
+    <label class="small">Service</label>
+    <input id="modal-service" readonly>
+
+    <label class="small" style="margin-top:10px">Amount (KES)</label>
+    <input id="modal-price" readonly>
+
+    <!-- TILL -->
+    <label class="small" style="margin-top:12px">Till Number</label>
+    <div style="display:flex;gap:8px;">
+      <input id="modal-till" value="3420564" readonly>
+      <button class="copy-btn" onclick="copyTill()">Copy</button>
+    </div>
+
+    <!-- PHONE -->
+    <label class="small" style="margin-top:12px">Your Phone</label>
+    <input id="modal-phone" placeholder="07xxxxxxx">
+
+    <button id="modal-confirm" class="pay-btn" style="margin-top:12px">I Have Paid</button>
+
+    <div class="success-line" id="success-line">
+      ✓ Confirmed — Redirecting to WhatsApp…
+    </div>
+
   </div>
 </div>
 
-<nav class="bottom-nav"><div class="nav-item" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div><div class="nav-item active" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div><div class="nav-item" onclick="location.href='boosting.html'"><div class="ni-icon">📈</div>Boost</div><div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div></nav>
 
-<audio id="bg-audio" loop preload="auto"><source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3"></audio>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div>
+  <div class="nav-item active" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div>
+  <div class="nav-item" onclick="location.href='boosting.html'"><div class="ni-icon">📈</div>Boost</div>
+  <div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div>
+</nav>
+
+
+<!-- AUDIO -->
+<audio id="bg-audio" loop preload="auto">
+  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
+</audio>
+
+
+<!-- SCRIPT -->
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Open popup
+document.querySelectorAll('.buy').forEach(btn => {
+  btn.onclick = () => {
+    document.getElementById('modal-service').value = btn.dataset.service;
+    document.getElementById('modal-price').value = btn.dataset.price;
+    document.getElementById('pay-modal-back').classList.add('open');
+  };
+});
+
+// Close popup
+document.querySelectorAll('[data-modal-close]').forEach(btn => {
+  btn.onclick = () => document.getElementById('pay-modal-back').classList.remove('open');
+});
+
+// Copy Till
+function copyTill(){
+  navigator.clipboard.writeText("3420564");
+  alert("Till number copied!");
+}
+
+// Payment confirm
+document.getElementById('modal-confirm').onclick = () => {
+  let service = document.getElementById('modal-service').value;
+  let price = document.getElementById('modal-price').value;
+  let phone = document.getElementById('modal-phone').value;
+
+  if(phone.trim() === ""){
+    alert("Please enter your phone number");
+    return;
+  }
+
+  document.getElementById("success-line").style.display = "block";
+
+  setTimeout(() => {
+    let msg = 
+`Hello, I have completed payment.
+
+Service: ${service}
+Amount: ${price}
+Phone: ${phone}
+Till: 3420564`;
+
+    window.location.href = "https://wa.me/254763986398?text=" + encodeURIComponent(msg);
+  }, 800);
+};
+</script>
+
 
 <script src="app.js"></script>
 <script src="animations.js"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
 </body>
 </html>
