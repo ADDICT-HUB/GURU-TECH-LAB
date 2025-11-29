@@ -1,175 +1,561 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Social Media Boosting — Guru Tech Marketing</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Social Media Boosting — Guru Tech Lab</title>
+<style>
+  :root{
+    --accent: #ff3c00;       /* main orange */
+    --accent-2: #ffb86b;     /* warm secondary */
+    --muted: rgba(255,255,255,0.65);
+    --glass: rgba(255,255,255,0.03);
+    --glass-border: rgba(255,255,255,0.04);
+    --buy-grad: linear-gradient(180deg,var(--accent),#ff4f1e);
+    --blue-pill: #00b0ff;
+    --yellow-pill: #ffd24a;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#031025;color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  .page{max-width:1100px;margin:18px auto;padding:18px;}
+  header.site-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .brand .logo-text{font-weight:900;letter-spacing:0.4px}
+  .brand .tag{color:var(--muted);font-size:13px}
+  nav.top-nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-weight:700}
 
-  <link rel="stylesheet" href="style.css" />
+  /* hero / intro */
+  .hero {
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border-radius:14px;padding:18px;border:1px solid var(--glass-border); box-shadow:0 30px 60px rgba(2,6,23,0.7);
+    display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px;
+  }
+  .hero .left { max-width:62%; }
+  .hero h1{margin:4px 0 6px;color:var(--accent);font-size:20px}
+  .hero p{margin:0;color:var(--muted)}
 
-  <style>
-    body {
-      background: linear-gradient(180deg, #071018 0%, #0f0f14 60%);
-      color: #fff;
-      font-family: Inter, Arial, sans-serif;
-      min-width: 1200px;
-      padding: 20px;
-    }
+  /* service cards grid (floating glass) */
+  .cards {
+    display:grid;grid-template-columns:repeat(1,1fr);gap:12px;
+  }
+  @media(min-width:760px){ .cards{grid-template-columns:repeat(2,1fr);} }
 
-    .section-title {
-      text-align: center;
-      font-size: 30px;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 25px;
-    }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;padding:14px;border:1px solid var(--glass-border);box-shadow:0 18px 40px rgba(2,6,23,0.55);
+    display:flex;align-items:center;gap:12px;justify-content:space-between;
+  }
+  .card .meta{flex:1;padding-left:8px}
+  .svc-title{font-weight:800;font-size:16px;color:#fff}
+  .svc-sub{font-size:13px;color:var(--muted);margin-top:6px}
 
-    .boost-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 6px 0;
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-    }
+  .icon-box{width:62px;height:62px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45), inset 0 6px 18px rgba(255,255,255,0.02);}
 
-    .boost-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
+  .view-price { margin-left:12px;padding:8px 12px;border-radius:12px;border:0;background:var(--buy-grad);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(255,76,20,0.18) }
+  .view-price small{font-weight:700}
 
-    .boost-row:last-child {
-      border-bottom: none;
-    }
+  /* price listing inside modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.62);display:none;align-items:center;justify-content:center;padding:18px;z-index:1200}
+  .modal-backdrop.open{display:flex}
+  .modal {
+    width:100%;max-width:960px;max-height:86vh;overflow:auto;border-radius:14px;padding:18px;border:1px solid var(--glass-border);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow:0 30px 80px rgba(2,6,23,0.7);
+    position:relative;
+  }
+  .modal h2{color:var(--accent);margin:0 0 8px 0}
+  .close-btn{position:absolute;right:14px;top:12px;background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer}
 
-    .b-info {}
-    .b-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin: 0;
-      color: #fff;
-    }
-    .b-sub {
-      margin: 4px 0 0;
-      color: rgba(255,255,255,0.55);
-      font-size: 13px;
-    }
+  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:720px){ .price-grid{grid-template-columns:1fr} }
+  .price-block{background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .price-block h4{margin:0;color:#fff;font-size:15px}
+  .price-block ul{list-style:none;padding:8px 0 0 0;margin:0}
+  .price-block li{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.02);font-weight:700}
+  .price-block li:last-child{border-bottom:0}
 
-    .b-price {
-      width: 90px;
-      text-align: right;
-      color: var(--accent);
-      font-size: 16px;
-      font-weight: 900;
-    }
+  /* buy button inline */
+  .buy-inline {
+    background: linear-gradient(90deg,#ffd24a,#00b0ff);
+    border:0;padding:8px 10px;border-radius:10px;color:#071018;font-weight:900;cursor:pointer;
+    box-shadow:0 10px 20px rgba(0,0,0,0.35);
+  }
 
-    .b-btn {
-      background: var(--accent);
-      border: none;
-      padding: 10px 16px;
-      color: #fff;
-      font-weight: 900;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .b-btn:hover {
-      transform: scale(1.05);
-    }
+  /* payment popup */
+  .pay-card{width:420px;max-width:95%;margin:0 auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid var(--glass-border)}
+  .pay-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  label{color:var(--muted);font-size:13px}
+  input[type="tel"], input[type="text"]{width:100%;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:#fff}
+  .pay-btn{background:var(--buy-grad);border:0;color:#fff;padding:10px 12px;border-radius:10px;font-weight:900;cursor:pointer;width:100%}
+  .muted{color:var(--muted);font-size:13px}
+  .success-line{background:rgba(0,200,120,0.08);padding:8px;border-radius:8px;color:#bff3d2;font-weight:800;margin-top:10px;display:none}
 
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-    }
-  </style>
+  /* floating bottom nav for mobile visuals */
+  .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:rgba(0,0,0,0.45);padding:8px;border-radius:28px;display:flex;gap:14px;z-index:1100}
+  .bottom-nav .item{color:var(--muted);font-weight:800;padding:6px 10px;border-radius:12px;cursor:pointer}
+  .bottom-nav .item.active{color:#fff;background:rgba(255,255,255,0.03)}
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* small helpers */
+  .pill {padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid var(--glass-border);font-weight:800}
+  a.buy-btn-link{text-decoration:none}
+</style>
 </head>
-
 <body>
 
-  <h2 class="section-title">Social Media Boosting</h2>
+<div class="page">
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-text">GURU TECH LAB</div>
+      <div class="tag">Digital Services</div>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="website.html">Website</a>
+      <a href="bots.html">Bots</a>
+      <a href="branding.html">Branding</a>
+    </nav>
+  </header>
 
-  <div class="boost-box">
+  <section class="hero">
+    <div class="left">
+      <h1>OFFICIAL GURU SOCIAL MEDIA BOOSTING 🔥</h1>
+      <p>Tap a category to view full packages. Purchase by pressing the Buy button — pay using Till <strong>3420564</strong>.</p>
+    </div>
+    <div>
+      <div class="pill">Till: <strong>3420564</strong></div>
+    </div>
+  </section>
 
-    <!-- Instagram Followers -->
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">1,000 Instagram Followers</div>
-        <div class="b-sub">Fast delivery • Real-looking profiles</div>
+  <!-- Cards -->
+  <div class="cards" role="list">
+
+    <!-- IG Followers -->
+    <div class="card" role="listitem" aria-labelledby="svc-igf">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="icon-box" aria-hidden="true">
+          <!-- Instagram svg -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="igg" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="1" stop-color="#dd2a7b"/></linearGradient>
+            </defs>
+            <rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5" fill="url(#igg)"></rect>
+            <circle cx="12" cy="12" r="3.6" fill="#fff" opacity="0.12"></circle>
+          </svg>
+        </div>
+        <div class="meta">
+          <div id="svc-igf" class="svc-title">IG Followers</div>
+          <div class="svc-sub">Followers — packages & pricing</div>
+        </div>
       </div>
-      <div class="b-price">KES 200</div>
-      <button class="b-btn" onclick="buy('1K Instagram Followers',200)">Buy</button>
+      <div>
+        <button class="view-price" data-open="modal-ig">View Prices</button>
+      </div>
     </div>
 
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">5,000 Instagram Followers</div>
-        <div class="b-sub">High retention • Trusted</div>
+    <!-- IG Likes -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="icon-box">
+          <!-- heart-like icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="likeg" x1="0" x2="1"><stop offset="0" stop-color="#ffd86b"/><stop offset="1" stop-color="#ff7a2d"/></linearGradient></defs>
+            <path d="M12 20s-6.5-4.35-9-7.2C-0.2 8.6 3 4 7 6.2 8.8 7.4 10.6 9 12 10.6c1.4-1.6 3.2-3.2 5-4.4 4-2.2 7.2 2.4 4 6.6-2.5 2.85-9 7.2-9 7.2z" fill="url(#likeg)"></path>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="svc-title">IG Likes</div>
+          <div class="svc-sub">Per-post likes packages</div>
+        </div>
       </div>
-      <div class="b-price">KES 800</div>
-      <button class="b-btn" onclick="buy('5K Instagram Followers',800)">Buy</button>
+      <div>
+        <button class="view-price" data-open="modal-iglikes">View Prices</button>
+      </div>
     </div>
 
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">10,000 Instagram Followers</div>
-        <div class="b-sub">Fastest growth option</div>
+    <!-- TikTok -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="icon-box">
+          <!-- tiktok svg simplified -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="ttg" x1="0" x2="1"><stop offset="0" stop-color="#3bd0ff"/><stop offset="1" stop-color="#2b9cff"/></linearGradient></defs>
+            <path d="M9 3v10.5A4.5 4.5 0 1 0 13.5 18V8h3.5V5H9z" fill="url(#ttg)"></path>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="svc-title">TikTok Followers & Likes</div>
+          <div class="svc-sub">Followers, likes + views</div>
+        </div>
       </div>
-      <div class="b-price">KES 1500</div>
-      <button class="b-btn" onclick="buy('10K Instagram Followers',1500)">Buy</button>
+      <div>
+        <button class="view-price" data-open="modal-tiktok">View Prices</button>
+      </div>
     </div>
 
-    <!-- Instagram Likes -->
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">1,000 Instagram Likes</div>
-        <div class="b-sub">Real engagement</div>
+    <!-- YouTube / FB -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="icon-box">
+          <!-- youtube svg -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="ytg" x1="0" x2="1"><stop offset="0" stop-color="#ff5d5d"/><stop offset="1" stop-color="#ff3c00"/></linearGradient></defs>
+            <path d="M3.8 7.5c-.2.9-.3 2.8-.3 2.8s-.1 1.9.3 2.8c.4 1 1.4 1.7 2.5 1.8C9 14.7 12 14.7 12 14.7s3 0 5.5-.8c1.1-.1 2.1-.8 2.5-1.8.4-.9.3-2.8.3-2.8s.1-1.9-.3-2.8c-.4-1-1.4-1.7-2.5-1.8C15 5.3 12 5.3 12 5.3s-3 0-5.5.8c-1.1.1-2.1.8-2.7 1.4z" fill="url(#ytg)"></path>
+            <polygon points="10,9 16,12 10,15" fill="#fff" opacity="0.9"></polygon>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="svc-title">YouTube & Facebook</div>
+          <div class="svc-sub">Subscribers, watch hours, followers</div>
+        </div>
       </div>
-      <div class="b-price">KES 100</div>
-      <button class="b-btn" onclick="buy('1K Instagram Likes',100)">Buy</button>
-    </div>
-
-    <!-- TikTok Followers -->
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">1,000 TikTok Followers</div>
-        <div class="b-sub">Organic style growth</div>
+      <div>
+        <button class="view-price" data-open="modal-ytfb">View Prices</button>
       </div>
-      <div class="b-price">KES 250</div>
-      <button class="b-btn" onclick="buy('1K TikTok Followers',250)">Buy</button>
-    </div>
-
-    <!-- YouTube Subscribers -->
-    <div class="boost-row">
-      <div class="b-info">
-        <div class="b-title">100 YouTube Subscribers</div>
-        <div class="b-sub">High-quality subscribers</div>
-      </div>
-      <div class="b-price">KES 300</div>
-      <button class="b-btn" onclick="buy('100 YouTube Subscribers',300)">Buy</button>
     </div>
 
   </div>
 
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <footer>
+    © <span id="yr">2025</span> GURU TECH LAB
+  </footer>
+</div>
 
-  <script>
-    function buy(service, amount) {
-      window.location.href =
-        "checkout.html?service=" +
-        encodeURIComponent(service) +
-        "&amount=" + amount;
+<!-- MODALS -->
+
+<!-- IG followers modal -->
+<div id="modal-ig-back" class="modal-backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-ig-title">
+    <button class="close-btn" data-close>&times;</button>
+    <h2 id="modal-ig-title">IG Followers — Packages</h2>
+    <p class="muted">Contact via WhatsApp to order. Prices editable in page source.</p>
+
+    <div class="price-grid" style="margin-top:12px">
+      <div class="price-block">
+        <h4>Standard Followers</h4>
+        <ul>
+          <li>1K Followers — 200 <button class="buy-inline" data-package="IG — 1K Followers" data-price="200">Buy</button></li>
+          <li>2K Followers — 300 <button class="buy-inline" data-package="IG — 2K Followers" data-price="300">Buy</button></li>
+          <li>5K Followers — 500 <button class="buy-inline" data-package="IG — 5K Followers" data-price="500">Buy</button></li>
+          <li>7K Followers — 700 <button class="buy-inline" data-package="IG — 7K Followers" data-price="700">Buy</button></li>
+          <li>10K Followers — 1000 <button class="buy-inline" data-package="IG — 10K Followers" data-price="1000">Buy</button></li>
+          <li>15K Followers — 1250 <button class="buy-inline" data-package="IG — 15K Followers" data-price="1250">Buy</button></li>
+          <li>20K Followers — 1500 <button class="buy-inline" data-package="IG — 20K Followers" data-price="1500">Buy</button></li>
+        </ul>
+      </div>
+
+      <div class="price-block">
+        <h4>Large Orders</h4>
+        <ul>
+          <li>30K — 1800 <button class="buy-inline" data-package="IG — 30K" data-price="1800">Buy</button></li>
+          <li>45K — 2400 <button class="buy-inline" data-package="IG — 45K" data-price="2400">Buy</button></li>
+          <li>50K — 2900 <button class="buy-inline" data-package="IG — 50K" data-price="2900">Buy</button></li>
+          <li>100K — 5000 <button class="buy-inline" data-package="IG — 100K" data-price="5000">Buy</button></li>
+          <li>200K — 9800 <button class="buy-inline" data-package="IG — 200K" data-price="9800">Buy</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:10px"><strong>Offer:</strong> Buy 7K+ followers and get 10K free likes</p>
+  </div>
+</div>
+
+<!-- IG Likes modal -->
+<div id="modal-iglikes-back" class="modal-backdrop" aria-hidden="true">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>IG Likes — Packages</h2>
+    <div class="price-grid" style="margin-top:12px">
+      <div class="price-block">
+        <h4>1K Likes Packages</h4>
+        <ul>
+          <li>1 pic each 1K likes — 150 <button class="buy-inline" data-package="IG Likes — 1pic 1K" data-price="150">Buy</button></li>
+          <li>2 pics each 1K likes — 200 <button class="buy-inline" data-package="IG Likes — 2pic 1K" data-price="200">Buy</button></li>
+          <li>3 pics each 1K likes — 300 <button class="buy-inline" data-package="IG Likes — 3pic 1K" data-price="300">Buy</button></li>
+          <li>4 pics each 1K likes — 350 <button class="buy-inline" data-package="IG Likes — 4pic 1K" data-price="350">Buy</button></li>
+          <li>5 pics each 1K likes — 450 <button class="buy-inline" data-package="IG Likes — 5pic 1K" data-price="450">Buy</button></li>
+          <li>10 pics each 1K likes — 650 <button class="buy-inline" data-package="IG Likes — 10pic 1K" data-price="650">Buy</button></li>
+        </ul>
+      </div>
+
+      <div class="price-block">
+        <h4>2K Likes Packages</h4>
+        <ul>
+          <li>1 pic each 2K likes — 200 <button class="buy-inline" data-package="IG Likes — 1pic 2K" data-price="200">Buy</button></li>
+          <li>2 pics each 2K likes — 350 <button class="buy-inline" data-package="IG Likes — 2pic 2K" data-price="350">Buy</button></li>
+          <li>3 pics each 2K likes — 550 <button class="buy-inline" data-package="IG Likes — 3pic 2K" data-price="550">Buy</button></li>
+          <li>4 pics each 2K likes — 600 <button class="buy-inline" data-package="IG Likes — 4pic 2K" data-price="600">Buy</button></li>
+          <li>5 pics each 2K likes — 650 <button class="buy-inline" data-package="IG Likes — 5pic 2K" data-price="650">Buy</button></li>
+          <li>10 pics each 2K likes — 900 <button class="buy-inline" data-package="IG Likes — 10pic 2K" data-price="900">Buy</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TikTok modal -->
+<div id="modal-tiktok-back" class="modal-backdrop" aria-hidden="true">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>TikTok Followers & Likes — Packages</h2>
+    <div class="price-grid" style="margin-top:12px">
+      <div class="price-block">
+        <h4>Followers Offer</h4>
+        <ul>
+          <li>500 Followers — 300 <button class="buy-inline" data-package="TT — 500 Followers" data-price="300">Buy</button></li>
+          <li>1K Followers — 500 <button class="buy-inline" data-package="TT — 1K Followers" data-price="500">Buy</button></li>
+          <li>2K Followers — 1000 <button class="buy-inline" data-package="TT — 2K Followers" data-price="1000">Buy</button></li>
+          <li>5K Followers — 1650 <button class="buy-inline" data-package="TT — 5K Followers" data-price="1650">Buy</button></li>
+          <li>7K Followers — 2000 <button class="buy-inline" data-package="TT — 7K Followers" data-price="2000">Buy</button></li>
+          <li>10K Followers — 3500 <button class="buy-inline" data-package="TT — 10K Followers" data-price="3500">Buy</button></li>
+          <li>20K Followers — 6550 <button class="buy-inline" data-package="TT — 20K Followers" data-price="6550">Buy</button></li>
+        </ul>
+      </div>
+
+      <div class="price-block">
+        <h4>Likes (includes views)</h4>
+        <ul>
+          <li>500 likes + 2K views — 300 <button class="buy-inline" data-package="TT Likes — 500" data-price="300">Buy</button></li>
+          <li>1K likes + 5K views — 550 <button class="buy-inline" data-package="TT Likes — 1K" data-price="550">Buy</button></li>
+          <li>2.5K likes + 10K views — 700 <button class="buy-inline" data-package="TT Likes — 2.5K" data-price="700">Buy</button></li>
+          <li>3K likes + 20K views — 880 <button class="buy-inline" data-package="TT Likes — 3K" data-price="880">Buy</button></li>
+          <li>5K likes + 50K views — 1300 <button class="buy-inline" data-package="TT Likes — 5K" data-price="1300">Buy</button></li>
+          <li>7K likes + 80K views — 1500 <button class="buy-inline" data-package="TT Likes — 7K" data-price="1500">Buy</button></li>
+          <li>10K likes + 150K views — 2250 <button class="buy-inline" data-package="TT Likes — 10K" data-price="2250">Buy</button></li>
+          <li>17K likes + 400K views — 3200 <button class="buy-inline" data-package="TT Likes — 17K" data-price="3200">Buy</button></li>
+        </ul>
+        <p class="muted" style="margin-top:8px"><strong>Extras:</strong> 1K likes – 50 bob • 1K views – 40 bob</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- YouTube & FB modal -->
+<div id="modal-ytfb-back" class="modal-backdrop" aria-hidden="true">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>YouTube / Facebook — Packages</h2>
+    <div class="price-grid" style="margin-top:12px">
+      <div class="price-block">
+        <h4>YouTube Subscribers</h4>
+        <ul>
+          <li>100 subs — 200 <button class="buy-inline" data-package="YT — 100 subs" data-price="200">Buy</button></li>
+          <li>200 subs — 350 <button class="buy-inline" data-package="YT — 200 subs" data-price="350">Buy</button></li>
+          <li>300 subs — 500 <button class="buy-inline" data-package="YT — 300 subs" data-price="500">Buy</button></li>
+          <li>1K subs — 1100 <button class="buy-inline" data-package="YT — 1K subs" data-price="1100">Buy</button></li>
+          <li>5K subs — 5100 <button class="buy-inline" data-package="YT — 5K subs" data-price="5100">Buy</button></li>
+        </ul>
+        <p class="muted">Free 2K views for purchases above 1K subs</p>
+      </div>
+      <div class="price-block">
+        <h4>Facebook & Watch Hours</h4>
+        <ul>
+          <li>FB 1K followers — 350 <button class="buy-inline" data-package="FB — 1K followers" data-price="350">Buy</button></li>
+          <li>FB 5K followers — 1100 <button class="buy-inline" data-package="FB — 5K followers" data-price="1100">Buy</button></li>
+          <li>YT 1K hours — 1250 <button class="buy-inline" data-package="YT Hours — 1K" data-price="1250">Buy</button></li>
+          <li>YT 2K hours — 2300 <button class="buy-inline" data-package="YT Hours — 2K" data-price="2300">Buy</button></li>
+        </ul>
+        <p class="muted" style="margin-top:8px"><strong>Instant delivery • Non-drop</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment popup (floating glass) -->
+<div id="pay-modal-back" class="modal-backdrop" aria-hidden="true">
+  <div class="modal pay-card" role="dialog" aria-modal="true" aria-labelledby="pay-title">
+    <button class="close-btn" data-close>&times;</button>
+    <h3 id="pay-title" style="color:var(--accent);margin-top:0">Complete Payment</h3>
+
+    <div style="margin-top:8px" class="muted">Pay using M-PESA Till <strong>3420564</strong>. After payment press "I've Paid" to notify — we'll open WhatsApp with your details.</div>
+
+    <div style="margin-top:12px">
+      <label>Package</label>
+      <div id="pay-package" style="font-weight:900;margin:6px 0">—</div>
+    </div>
+
+    <div>
+      <label>Amount (KES)</label>
+      <div id="pay-amount" style="font-weight:900;margin:6px 0">—</div>
+    </div>
+
+    <div style="margin-top:8px">
+      <label for="payer-phone">Your phone (07XXXXXXXX)</label>
+      <input id="payer-phone" type="tel" placeholder="07XXXXXXXX" />
+    </div>
+
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button id="pay-sim" class="pay-btn">Pay Now — STK</button>
+      <button id="pay-io" class="buy-inline" style="flex:0">I Paid (open WhatsApp)</button>
+    </div>
+
+    <div id="pay-info" class="muted" style="margin-top:10px">TILL: <strong>3420564</strong> — AKIDA RAJAB</div>
+    <div id="pay-success" class="success-line">Payment verified — opening WhatsApp…</div>
+  </div>
+</div>
+
+<!-- bottom nav (visual) -->
+<nav class="bottom-nav" aria-hidden="false">
+  <div class="item active">Home</div>
+  <div class="item">Services</div>
+  <div class="item">Boost</div>
+  <div class="item">Contact</div>
+</nav>
+
+<script>
+/* --- Modal + UX wiring --- */
+document.addEventListener('click', function(e){
+  const openAttr = e.target.closest('[data-open]');
+  if (openAttr) {
+    const id = openAttr.getAttribute('data-open');
+    const back = document.getElementById(id + '-back');
+    if (back) back.classList.add('open');
+    return;
+  }
+  // close buttons
+  if (e.target.closest('[data-close]')) {
+    document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));
+    return;
+  }
+});
+
+// close by clicking backdrop
+document.querySelectorAll('.modal-backdrop').forEach(back=>{
+  back.addEventListener('click', function(ev){
+    if (ev.target === back) back.classList.remove('open');
+  });
+});
+
+// ESC to close
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));
+});
+
+/* --- Wire Buy buttons to open payment popup --- */
+const BUY_BUTTONS = document.querySelectorAll('.buy-inline');
+const PAY_BACK = document.getElementById('pay-modal-back');
+const PAY_PACKAGE = document.getElementById('pay-package');
+const PAY_AMOUNT = document.getElementById('pay-amount');
+const PAYER_PHONE = document.getElementById('payer-phone');
+const PAY_SIM = document.getElementById('pay-sim');
+const PAY_IO = document.getElementById('pay-io');
+const PAY_SUCCESS = document.getElementById('pay-success');
+
+BUY_BUTTONS.forEach(btn=>{
+  btn.addEventListener('click', function(){
+    const pkg = btn.getAttribute('data-package') || btn.dataset.package || 'Service';
+    const price = btn.getAttribute('data-price') || btn.dataset.price || '0';
+    PAY_PACKAGE.textContent = pkg;
+    PAY_AMOUNT.textContent = price + ' KES';
+    PAYER_PHONE.value = '';
+    PAY_SUCCESS.style.display = 'none';
+    PAY_BACK.classList.add('open');
+    PAYER_PHONE.focus();
+  });
+});
+
+/* --- Simulated payment flow --- */
+/* Because you said you don't have Daraja passkey yet, simulate then direct to WhatsApp.
+   When you get a backend STK endpoint, replace simulatePayment() with a real fetch to your server
+   that calls Daraja and returns success via a callback.
+*/
+
+function normalizePhone(p){
+  p = String(p||'').trim();
+  if (!p) return '';
+  if (p.startsWith('0')) return '254' + p.slice(1);
+  if (p.startsWith('+')) return p.replace('+','');
+  if (p.startsWith('254')) return p;
+  return p;
+}
+
+function openWhatsApp(phoneToNotify, pkg, price, payerPhone) {
+  // message template
+  const msg = encodeURIComponent(`Hello, I have paid.\n• Service: ${pkg}\n• Price: KES ${price}\n• Payer phone: ${payerPhone}\nPlease confirm my order.`);
+  // your number:
+  const to = '254763986398';
+  const url = `https://wa.me/${to}?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+// Simulate STK push/payment verification — replace with backend call later
+function simulatePayment(phone, amount, pkg) {
+  return new Promise((resolve) => {
+    // show a small delay to mimic STK process
+    setTimeout(()=> {
+      // simulate success
+      resolve({ success: true, reference: 'SIM' + Date.now() });
+    }, 2200);
+  });
+}
+
+PAY_SIM.addEventListener('click', async function(){
+  const phoneRaw = PAYER_PHONE.value.trim();
+  if (!phoneRaw) { alert('Enter your phone number (07XXXXXXXX)'); PAYER_PHONE.focus(); return; }
+  const phone = normalizePhone(phoneRaw);
+  if (!/^2547\d{8}$/.test(phone)) { alert('Use phone like 07XXXXXXXX'); PAYER_PHONE.focus(); return; }
+
+  const pkg = PAY_PACKAGE.textContent || 'Service';
+  // strip " KES"
+  const priceText = (PAY_AMOUNT.textContent||'0').replace(/\D/g,'') || '0';
+  const price = Number(priceText);
+
+  PAY_SIM.disabled = true;
+  PAY_SIM.textContent = 'Initiating STK...';
+
+  try {
+    const result = await simulatePayment(phone, price, pkg);
+    if (result && result.success) {
+      PAY_SIM.textContent = 'Payment OK';
+      PAY_SUCCESS.style.display = 'block';
+      // short pause so user sees success, then open WhatsApp
+      setTimeout(()=>{
+        PAY_BACK.classList.remove('open');
+        openWhatsApp('254763986398', pkg, price, phone);
+        PAY_SIM.disabled = false;
+        PAY_SIM.textContent = 'Pay Now — STK';
+      },900);
+    } else {
+      alert('Payment failed. Try again or press "I Paid" to notify.');
+      PAY_SIM.disabled = false;
+      PAY_SIM.textContent = 'Pay Now — STK';
     }
-  </script>
+  } catch (err) {
+    console.error(err);
+    alert('Network error. Press "I Paid" after manual payment.');
+    PAY_SIM.disabled = false;
+    PAY_SIM.textContent = 'Pay Now — STK';
+  }
+});
 
+// I Paid button — assumes user paid manually; open WhatsApp with prefilled message
+PAY_IO.addEventListener('click', function(){
+  const phoneRaw = PAYER_PHONE.value.trim();
+  const phone = normalizePhone(phoneRaw) || 'N/A';
+  const pkg = PAY_PACKAGE.textContent || 'Service';
+  const priceText = (PAY_AMOUNT.textContent||'0').replace(/\D/g,'') || '0';
+  const price = Number(priceText);
+  // close modal then open whatsapp
+  PAY_BACK.classList.remove('open');
+  openWhatsApp('254763986398', pkg, price, phone);
+});
+
+/* --- Ensure year updated --- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Accessibility: focus trap lightly (move focus to first close button when modal opens) */
+const modals = document.querySelectorAll('.modal-backdrop');
+modals.forEach(back => {
+  const modal = back.querySelector('.modal');
+  back.addEventListener('transitionend', ()=>{});
+  const observer = new MutationObserver(()=> {
+    if (back.classList.contains('open')) {
+      const firstClose = back.querySelector('[data-close]');
+      firstClose && firstClose.focus();
+    }
+  });
+  observer.observe(back, { attributes: true, attributeFilter: ['class'] });
+});
+</script>
 </body>
 </html>
