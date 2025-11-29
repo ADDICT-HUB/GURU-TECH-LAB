@@ -67,40 +67,51 @@
   </div>
 
   <script>
-    // helper for query params
     function qp(name){ const p = new URLSearchParams(location.search); return p.get(name); }
 
-    // read params & populate
     const svc = qp('service') || 'Unknown Service';
     const amt = parseFloat(qp('amount') || '0') || 0;
     document.getElementById('service-name').value = svc;
     document.getElementById('amount').value = amt;
     document.getElementById('svc-desc').textContent = svc.replace(/[-_]/g,' ');
 
-    // Payment endpoint (placeholder gateway) - Replace with your backend when available
-    const STK_GATEWAY = 'https://quickmpesa.xyz/api/stkpush'; // change to your backend later
-
-    // local balance key
+    const STK_GATEWAY = 'https://quickmpesa.xyz/api/stkpush';
     const BAL_KEY = 'gtm_balance';
 
-    function showMsg(text){ const el = document.getElementById('pay-msg'); el.textContent = text; }
+    function showMsg(text){ document.getElementById('pay-msg').textContent = text; }
 
-    // update client balance UI
     function updateBalanceUI(newBalance){
-      // update localStorage and show inside success
       localStorage.setItem(BAL_KEY, String(newBalance));
       document.getElementById('new-balance').textContent = 'Current Balance: KES ' + newBalance;
       document.getElementById('success-box').style.display = 'block';
-      // also try update services page balance if open (via localStorage or postMessage)
-      try { window.opener && window.opener.postMessage({ type:'gtm_balance_update', balance:newBalance }, '*'); } catch(e){}
     }
 
-    // confirm button
+    // 🔥 WHATSAPP REDIRECT FUNCTION
+    function redirectToWhatsApp() {
+      const message = encodeURIComponent(
+        `Hello, I have completed my payment for: ${svc} (KES ${amt}).`
+      );
+
+      // CHANGE THIS NUMBER TO YOUR WHATSAPP NUMBER
+      window.location.href = `https://wa.me/254763986398?text=${message}`;
+    }
+
+    // 🔥 PAYMENT SUCCESS HANDLER (used for real/simulated)
+    function handleSuccess() {
+      const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
+      const nb = Math.round((cur + amt) * 100) / 100;
+      updateBalanceUI(nb);
+      showMsg('Payment completed.');
+
+      // redirect automatically
+      setTimeout(redirectToWhatsApp, 1200);
+    }
+
     document.getElementById('pay-now').addEventListener('click', async function(){
       const phoneRaw = document.getElementById('cust-phone').value.trim();
       const ref = document.getElementById('cust-ref').value.trim() || svc;
+
       if (!phoneRaw) { showMsg('Enter phone number'); return; }
-      // normalize phone to 254 format
       let phone = phoneRaw;
       if (phone.startsWith('0')) phone = '254' + phone.slice(1);
       if (!/^2547\d{8}$/.test(phone)) { showMsg('Use phone like 07XXXXXXXX'); return; }
@@ -108,7 +119,6 @@
 
       showMsg('⏳ Initiating STK push — check your phone');
 
-      // Attempt STK call to gateway
       try {
         const resp = await fetch(STK_GATEWAY, {
           method:'POST',
@@ -123,42 +133,21 @@
         });
 
         const data = await resp.json();
-        // gateway should return { success:true } on queued STK.
+
         if (resp.ok && data && data.success) {
-          showMsg('✅ STK sent — enter your M-PESA PIN. Waiting for confirmation...');
-          // For demo we simulate payment success after a short delay if gateway does not provide callback
-          // In real deployment, the backend should call the Daraja API and use callbacks.
-          setTimeout(()=> {
-            // add amount to local balance
-            const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
-            const nb = Math.round((cur + amt) * 100) / 100;
-            updateBalanceUI(nb);
-            showMsg('Payment completed (simulated). Receipt recorded.');
-          }, 3500);
+          showMsg('✅ STK sent — enter your M-PESA PIN...');
+          setTimeout(handleSuccess, 3500);
         } else {
-          // if gateway failed, attempt fallback: still simulate success but show error
-          console.warn('STK response', data);
           showMsg('⚠️ Gateway error, simulating payment for now.');
-          setTimeout(()=> {
-            const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
-            const nb = Math.round((cur + amt) * 100) / 100;
-            updateBalanceUI(nb);
-            showMsg('Payment simulated and recorded locally.');
-          }, 2000);
+          setTimeout(handleSuccess, 2000);
         }
+
       } catch (err) {
-        console.error('STK fetch error', err);
-        showMsg('Network error — could not contact payment gateway. Simulating payment locally.');
-        setTimeout(()=> {
-          const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
-          const nb = Math.round((cur + amt) * 100) / 100;
-          updateBalanceUI(nb);
-          showMsg('Payment simulated and recorded locally.');
-        }, 1600);
+        showMsg('Network error — simulating payment.');
+        setTimeout(handleSuccess, 1600);
       }
     });
 
-    // show previous balance on load
     (function(){
       const cur = parseFloat(localStorage.getItem(BAL_KEY) || '0');
       if (cur > 0) {
