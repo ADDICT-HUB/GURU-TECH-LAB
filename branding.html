@@ -1,191 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<title>Branding & Digital Setup — GURU TECH LAB</title>
-<link rel="stylesheet" href="style.css" />
-
-<style>
-/* --- FLOATING GLASS POPUP --- */
-.pay-popup-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.pay-popup {
-  width: 92%;
-  max-width: 400px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-  padding: 20px;
-  color: #fff;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
-  backdrop-filter: blur(18px);
-  animation: popIn 0.25s ease;
-}
-
-@keyframes popIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-.pay-btn {
-  display: inline-block;
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  background: linear-gradient(135deg,#ff9c3d,#ff5e00);
-  border-radius: 10px;
-  text-align: center;
-  color: #fff;
-  font-weight: 600;
-  border: none;
-}
-
-.copy-btn {
-  background: rgba(255,255,255,0.15);
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  margin-left: 6px;
-}
-
-.package-btn {
-  background: rgba(255,255,255,0.06);
-  padding: 12px;
-  border-radius: 12px;
-  margin-top: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  cursor: pointer;
-}
-
-.package-btn:hover {
-  background: rgba(255,255,255,0.12);
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Branding — Guru Tech Lab</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="brand">
-    <div class="logo">GURU TECH LAB</div>
-    <div class="subtitle">Branding & Digital Setup</div>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="logo">GURU TECH LAB</div>
+      <div class="sub">Branding & Digital Setup</div>
+    </div>
   </div>
 
-  <nav class="top-nav">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="boosting.html" class="nav-btn">Boosting</a>
-    <a href="website.html" class="nav-btn">Website</a>
-    <a href="bots.html" class="nav-btn">Bots</a>
-  </nav>
-</header>
+  <!-- PAGE HEADER -->
+  <div class="hero">
+    <div class="h-title">Branding Packages</div>
+    <div class="h-lead">Choose your branding package — tap BUY to view price popup.</div>
 
-<main style="padding:26px;">
+    <!-- FLOATING GLASS SERVICE LIST -->
+    <div class="services">
 
-  <h1 style="color:var(--accent);margin-bottom:10px">Branding Services</h1>
-  <p style="color:var(--muted)">Choose your branding package below to order instantly.</p>
+      <!-- LOGO DESIGN -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Simple Logo</div>
+          <div class="sub">Clean stylish logo — 300 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Simple Logo" data-buy-price="300">Buy</button>
+        </div>
+      </div>
 
-  <!-- LIST OF PACKAGES WITH PAY BUTTON -->
-  <div class="package-btn" onclick="openPay('Simple Logo',300)">
-    ⭐ Simple Logo — <strong>300 KSH</strong>
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Professional Logo</div>
+          <div class="sub">Premium quality — 600 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Professional Logo" data-buy-price="600">Buy</button>
+        </div>
+      </div>
+
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">3D Logo</div>
+          <div class="sub">Deep realistic 3D — 1200 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="3D Logo" data-buy-price="1200">Buy</button>
+        </div>
+      </div>
+
+      <!-- SOCIAL BRANDING -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Brand Kit</div>
+          <div class="sub">Logo + Colors + Fonts — 300 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Brand Kit" data-buy-price="300">Buy</button>
+        </div>
+      </div>
+
+      <!-- FLYERS -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1584/1584832.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Poster / Flyer</div>
+          <div class="sub">High quality — 200 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Flyer Design" data-buy-price="200">Buy</button>
+        </div>
+      </div>
+
+      <!-- BUSINESS CARD -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Business Card Design</div>
+          <div class="sub">Clean & modern — 150 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Business Card Design" data-buy-price="150">Buy</button>
+        </div>
+      </div>
+
+      <!-- SOCIAL MEDIA TEMPLATES -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Social Templates (5)</div>
+          <div class="sub">5 editable designs — 400 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Social Templates (5)" data-buy-price="400">Buy</button>
+        </div>
+      </div>
+
+      <!-- PROMO VIDEO -->
+      <div class="card glass">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/711/711284.png"
+               width="40" height="40" />
+        </div>
+        <div class="meta">
+          <div class="title">Promo Video</div>
+          <div class="sub">5–10 sec — 500 KSH</div>
+        </div>
+        <div class="actions">
+          <button class="buy" data-buy-service="Promo Video" data-buy-price="500">Buy</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="package-btn" onclick="openPay('Professional Logo',600)">
-    💼 Professional Logo — <strong>600 KSH</strong>
-  </div>
+  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px;">
+    © <span id="year"></span> GURU TECH LAB
+  </footer>
 
-  <div class="package-btn" onclick="openPay('3D Logo',1200)">
-    🌀 3D Logo — <strong>1200 KSH</strong>
-  </div>
+</div>
 
-  <div class="package-btn" onclick="openPay('Brand Identity Guide',300)">
-    🎨 Brand Identity Colors + Fonts — <strong>300 KSH</strong>
-  </div>
+<!-- PAYMENT POPUP (Same as boosting) -->
+<div id="pay-modal-back" class="modal-backdrop">
+  <div id="pay-modal" class="modal glass-blur">
 
-  <div class="package-btn" onclick="openPay('Poster / Flyer',200)">
-    📄 Poster / Flyer — <strong>200 KSH</strong>
-  </div>
+    <button data-modal-close class="close-btn">×</button>
 
-  <div class="package-btn" onclick="openPay('Business Card Design',150)">
-    💳 Business Card — <strong>150 KSH</strong>
-  </div>
+    <h3>Complete Payment</h3>
 
-  <div class="package-btn" onclick="openPay('Highlight Covers (6 pcs)',200)">
-    🌟 Highlight Covers (6 pcs) — <strong>200 KSH</strong>
-  </div>
+    <p class="small-note">
+      Pay via Till <strong id="till">3420564</strong>.  
+      After payment, WhatsApp will open automatically.
+    </p>
 
-  <div class="package-btn" onclick="openPay('Templates Pack (5 pcs)',400)">
-    📦 Templates Pack (5 pcs) — <strong>400 KSH</strong>
-  </div>
+    <button id="copy-till" class="btn btn-ghost" style="margin-bottom:10px">
+      Copy Till Number
+    </button>
 
-</main>
-
-<!-- POPUP -->
-<div class="pay-popup-bg" id="popupBG">
-  <div class="pay-popup">
-
-    <h2 id="pp_title">Selected Package</h2>
-    <p style="opacity:0.8;margin-bottom:14px" id="pp_price"></p>
-
-    <div>
-      <strong>Till Number:</strong>
-      <span id="till">3420564</span>
-      <button class="copy-btn" onclick="copyTill()">Copy</button>
+    <div class="row">
+      <label>Service</label>
+      <div id="modal-service">—</div>
     </div>
 
-    <button class="pay-btn" onclick="goWhatsApp()">Proceed & Confirm on WhatsApp</button>
-    <button class="pay-btn" style="background:#444;margin-top:8px" onclick="closePay()">Close</button>
+    <div class="row">
+      <label>Amount</label>
+      <div id="modal-price">—</div>
+    </div>
+
+    <div class="row">
+      <label>Phone</label>
+      <input id="modal-phone" class="input" placeholder="+2547..." />
+    </div>
+
+    <button id="modal-confirm" class="btn btn-primary" style="width:100%">
+      I Paid — Notify on WhatsApp
+    </button>
 
   </div>
 </div>
 
-<script>
-let selectedPackage = "";
-let selectedPrice = "";
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="nav-item" onclick="location.href='index.html'">
+    <div class="ni-icon">🏠</div>Home
+  </div>
 
-/* --- OPEN POPUP --- */
-function openPay(pack, price) {
-  selectedPackage = pack;
-  selectedPrice = price;
+  <div class="nav-item" onclick="location.href='boosting.html'">
+    <div class="ni-icon">📈</div>Boost
+  </div>
 
-  document.getElementById("pp_title").innerText = pack;
-  document.getElementById("pp_price").innerText = price + " KSH";
+  <div class="nav-item active" onclick="location.href='branding.html'">
+    <div class="ni-icon">🎨</div>Branding
+  </div>
 
-  document.getElementById("popupBG").style.display = "flex";
-}
+  <div class="nav-item" onclick="location.href='contact.html'">
+    <div class="ni-icon">💬</div>Contact
+  </div>
+</nav>
 
-/* --- CLOSE POPUP --- */
-function closePay() {
-  document.getElementById("popupBG").style.display = "none";
-}
+<audio id="bg-audio" loop preload="auto">
+  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
+</audio>
 
-/* --- COPY TILL --- */
-function copyTill() {
-  navigator.clipboard.writeText("3420564");
-  alert("Till number copied!");
-}
-
-/* --- GO TO WHATSAPP --- */
-function goWhatsApp() {
-  let msg = `Hello, I have paid for:\n\n📦 *${selectedPackage}*\n💰 *${selectedPrice} KSH*\n\nKindly confirm my order.`;
-  let url = "https://wa.me/254763986398?text=" + encodeURIComponent(msg);
-  window.open(url, "_blank");
-}
-</script>
-
-<footer class="site-footer">© <span id="year"></span> GURU TECH LAB</footer>
+<script src="app.js"></script>
 
 <script>
-document.getElementById("year").innerText = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
