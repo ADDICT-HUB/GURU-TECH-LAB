@@ -6,197 +6,158 @@
   <title>Services — Guru Tech Lab</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<div class="app">
+<div class="page">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="brand">
-      <div class="logo">GURU TECH LAB</div>
-      <div class="sub">Services</div>
-    </div>
-
-    <button class="btn btn-ghost" data-music-toggle>
-      🔊 Play Music
-    </button>
+<header class="site-header">
+  <div class="brand">
+    <div class="logo-text">GURU TECH LAB</div>
+    <div class="tag">Our Services</div>
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="h-title">Our Services</div>
-    <div class="h-lead">Tap BUY → Confirm payment → WhatsApp will open automatically.</div>
+  <nav class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="boosting.html">Boosting</a>
+    <a href="services.html" style="color:#fff">Services</a>
+    <a href="branding.html">Branding</a>
+    <a href="bots.html">Bots</a>
+  </nav>
+</header>
 
-    <!-- SERVICE CARDS -->
-    <div class="services">
-
-      <div class="card">
-        <div class="icon">📈</div>
-        <div class="meta">
-          <div class="title">IG Followers</div>
-          <div class="sub">1K — 350 KES</div>
-        </div>
-        <div class="actions">
-          <button class="buy" data-service="IG Followers — 1K" data-price="350">Buy</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="icon">💻</div>
-        <div class="meta">
-          <div class="title">Landing Website</div>
-          <div class="sub">One Page — 1200 KES</div>
-        </div>
-        <div class="actions">
-          <button class="buy" data-service="Landing Page" data-price="1200">Buy</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="icon">🤖</div>
-        <div class="meta">
-          <div class="title">WhatsApp Bot</div>
-          <div class="sub">Setup — 500 KES</div>
-        </div>
-        <div class="actions">
-          <button class="buy" data-service="WhatsApp Bot" data-price="500">Buy</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="icon">🎨</div>
-        <div class="meta">
-          <div class="title">Branding Kit</div>
-          <div class="sub">Logo + Socials — 300 KES</div>
-        </div>
-        <div class="actions">
-          <button class="buy" data-service="Branding Kit" data-price="300">Buy</button>
-        </div>
-      </div>
-
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="left">
+    <h1>Professional Services</h1>
+    <p>Tap Buy → Make Payment → WhatsApp Confirmation Opens Automatically</p>
   </div>
-
-  <!-- CONTACT -->
-  <div class="contact-row">
-    <a class="contact-btn whatsapp" href="https://wa.me/254763986398">WhatsApp</a>
-    <a class="contact-btn email" href="mailto:akidarajab462@gmail.com">Email</a>
-    <a class="contact-btn ig" href="https://instagram.com">Instagram</a>
-  </div>
-
-  <footer style="margin-top:18px;color:var(--muted);text-align:center;font-size:13px">
-    © <span id="year"></span> GURU TECH LAB
-  </footer>
-
-</div>
-
-
-<!-- UPDATED PAYMENT POPUP -->
-<div id="pay-modal-back" class="modal-backdrop">
-
-  <div id="pay-modal" class="modal">
-
-    <button data-modal-close class="close-btn">×</button>
-
-    <h2 style="color:var(--accent)">Complete Payment</h2>
-
-    <!-- SERVICE + PRICE -->
-    <label class="small">Service</label>
-    <input id="modal-service" readonly>
-
-    <label class="small" style="margin-top:10px">Amount (KES)</label>
-    <input id="modal-price" readonly>
-
-    <!-- TILL -->
-    <label class="small" style="margin-top:12px">Till Number</label>
-    <div style="display:flex;gap:8px;">
-      <input id="modal-till" value="3420564" readonly>
-      <button class="copy-btn" onclick="copyTill()">Copy</button>
-    </div>
-
-    <!-- PHONE -->
-    <label class="small" style="margin-top:12px">Your Phone</label>
-    <input id="modal-phone" placeholder="07xxxxxxx">
-
-    <button id="modal-confirm" class="pay-btn" style="margin-top:12px">I Have Paid</button>
-
-    <div class="success-line" id="success-line">
-      ✓ Confirmed — Redirecting to WhatsApp…
-    </div>
-
+  <div class="right">
+    <span class="pill">Instant Delivery</span>
   </div>
 </div>
 
+<!-- SERVICES CARDS -->
+<div class="cards">
+
+  <div class="card">
+    <div class="icon-box">📈</div>
+    <div class="meta">
+      <div class="svc-title">IG Followers</div>
+      <div class="svc-sub">1K — 350 KES</div>
+    </div>
+    <button class="view-price" data-pay="350" data-service="IG Followers (1K)">Buy</button>
+  </div>
+
+  <div class="card">
+    <div class="icon-box">💻</div>
+    <div class="meta">
+      <div class="svc-title">Landing Website</div>
+      <div class="svc-sub">One Page — 1200 KES</div>
+    </div>
+    <button class="view-price" data-pay="1200" data-service="Landing Website">Buy</button>
+  </div>
+
+  <div class="card">
+    <div class="icon-box">🤖</div>
+    <div class="meta">
+      <div class="svc-title">WhatsApp Bot Setup</div>
+      <div class="svc-sub">Setup — 500 KES</div>
+    </div>
+    <button class="view-price" data-pay="500" data-service="WhatsApp Bot">Buy</button>
+  </div>
+
+  <div class="card">
+    <div class="icon-box">🎨</div>
+    <div class="meta">
+      <div class="svc-title">Branding Kit</div>
+      <div class="svc-sub">Logo + Socials — 300 KES</div>
+    </div>
+    <button class="view-price" data-pay="300" data-service="Branding Kit">Buy</button>
+  </div>
+
+</div>
+
+</div> <!-- /page -->
+
+<!-- PAYMENT POPUP — EXACT BOOSTING DESIGN -->
+<div class="modal-backdrop" id="pay-modal">
+  <div class="modal pay-card">
+    <button class="close-btn" data-close>✕</button>
+
+    <h2>Complete Payment</h2>
+
+    <div class="pay-row">
+      <label>Service</label>
+      <div id="pay-service">—</div>
+    </div>
+
+    <div class="pay-row">
+      <label>Amount</label>
+      <div id="pay-amount">—</div>
+    </div>
+
+    <div class="pay-row">
+      <label>Till Number</label>
+      <div class="pill">3420564</div>
+      <button class="copy-btn" data-copy="3420564">Copy</button>
+    </div>
+
+    <div class="pay-row">
+      <label>Your Phone</label>
+      <input id="pay-phone" placeholder="+2547..." />
+    </div>
+
+    <button class="pay-btn" id="confirm-pay">I Paid — Notify</button>
+
+    <div id="success-line" class="success-line">Redirecting to WhatsApp…</div>
+  </div>
+</div>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <div class="nav-item" onclick="location.href='index.html'"><div class="ni-icon">🏠</div>Home</div>
-  <div class="nav-item active" onclick="location.href='services.html'"><div class="ni-icon">⚙️</div>Services</div>
-  <div class="nav-item" onclick="location.href='boosting.html'"><div class="ni-icon">📈</div>Boost</div>
-  <div class="nav-item" onclick="location.href='contact.html'"><div class="ni-icon">💬</div>Contact</div>
+  <div class="item" onclick="location.href='index.html'">🏠</div>
+  <div class="item active">⚙️</div>
+  <div class="item" onclick="location.href='boosting.html'">📈</div>
+  <div class="item" onclick="location.href='branding.html'">🎨</div>
+  <div class="item" onclick="location.href='bots.html'">🤖</div>
 </nav>
-
-
-<!-- AUDIO -->
-<audio id="bg-audio" loop preload="auto">
-  <source src="https://files.catbox.moe/p386a0.mp3" type="audio/mp3">
-</audio>
-
 
 <!-- SCRIPT -->
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Open popup
-document.querySelectorAll('.buy').forEach(btn => {
+document.querySelectorAll('.view-price').forEach(btn => {
   btn.onclick = () => {
-    document.getElementById('modal-service').value = btn.dataset.service;
-    document.getElementById('modal-price').value = btn.dataset.price;
-    document.getElementById('pay-modal-back').classList.add('open');
+    document.getElementById('pay-service').textContent = btn.dataset.service;
+    document.getElementById('pay-amount').textContent = btn.dataset.pay;
+    document.getElementById('pay-modal').classList.add('open');
   };
 });
 
-// Close popup
-document.querySelectorAll('[data-modal-close]').forEach(btn => {
-  btn.onclick = () => document.getElementById('pay-modal-back').classList.remove('open');
+document.querySelectorAll('[data-close]').forEach(c => {
+  c.onclick = () => document.getElementById('pay-modal').classList.remove('open');
 });
 
-// Copy Till
-function copyTill(){
-  navigator.clipboard.writeText("3420564");
-  alert("Till number copied!");
-}
+document.querySelectorAll('[data-copy]').forEach(btn=>{
+  btn.onclick=()=>{navigator.clipboard.writeText(btn.dataset.copy);}
+});
 
-// Payment confirm
-document.getElementById('modal-confirm').onclick = () => {
-  let service = document.getElementById('modal-service').value;
-  let price = document.getElementById('modal-price').value;
-  let phone = document.getElementById('modal-phone').value;
+document.getElementById('confirm-pay').onclick = () => {
+  let service = document.getElementById('pay-service').textContent;
+  let amount = document.getElementById('pay-amount').textContent;
+  let phone  = document.getElementById('pay-phone').value;
 
-  if(phone.trim() === ""){
-    alert("Please enter your phone number");
-    return;
-  }
+  if(phone.trim()===""){ alert("Enter your phone number"); return; }
 
-  document.getElementById("success-line").style.display = "block";
+  document.getElementById('success-line').style.display = "block";
 
   setTimeout(() => {
-    let msg = 
-`Hello, I have completed payment.
-
-Service: ${service}
-Amount: ${price}
-Phone: ${phone}
-Till: 3420564`;
-
+    let msg = `Hello, I have completed payment.\nService: ${service}\nAmount: ${amount}\nPhone: ${phone}\nTill: 3420564`;
     window.location.href = "https://wa.me/254763986398?text=" + encodeURIComponent(msg);
-  }, 800);
+  }, 600);
 };
 </script>
 
-
 <script src="app.js"></script>
-<script src="animations.js"></script>
 
 </body>
 </html>
