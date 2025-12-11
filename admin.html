@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Panel</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #0b0b0c;
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+
+    .header {
+        text-align: center;
+        padding: 25px;
+        background: #131316;
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #00ff99;
+    }
+
+    .container {
+        width: 92%;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.07);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(6px);
+    }
+
+    .card h2 {
+        margin-top: 0;
+        font-size: 20px;
+        color: #00ff99;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 15px;
+    }
+
+    button {
+        background: #00ff99;
+        color: black;
+        font-weight: bold;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .stats-box {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .stats {
+        width: 32%;
+        padding: 15px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stats h3 {
+        margin: 0;
+        font-size: 17px;
+        color: #00ff99;
+    }
+
+    .stats p {
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 6px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="header">ADMIN CONTROL PANEL</div>
+
+<div class="container">
+
+    <!-- Stats -->
+    <div class="card">
+        <h2>Dashboard Statistics</h2>
+
+        <div class="stats-box">
+            <div class="stats">
+                <h3>Registered</h3>
+                <p id="regCount">0</p>
+            </div>
+
+            <div class="stats">
+                <h3>Remaining</h3>
+                <p id="remainCount">0</p>
+            </div>
+
+            <div class="stats">
+                <h3>Target</h3>
+                <p id="targetCount">1000</p>
+            </div>
+        </div>
+
+        <button onclick="loadStats()">Refresh</button>
+    </div>
+
+    <!-- Upload Session ID -->
+    <div class="card">
+        <h2>Upload Bot Session ID</h2>
+        <textarea id="sessionId" rows="3" placeholder="Paste your SESSION ID here"></textarea>
+        <button onclick="saveSession()">Save Session ID</button>
+    </div>
+
+    <!-- Broadcast Message -->
+    <div class="card">
+        <h2>Broadcast Message</h2>
+        <textarea id="broadcastText" rows="3" placeholder="Type your broadcast message"></textarea>
+        <button onclick="sendBroadcast()">Send Broadcast</button>
+    </div>
+
+    <!-- View All Users -->
+    <div class="card">
+        <h2>View Registered Users</h2>
+        <button onclick="loadUsers()">Load Users</button>
+        <div id="userList" style="margin-top:15px; white-space:pre-wrap;"></div>
+    </div>
+
+    <!-- Reset Database -->
+    <div class="card">
+        <h2>Danger Zone</h2>
+        <button style="background:red;color:white;" onclick="resetDB()">Reset All Data</button>
+    </div>
+
+</div>
+
+<script>
+    function loadStats() {
+        fetch('/api/stats')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("regCount").innerText = data.registered;
+            document.getElementById("remainCount").innerText = data.remaining;
+            document.getElementById("targetCount").innerText = data.target;
+        })
+        .catch(() => alert("Failed to load stats"));
+    }
+
+    function saveSession() {
+        let id = document.getElementById("sessionId").value;
+        if (!id) return alert("Enter session ID!");
+
+        fetch('/api/save-session', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({session: id})
+        })
+        .then(() => alert("Session Saved"))
+        .catch(() => alert("Error saving session"));
+    }
+
+    function sendBroadcast() {
+        let msg = document.getElementById("broadcastText").value;
+        if (!msg) return alert("Enter message!");
+
+        fetch('/api/broadcast', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({text: msg})
+        })
+        .then(() => alert("Broadcast sent"))
+        .catch(() => alert("Failed"));
+    }
+
+    function loadUsers() {
+        fetch('/api/users')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("userList").innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(() => alert("Error loading users"));
+    }
+
+    function resetDB() {
+        if (!confirm("Are you sure??? All data will be deleted.")) return;
+
+        fetch('/api/reset', { method:'POST' })
+        .then(() => alert("Database Reset"))
+        .catch(() => alert("Error resetting"));
+    }
+</script>
+
+</body>
+</html>
