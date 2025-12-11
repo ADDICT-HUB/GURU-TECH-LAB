@@ -2,214 +2,171 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Panel</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guru Tech Lab — Admin Panel</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #0b0b0c;
-        margin: 0;
-        padding: 0;
-        color: white;
-    }
-
-    .header {
-        text-align: center;
-        padding: 25px;
-        background: #131316;
-        font-size: 26px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        border-bottom: 2px solid #00ff99;
-    }
-
-    .container {
-        width: 92%;
-        margin: auto;
-        margin-top: 20px;
-    }
-
-    .card {
-        background: rgba(255,255,255,0.07);
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.1);
-        backdrop-filter: blur(6px);
-    }
-
-    .card h2 {
-        margin-top: 0;
-        font-size: 20px;
-        color: #00ff99;
-    }
-
-    input, textarea, button {
-        width: 100%;
-        padding: 12px;
-        border-radius: 10px;
-        border: none;
-        margin-top: 10px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 15px;
-    }
-
-    button {
-        background: #00ff99;
-        color: black;
-        font-weight: bold;
-        margin-top: 15px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    .stats-box {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    .stats {
-        width: 32%;
-        padding: 15px;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stats h3 {
-        margin: 0;
-        font-size: 17px;
-        color: #00ff99;
-    }
-
-    .stats p {
-        font-size: 22px;
-        font-weight: bold;
-        margin-top: 6px;
-    }
+  body { font-family: Inter, sans-serif; background: #031025; color: #fff; padding: 20px; }
+  .container { max-width: 800px; margin: auto; }
+  .card { background: rgba(255,255,255,0.05); padding: 18px; border-radius: 12px; margin-bottom: 20px; }
+  input, button { width: 100%; padding: 12px; border-radius: 10px; border: none; margin-top: 8px; font-size: 15px; }
+  button { background: #ff3c00; color: #fff; font-weight: bold; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+  th, td { border: 1px solid #444; padding: 8px; text-align: left; font-size: 14px; }
+  th { background: #1a1a2e; }
+  .approve-btn { background: #00e779; color: black; }
+  .reject-btn { background: red; color: #fff; }
 </style>
-
 </head>
 <body>
 
-<div class="header">ADMIN CONTROL PANEL</div>
-
 <div class="container">
 
-    <!-- Stats -->
+  <!-- LOGIN -->
+  <div id="login-card" class="card">
+    <h2>Admin Login</h2>
+    <input type="password" id="admin-pass" placeholder="Enter admin password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel" style="display:none;">
+    
     <div class="card">
-        <h2>Dashboard Statistics</h2>
-
-        <div class="stats-box">
-            <div class="stats">
-                <h3>Registered</h3>
-                <p id="regCount">0</p>
-            </div>
-
-            <div class="stats">
-                <h3>Remaining</h3>
-                <p id="remainCount">0</p>
-            </div>
-
-            <div class="stats">
-                <h3>Target</h3>
-                <p id="targetCount">1000</p>
-            </div>
-        </div>
-
-        <button onclick="loadStats()">Refresh</button>
+      <h2>Current Balance</h2>
+      <p><span id="current-balance">0</span> KES</p>
     </div>
 
-    <!-- Upload Session ID -->
     <div class="card">
-        <h2>Upload Bot Session ID</h2>
-        <textarea id="sessionId" rows="3" placeholder="Paste your SESSION ID here"></textarea>
-        <button onclick="saveSession()">Save Session ID</button>
+      <h2>Pending Payments</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Till Number</th><th>Transaction Code</th><th>Amount</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="pending-payments"></tbody>
+      </table>
     </div>
 
-    <!-- Broadcast Message -->
     <div class="card">
-        <h2>Broadcast Message</h2>
-        <textarea id="broadcastText" rows="3" placeholder="Type your broadcast message"></textarea>
-        <button onclick="sendBroadcast()">Send Broadcast</button>
+      <h2>Add Pending Payment Manually</h2>
+      <input type="text" id="till-num" placeholder="Till Number">
+      <input type="text" id="trx-code" placeholder="Transaction Code">
+      <input type="number" id="amount" placeholder="Amount (KES)">
+      <button onclick="addPending()">Add Pending Payment</button>
     </div>
 
-    <!-- View All Users -->
     <div class="card">
-        <h2>View Registered Users</h2>
-        <button onclick="loadUsers()">Load Users</button>
-        <div id="userList" style="margin-top:15px; white-space:pre-wrap;"></div>
+      <h2>Export Approved Payments</h2>
+      <button onclick="exportCSV()">Download CSV</button>
     </div>
 
-    <!-- Reset Database -->
-    <div class="card">
-        <h2>Danger Zone</h2>
-        <button style="background:red;color:white;" onclick="resetDB()">Reset All Data</button>
-    </div>
+  </div>
 
 </div>
 
 <script>
-    function loadStats() {
-        fetch('/api/stats')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("regCount").innerText = data.registered;
-            document.getElementById("remainCount").innerText = data.remaining;
-            document.getElementById("targetCount").innerText = data.target;
-        })
-        .catch(() => alert("Failed to load stats"));
-    }
+const ADMIN_PASS = "guruadmin";
 
-    function saveSession() {
-        let id = document.getElementById("sessionId").value;
-        if (!id) return alert("Enter session ID!");
+// ===== LOGIN =====
+function login(){
+  const pass = document.getElementById("admin-pass").value;
+  if(pass === ADMIN_PASS){
+    document.getElementById("login-card").style.display = "none";
+    document.getElementById("admin-panel").style.display = "block";
+    loadBalance();
+    loadPending();
+  } else {
+    alert("Incorrect password");
+  }
+}
 
-        fetch('/api/save-session', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({session: id})
-        })
-        .then(() => alert("Session Saved"))
-        .catch(() => alert("Error saving session"));
-    }
+// ===== STORAGE =====
+function getBalance(){ return parseInt(localStorage.getItem("gtl_balance") || "0"); }
+function setBalance(val){ localStorage.setItem("gtl_balance", val); }
+function getPending(){ return JSON.parse(localStorage.getItem("gtl_pending") || "[]"); }
+function setPending(arr){ localStorage.setItem("gtl_pending", JSON.stringify(arr)); }
+function getApproved(){ return JSON.parse(localStorage.getItem("gtl_approved") || "[]"); }
+function setApproved(arr){ localStorage.setItem("gtl_approved", JSON.stringify(arr)); }
 
-    function sendBroadcast() {
-        let msg = document.getElementById("broadcastText").value;
-        if (!msg) return alert("Enter message!");
+// ===== LOAD BALANCE =====
+function loadBalance(){
+  document.getElementById("current-balance").innerText = getBalance();
+}
 
-        fetch('/api/broadcast', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({text: msg})
-        })
-        .then(() => alert("Broadcast sent"))
-        .catch(() => alert("Failed"));
-    }
+// ===== PENDING PAYMENTS =====
+function loadPending(){
+  const pending = getPending();
+  const tbody = document.getElementById("pending-payments");
+  tbody.innerHTML = "";
+  pending.forEach((p,i)=>{
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${i+1}</td>
+      <td>${p.till}</td>
+      <td>${p.trx}</td>
+      <td>${p.amount}</td>
+      <td>
+        <button class="approve-btn" onclick="approve(${i})">Approve</button>
+        <button class="reject-btn" onclick="reject(${i})">Reject</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+}
 
-    function loadUsers() {
-        fetch('/api/users')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("userList").innerText = JSON.stringify(data, null, 2);
-        })
-        .catch(() => alert("Error loading users"));
-    }
+// ===== ADD PENDING =====
+function addPending(){
+  const till = document.getElementById("till-num").value.trim();
+  const trx = document.getElementById("trx-code").value.trim();
+  const amount = parseInt(document.getElementById("amount").value.trim());
+  if(!till||!trx||isNaN(amount)||amount<=0){ return alert("Enter valid data"); }
+  const pending = getPending();
+  pending.push({till,trx,amount});
+  setPending(pending);
+  loadPending();
+  document.getElementById("till-num").value="";
+  document.getElementById("trx-code").value="";
+  document.getElementById("amount").value="";
+}
 
-    function resetDB() {
-        if (!confirm("Are you sure??? All data will be deleted.")) return;
+// ===== APPROVE =====
+function approve(index){
+  const pending = getPending();
+  const approved = getApproved();
+  const payment = pending.splice(index,1)[0];
+  approved.push(payment);
+  setApproved(approved);
+  setPending(pending);
 
-        fetch('/api/reset', { method:'POST' })
-        .then(() => alert("Database Reset"))
-        .catch(() => alert("Error resetting"));
-    }
+  // Add to balance
+  const bal = getBalance();
+  setBalance(bal + payment.amount);
+
+  loadBalance();
+  loadPending();
+}
+
+// ===== REJECT =====
+function reject(index){
+  const pending = getPending();
+  pending.splice(index,1);
+  setPending(pending);
+  loadPending();
+}
+
+// ===== EXPORT CSV =====
+function exportCSV(){
+  const approved = getApproved();
+  if(approved.length===0) return alert("No approved payments");
+  let csv = "Till,Transaction,Amount\n";
+  approved.forEach(p=>{ csv += `${p.till},${p.trx},${p.amount}\n`; });
+  const blob = new Blob([csv], {type:"text/csv"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "approved_payments.csv";
+  a.click();
+}
+
 </script>
 
 </body>
