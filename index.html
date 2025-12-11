@@ -22,15 +22,11 @@ html,body{
   font-family:Inter,system-ui;
 }
 
-/* Layout */
 .page{max-width:1100px;margin:auto;padding:18px}
-
-/* Header */
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .logo{font-size:20px;font-weight:900}
 nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
 
-/* Hero */
 .hero{
   background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
   padding:20px;
@@ -41,7 +37,6 @@ nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
 .hero-title{font-size:22px;font-weight:900;color:var(--accent)}
 .hero-sub{color:var(--muted);margin-top:6px}
 
-/* Buttons */
 .row{display:flex;gap:10px;margin-top:14px}
 .btn{
   padding:12px 16px;
@@ -53,8 +48,7 @@ nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
 .btn-primary{background:var(--buy-grad);color:#fff}
 .btn-ghost{background:rgba(255,255,255,0.04);color:#fff;border:1px solid var(--glass-border)}
 
-/* Till & Support box */
-.info-row{display:flex;gap:10px;margin-top:12px}
+.info-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .info-box{
   flex:1;
   background:rgba(255,255,255,0.02);
@@ -65,7 +59,6 @@ nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
   box-shadow:0 10px 25px rgba(2,6,23,0.55);
 }
 
-/* Services cards */
 .section-title{margin-top:20px;font-size:20px;font-weight:900}
 .services{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
 @media(min-width:760px){.services{grid-template-columns:repeat(2,1fr)}}
@@ -98,23 +91,8 @@ nav a{color:var(--muted);margin-left:14px;font-weight:700;text-decoration:none}
   cursor:pointer;
 }
 
-/* Contact */
-.contact-row{display:flex;gap:10px;margin-top:22px}
-.contact-btn{
-  flex:1;
-  padding:12px;
-  text-align:center;
-  border-radius:12px;
-  border:1px solid var(--glass-border);
-  background:rgba(255,255,255,0.02);
-  color:#fff;
-  font-weight:800;
-  text-decoration:none;
-}
-
 footer{text-align:center;margin-top:18px;color:var(--muted)}
 
-/* Modal (blurry) */
 .modal-backdrop{
   position:fixed;inset:0;
   background:rgba(2,6,23,0.62);
@@ -146,6 +124,7 @@ input{
   border-radius:12px;
   color:#fff;
 }
+
 .copy-btn{
   background:rgba(255,255,255,0.04);
   border:1px solid var(--glass-border);
@@ -169,7 +148,6 @@ input{
 
 .success{color:#00e779;font-weight:800;margin-top:10px;display:none}
 
-/* Toast */
 .toast{
   position:fixed;
   bottom:20px;
@@ -207,7 +185,6 @@ input{
   </nav>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-title">We Amplify Brands — Fast & Secure</div>
   <div class="hero-sub">Boosting • Websites • Bots • Branding — Instant delivery + secure support.</div>
@@ -217,7 +194,6 @@ input{
     <button class="btn btn-ghost" onclick="openPay()">Buy Now</button>
   </div>
 
-  <!-- UPDATED TILL DESIGN -->
   <div class="info-row">
 
     <div class="info-box">
@@ -226,11 +202,7 @@ input{
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
         <div style="font-weight:900;font-size:15px">3420564</div>
 
-        <button 
-          class="copy-btn" 
-          style="padding:6px 10px;border-radius:10px;font-size:12px"
-          onclick="copyTill()"
-        >Copy</button>
+        <button class="copy-btn" onclick="copyTill()">Copy</button>
       </div>
 
       <div style="font-size:11px;color:var(--muted);margin-top:4px">AKIDA RAJAB</div>
@@ -243,49 +215,20 @@ input{
       </div>
     </div>
 
+    <!-- LIVE ACCOUNT BALANCE -->
+    <div class="info-box">
+      <div style="font-size:12px;color:var(--muted)">ACCOUNT BALANCE</div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <div id="balance" style="font-weight:900;font-size:17px">Loading...</div>
+
+        <button class="copy-btn" onclick="copyBalance()">Copy</button>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">Updated via Google Sheet</div>
+    </div>
+
   </div>
-</div>
-
-<!-- SERVICES -->
-<div class="section-title">Services</div>
-
-<div class="services">
-
-  <a class="card" href="boosting.html">
-    <div class="icon">📈</div>
-    <div class="meta">
-      <div class="title">Social Media Boosting</div>
-      <div class="sub">Followers, likes, views — all platforms</div>
-    </div>
-    <button class="buy" onclick="openPay()">Buy</button>
-  </a>
-
-  <a class="card" href="website.html">
-    <div class="icon">💻</div>
-    <div class="meta">
-      <div class="title">Website Development</div>
-      <div class="sub">Business & e-commerce sites</div>
-    </div>
-    <button class="buy" onclick="openPay()">Buy</button>
-  </a>
-
-  <a class="card" href="bots.html">
-    <div class="icon">🤖</div>
-    <div class="meta">
-      <div class="title">Automation & Bots</div>
-      <div class="sub">WhatsApp bots & funnels</div>
-    </div>
-    <button class="buy" onclick="openPay()">Buy</button>
-  </a>
-
-  <a class="card" href="branding.html">
-    <div class="icon">🎨</div>
-    <div class="meta">
-      <div class="title">Branding & Setup</div>
-      <div class="sub">Logos & social kits</div>
-    </div>
-    <button class="buy" onclick="openPay()">Buy</button>
-  </a>
 
 </div>
 
@@ -315,8 +258,7 @@ input{
   </div>
 </div>
 
-<!-- Toast -->
-<div id="toast" class="toast">Till Number Copied</div>
+<div id="toast" class="toast">Copied</div>
 
 <script>
 function openPay(){
@@ -350,6 +292,37 @@ function finishPay(){
 }
 
 document.getElementById("year").innerText=new Date().getFullYear();
+
+
+// ==================================
+// GOOGLE SHEET LIVE BALANCE SYSTEM
+// ==================================
+
+const SHEET_ID = "YOUR_SHEET_ID_HERE";  
+const SHEET_RANGE = "A1:B1";  
+
+function loadBalance() {
+  fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`)
+    .then(res => res.text())
+    .then(data => {
+      const json = JSON.parse(data.substr(47).slice(0, -2));
+
+      const value = json.table.rows[0].c[1].v;  
+
+      document.getElementById("balance").textContent = value + " KES";
+    })
+    .catch(() => {
+      document.getElementById("balance").textContent = "Error";
+    });
+}
+
+function copyBalance(){
+  const text = document.getElementById("balance").textContent;
+  navigator.clipboard.writeText(text);
+  showToast();
+}
+
+loadBalance();
 </script>
 
 </body>
