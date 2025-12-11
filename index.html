@@ -223,6 +223,9 @@ input{
 <!-- BALANCE -->
 <div class="balance-box">
   Account Balance: <span id="balance">0</span> KES
+  <div id="payment-msg" style="font-size:14px;color:var(--muted);margin-top:6px;">
+    Loading payment info...
+  </div>
 </div>
 
 <!-- HERO -->
@@ -385,8 +388,35 @@ function finishPay(){
   },600);
 }
 
+/* Dynamic payment message */
+function loadPaymentMessage(){
+  const msgEl = document.getElementById("payment-msg");
+
+  fetch("https://ipapi.co/json/")
+    .then(res => res.json())
+    .then(data => {
+      let currency = "KES"; // default
+      let amount = 200;     // default
+
+      switch(data.country_code){
+        case "US": currency="USD"; amount=2; break;
+        case "NG": currency="NGN"; amount=1200; break;
+        case "UG": currency="UGX"; amount=7500; break;
+        case "TZ": currency="TZS"; amount=5000; break;
+        case "KE": currency="KES"; amount=200; break;
+      }
+
+      msgEl.innerText = `Pay ${amount} ${currency} to activate the pending balance`;
+    })
+    .catch(err => {
+      msgEl.innerText = "Pay 200 KES to activate the pending balance";
+      console.log("Geo API error:", err);
+    });
+}
+
 document.getElementById("year").innerText=new Date().getFullYear();
 loadBalance();
+loadPaymentMessage();
 </script>
 
 </body>
